@@ -1,6 +1,12 @@
 # Welcome to the contributions of Thapar Buying / Selling - OLX (Full Stack + DevOps) project
+We follow a systematic Git Workflow -
+- Create a fork of this repo.
+- Clone your fork of your repo on your pc.
+- [Add Upstream to your clone](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/configuring-a-remote-for-a-fork)
+- **Every change** that you do, it has to be on a branch. Commits on master would directly be closed.
+- Make sure that before you create a new branch for new changes,[syncing with upstream](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork) is neccesary.
 
-## Setup of project (Backend)
+## Setup and running of project (Backend)
 - Fork the repo and clone it.
 - Go in the repo and setup virtualenvironment using <br>
 ```python -m virtualenv env``` 
@@ -22,18 +28,16 @@ pre-commit install
 ```python manage.py makemigrations```
 ```python manage.py migrate```
 
-## Setup of project (Frontend)
-- At your root directory run `yarn install` to install all the dependencies
-
-## How to start the backend server
-- ```python manage.py runserver```
-
+- Start the backend server 
+```python manage.py runserver```
 Runs the backend server at default port ```8000```.<br />
 Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 
-## How to start react dev server
+## Setup and running of project (Frontend)
+- At your root directory run `yarn install` to install all the dependencies
+- Start react dev server
 - ```yarn start```
 
 Runs the app in the development mode.<br />
@@ -44,8 +48,4 @@ You will also see any lint errors in the console.
 
 #### Note
 - If you are adding any new requirements for the project, make sure that you are adding it to ```requirements.txt```
-
-
-### To keep your fork master insync, use these -
-- [Add Upstream to your clone] (https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/configuring-a-remote-for-a-fork)
-- [Syncing with upstream] (https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
+- Use only ```yarn add package_name``` to add new packages to the frontend part.
