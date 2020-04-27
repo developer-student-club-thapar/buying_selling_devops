@@ -12,9 +12,12 @@ We follow a systematic Git Workflow -
 ```python -m virtualenv env``` 
 - Then activate the environment using <br>
 ```source env/Scripts/activate```
+- If you had a previous version of the project, please delete the old env folder and create a new one
+- The project now uses ```poetry``` to manage dependencies.
+- Install [Poetry](https://python-poetry.org/docs/)
 - At the root of your project directory <br>
 ```bash 
-pip install -r requirements.txt
+poetry install
 pre-commit install
 ```
 - This will setup the project requirements and pre-commit test hooks!
