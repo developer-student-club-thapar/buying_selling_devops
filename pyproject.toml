@@ -1,3 +1,48 @@
+[tool.poetry]
+name = "buying_selling_devops"
+version = "0.1.0"
+description = ""
+authors = ["DSC TIET"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+appdirs = "1.4.3"
+asgiref = "3.2.3"
+autopep8 = "1.4.4"
+certifi = "2019.11.28"
+cfgv = "3.1.0"
+chardet = "3.0.4"
+defusedxml = "0.6.0"
+distlib = "0.3.0"
+Django = "2.2.10"
+django-allauth = "0.41.0"
+django-cleanup = "4.0.0"
+django-cors-headers = "3.2.0"
+django-environ = "0.4.5"
+django-filter = "2.2.0"
+django-rest-auth = "0.9.5"
+djangorestframework = "3.10.3"
+filelock = "3.0.12"
+identify = "1.4.14"
+idna = "2.9"
+Markdown = "3.1.1"
+nodeenv = "1.3.5"
+oauthlib = "3.1.0"
+Pillow = "7.1.1"
+pre-commit = "2.2.0"
+pycodestyle = "2.5.0"
+python3-openid = "3.1.0"
+pytz = "2019.3"
+PyYAML = "5.3.1"
+requests = "2.23.0"
+requests-oauthlib = "1.3.0"
+six = "1.14.0"
+sqlparse = "0.3.0"
+toml = "0.10.0"
+urllib3 = "1.25.9"
+virtualenv = "20.0.17"
+wincertstore = "0.2"
+
 [tool.black]
 line-length = 200
 target-version = ['py36', 'py37', 'py38']
@@ -8,10 +53,20 @@ exclude = '''
     \.*
   | \.git
   | \.mypy_cache
-  | \.venv
+  | \.env
   # The following are specific to Black, you probably don't want those.
   | blib2to3
   | tests/data
   | profiling
 )/
-'''
+
+[tool.flake8]
+exclude = */.*/,.*/,__pycache__,node_modules
+# E129: visually indented line with same indent as next logical line
+# E203 whitespace before ':'
+# E231: missing whitespace after ','
+# E501: line too long
+extend_ignore = E129,E203,E231,E501
+max-line-length = 100
+
+
