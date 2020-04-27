@@ -43,13 +43,6 @@ urllib3 = "1.25.9"
 virtualenv = "20.0.17"
 wincertstore = "0.2"
 
-
-[tool.poetry.dev-dependencies]
-
-[build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
-
 [tool.black]
 line-length = 200
 target-version = ['py36', 'py37', 'py38']
@@ -67,5 +60,13 @@ exclude = '''
   | profiling
 )/
 
+[tool.flake8]
+exclude = */.*/,.*/,__pycache__,node_modules
+# E129: visually indented line with same indent as next logical line
+# E203 whitespace before ':'
+# E231: missing whitespace after ','
+# E501: line too long
+extend_ignore = E129,E203,E231,E501
+max-line-length = 100
 
 
