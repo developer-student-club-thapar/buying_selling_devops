@@ -5,6 +5,13 @@ import uuid
 
 
 class Post(models.Model):
+    cat_choices = [
+        ('Mobile', (('mobile', 'Mobiles'), ('mob_accessories', 'Mobile Accessories'), ('tablet', 'Tablets'))),
+        ('other', 'Others')
+        # Need to add more categories
+    ]
+
+    category = models.CharField(max_length=40, choices=cat_choices, default='Others',)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=100)
     description = models.TextField()
