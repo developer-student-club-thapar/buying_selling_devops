@@ -1,0 +1,9 @@
+static
+templates
+.vscode
+README.md
+*.yml
+*.yaml
+CONTRIBUTION.md
+env/
+.gitignore
