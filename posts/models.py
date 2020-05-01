@@ -4,14 +4,19 @@ import uuid
 from django.conf import settings
 
 
-class Post(models.Model):
-    cat_choices = [
-        ('Mobile', (('mobile', 'Mobiles'), ('mob_accessories', 'Mobile Accessories'), ('tablet', 'Tablets'))),
-        ('other', 'Others')
-        # Need to add more categories
-    ]
+class Category(models.Model):
+    name = models.CharField(max_length=40,)
 
-    category = models.CharField(max_length=40, choices=cat_choices, default='Others',)
+    class Meta:
+        verbose_name = 'category'
+        verbose_name_plural = 'Categories'
+
+    def __str__(self):
+        return self.name
+
+
+class Post(models.Model):
+    category = models.ManyToManyField(Category)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=100)
     description = models.TextField()
