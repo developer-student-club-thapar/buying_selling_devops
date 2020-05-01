@@ -353,6 +353,14 @@ socks = ["PySocks (>=1.5.6,<1.5.7 || >1.5.7,<2.0)"]
 
 [[package]]
 category = "main"
+description = "UUID object and generation functions (Python 2.3 or higher)"
+name = "uuid"
+optional = false
+python-versions = "*"
+version = "1.30"
+
+[[package]]
+category = "main"
 description = "Virtual Python Environment builder"
 name = "virtualenv"
 optional = false
@@ -378,7 +386,7 @@ python-versions = "*"
 version = "0.2"
 
 [metadata]
-content-hash = "bc69e318ddd511ee31f9a5c5785a58c1858476e676edd786c6c4dac4fc6a1f52"
+content-hash = "f6da7ab4021ae58e64a3f12987fef05dd5e9e0f9d84f71c821f25e0f8e776653"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -544,6 +552,9 @@ toml = [
 urllib3 = [
     {file = "urllib3-1.25.9-py2.py3-none-any.whl", hash = "sha256:88206b0eb87e6d677d424843ac5209e3fb9d0190d0ee169599165ec25e9d9115"},
     {file = "urllib3-1.25.9.tar.gz", hash = "sha256:3018294ebefce6572a474f0604c2021e33b3fd8006ecd11d62107a5d2a963527"},
+]
+uuid = [
+    {file = "uuid-1.30.tar.gz", hash = "sha256:1f87cc004ac5120466f36c5beae48b4c48cc411968eed0eaecd3da82aa96193f"},
 ]
 virtualenv = [
     {file = "virtualenv-20.0.17-py2.py3-none-any.whl", hash = "sha256:00cfe8605fb97f5a59d52baab78e6070e72c12ca64f51151695407cc0eb8a431"},

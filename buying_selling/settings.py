@@ -13,6 +13,7 @@ SECRET_KEY = env("SECRET_KEY")
 
 ALLOWED_HOSTS = ['*']
 
+AUTH_USER_MODEL = 'users.MyUser'
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -30,6 +31,8 @@ INSTALLED_APPS = [
     "rest_auth.registration",
     "rest_framework",
     "rest_framework.authtoken",
+    "posts.apps.PostsConfig",
+    "users.apps.UsersConfig",
 ]
 
 SITE_ID = 1

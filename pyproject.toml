@@ -42,6 +42,7 @@ toml = "0.10.0"
 urllib3 = "1.25.9"
 virtualenv = "20.0.17"
 wincertstore = "0.2"
+uuid = "^1.30"
 
 [tool.black]
 line-length = 200
