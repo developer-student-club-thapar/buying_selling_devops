@@ -1,7 +1,7 @@
-import React from "react";
-import { HashRouter as Router } from "react-router-dom";
-import Routes from "./routes";
-import history from "./services/history";
+import React from 'react';
+import { HashRouter as Router } from 'react-router-dom';
+import Routes from './routes';
+import history from './services/history';
 
 const App = () => {
   return (
