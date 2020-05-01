@@ -9,3 +9,9 @@ frontend:
 backend-root:
   - buying_selling/*
   - buying_selling/**/*
+
+backend:
+  - posts/*
+  - posts/**/*
+  - users/*
+  - users/**/*
