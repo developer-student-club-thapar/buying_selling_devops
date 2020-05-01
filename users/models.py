@@ -5,6 +5,8 @@ from django.core.validators import RegexValidator
 
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
+from posts.models import Post
+
 USERNAME_REGEX = '^[a-zA-Z0-9.+-]*$'
 
 
@@ -54,3 +56,8 @@ class MyUser(AbstractBaseUser):
         "Does the user have permissions to view the app `app_label`?"
         # Simplest possible answer: Yes, always
         return True
+
+
+class Wishlist(models.Model):
+    author = models.OneToOneField(MyUser, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.DO_NOTHING)
