@@ -13,6 +13,7 @@ SECRET_KEY = env("SECRET_KEY")
 
 ALLOWED_HOSTS = ['*']
 
+AUTH_USER_MODEL = 'users.MyUser'
 
 INSTALLED_APPS = [
     "django.contrib.admin",
