@@ -22,7 +22,7 @@ pre-commit install
 ```
 - This will setup the project requirements and pre-commit test hooks!
 
-- Rename ```.env.example``` to ```.env```
+- Make a new file named ```.env``` exactly similar to ```.env.example```.
 - Inside ```.env``` file set secret key for your django project.
 - You can use [https://djecrety.ir/] to generate your secret key
 - Set ```DEBUG = True``` during development in ```.env``` file
