@@ -67,4 +67,9 @@ class MyUser(AbstractBaseUser):
 
 class Wishlist(models.Model):
     author = models.OneToOneField(MyUser, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, on_delete=models.DO_NOTHING)
+    post = models.ManyToManyField(Post)
+
+    name = f"Wishlist for {author}"
+
+    def __str__(self):
+        return f"Wishlist for {self.author.username}"
