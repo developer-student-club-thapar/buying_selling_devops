@@ -6,17 +6,19 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .forms import UserCreationForm
 from .models import MyUser, Wishlist
 
-# Register your models here.
-
 
 class UserAdmin(BaseUserAdmin):
     add_form = UserCreationForm
 
-    list_display = ('username', 'email', 'is_admin')
+    list_display = ('username', 'mobile', 'email', 'is_admin')
     list_filter = ('is_admin',)
 
-    fieldsets = ((None, {'fields': ('username', 'email', 'password')}), ('Permissions', {'fields': ('is_admin',)}))
-    search_fields = ('username', 'email')
+    fieldsets = (
+        (None, {'fields': ('username', 'mobile', 'email', 'password')}),
+        ('Personal Info', {'fields': ('firstName', 'lastName', 'dateJoined')}),
+        ('Permissions', {'fields': ('is_admin', 'is_staff', 'is_active')}),
+    )
+    search_fields = ('username', 'email', 'phone')
     ordering = ('username', 'email')
 
     filter_horizontal = ()
