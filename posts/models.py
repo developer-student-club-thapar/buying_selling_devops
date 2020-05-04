@@ -28,7 +28,14 @@ class Post(models.Model):
     discountPercent = models.DecimalField(max_digits=4, decimal_places=2)
     age = models.IntegerField()
     brand = models.CharField(max_length=50)
-    condition = models.TextField()
+    CONDITION_CHOICES = (
+        ('VB', 'Very Bad'),
+        ('BA', 'Bad'),
+        ('G', 'Good'),
+        ('BE', 'Best'),
+        ('E', 'Couldn\'t be better')
+    )
+    condition = models.CharField(max_length=3, choices=CONDITION_CHOICES, default='G')
 
     def __str__(self):
         return self.title
