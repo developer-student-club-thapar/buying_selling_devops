@@ -25,10 +25,17 @@ class Post(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     isSold = models.BooleanField(default=False)
     onDiscount = models.BooleanField(default=False)
-    discountPercent = models.DecimalField(max_digits=2, decimal_places=2)
+    discountPercent = models.DecimalField(max_digits=4, decimal_places=2)
     age = models.IntegerField()
     brand = models.CharField(max_length=50)
-    condition = models.TextField()
+    CONDITION_CHOICES = (
+        ('VB', 'Very Bad'),
+        ('BA', 'Bad'),
+        ('G', 'Good'),
+        ('BE', 'Best'),
+        ('E', 'Couldn\'t be better')
+    )
+    condition = models.CharField(max_length=3, choices=CONDITION_CHOICES, default='G')
 
     def __str__(self):
         return self.title
