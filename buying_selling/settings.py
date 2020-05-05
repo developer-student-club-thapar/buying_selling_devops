@@ -23,14 +23,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
     "corsheaders",
-    "rest_auth",
-    "rest_auth.registration",
     "rest_framework",
-    "rest_framework.authtoken",
     "posts.apps.PostsConfig",
     "users.apps.UsersConfig",
 ]
@@ -104,9 +98,3 @@ REST_FRAMEWORK = {
 
 # CORS SETTINGS
 CORS_ORIGIN_ALLOW_ALL = True
-
-
-# DJANGO - ALL AUTH CONFIGS
-ACCOUNT_EMAIL_VERIFICATION = "none"
-ACCOUNT_AUTHENTICATION_METHOD = "username"
-ACCOUNT_EMAIL_REQUIRED = False
