@@ -1,0 +1,6 @@
+FROM node:alpine
+WORKDIR "/buying_selling_devops"
+COPY ./package.json ./
+RUN yarn
+COPY ./ ./
+CMD ["yarn", "start"]

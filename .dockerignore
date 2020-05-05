@@ -1,0 +1,8 @@
+.github
+.vscode
+node_modules
+env
+.env.example
+.gitignore
+CONTRIBUTION.md
+README.md
