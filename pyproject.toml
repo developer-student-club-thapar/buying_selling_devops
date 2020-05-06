@@ -5,7 +5,7 @@ description = ""
 authors = ["DSC TIET"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.8, <3.9"
 Django = "2.2.10"
 django-cleanup = "4.0.0"
 django-cors-headers = "3.2.0"
@@ -16,6 +16,8 @@ Markdown = "3.1.1"
 Pillow = "7.1.1"
 pre-commit = "2.2.0"
 uuid = "^1.30"
+djangorestframework-simplejwt = "^4.4.0"
+requests = "^2.23.0"
 
 [tool.black]
 line-length = 200
