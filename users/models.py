@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 from django.core.validators import RegexValidator
 from django.utils import timezone
+from PIL import Image
 
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
@@ -70,3 +71,50 @@ class Wishlist(models.Model):
 
     def __str__(self):
         return f"Wishlist for {self.author.username}"
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(MyUser, on_delete=models.CASCADE)
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    bio = models.TextField()
+    YEAR_CHOICES = (
+        ('1', 'First'),
+        ('2', 'Second'),
+        ('3', 'Third'),
+        ('4', 'Fourth'),
+    )
+    BRANCH_CHOICES = (
+        ('COE', 'Computer Engineering'),
+        ('CSE', 'Computer Science Engineering'),
+        ('ECE', 'Electroincs and Communications Engineering'),
+        ('ENC', 'Electroincs and Computer Engineering'),
+        ('COBS', 'Computer Science and Business Studies'),
+        ('CE', 'Chemical Engineering'),
+        ('CiE', 'Civil Engineering'),
+        ('BiE', 'Biotechnology'),
+        ('BME', 'Biomedical Engineering'),
+        ('SE', 'Structural Engineering'),
+        ('IE', 'Infrastructure Engineering'),
+        ('ME', 'Mechanical Engineering'),
+        ('MEC', 'Mechatronics Engineering'),
+        ('EE', 'Electrical Engineering'),
+        ('ECE', 'Electroinc (Instrumentation and Control)'),
+        ('ME(P)', 'Mechanical (Production) Engineering'),
+        ('BE-MBA(ME)', 'Mechanical MBA Dual Degree'),
+        ('BE-MBA(ECE)', 'Electroincs MBA Dual Degree'),  # Add others later
+    )
+    year = models.CharField(max_length=1, choices=YEAR_CHOICES, default='1')
+    branch = models.CharField(max_length=11, choices=BRANCH_CHOICES)
+
+    def __str__(self):
+        return f'{self.user.username} Profile'
+
+    def save(self):
+        super().save()
+
+        img = Image.open(self.image.path)
+
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
