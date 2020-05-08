@@ -65,7 +65,7 @@ class MyUser(AbstractBaseUser):
         return True
 
 
-class Wishlist(models.Model):
+class SavedPosts(models.Model):
     author = models.OneToOneField(MyUser, on_delete=models.CASCADE)
     post = models.ManyToManyField(Post)
 
@@ -101,7 +101,8 @@ class Profile(models.Model):
         ('ECE', 'Electroinc (Instrumentation and Control)'),
         ('ME(P)', 'Mechanical (Production) Engineering'),
         ('BE-MBA(ME)', 'Mechanical MBA Dual Degree'),
-        ('BE-MBA(ECE)', 'Electroincs MBA Dual Degree'),  # Add others later
+        ('BE-MBA(ECE)', 'Electroincs MBA Dual Degree'),
+        ('Others', 'Other'),
     )
     year = models.CharField(max_length=1, choices=YEAR_CHOICES, default='1')
     branch = models.CharField(max_length=11, choices=BRANCH_CHOICES)
