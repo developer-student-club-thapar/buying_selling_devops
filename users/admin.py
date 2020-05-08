@@ -4,7 +4,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from .forms import UserCreationForm
-from .models import MyUser, SavedPosts, Profile
+from .models import MyUser, Wishlist
 
 
 class UserAdmin(BaseUserAdmin):
@@ -14,11 +14,11 @@ class UserAdmin(BaseUserAdmin):
     list_filter = ('is_admin',)
 
     fieldsets = (
-        (None, {'fields': ('email', 'username', 'mobile', 'password')}),
+        (None, {'fields': ('username', 'mobile', 'email', 'password')}),
         ('Personal Info', {'fields': ('firstName', 'lastName', 'dateJoined')}),
         ('Permissions', {'fields': ('is_admin', 'is_staff', 'is_active')}),
     )
-    search_fields = ('username', 'email', 'mobile')
+    search_fields = ('username', 'email', 'phone')
     ordering = ('username', 'email')
 
     filter_horizontal = ()
@@ -30,7 +30,4 @@ admin.site.register(MyUser, UserAdmin)
 admin.site.unregister(Group)
 
 
-admin.site.register(SavedPosts)
-
-
-admin.site.register(Profile)
+admin.site.register(Wishlist)
