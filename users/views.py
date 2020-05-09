@@ -5,10 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 import requests
-from django.conf import settings
-
-
-User = settings.AUTH_USER_MODEL
+from .models import MyUser
 
 
 class GoogleView(APIView):
@@ -20,15 +17,20 @@ class GoogleView(APIView):
         if 'error' in data:
             content = {'message': 'wrong google token / this google token is already expired.'}
             return Response(content)
-        return Response(r)
 
         try:
-            user = User.objects.get(email=data['email'])
-        except User.DoesNotExist:
-            user = User()
-            user.password = make_password(BaseUserManager().make_random_password())
-            user.email = data['email']
-            user.save()
+            user = MyUser.objects.get(email=data['email'])
+        except Exception:
+            if 'hd' in data:
+                if data['hd'] == 'thapar.edu':
+                    user = MyUser()
+                    user.password = make_password(BaseUserManager().make_random_password())
+                    user.email = data['email']
+                    user.save()
+                else:
+                    return Response({"error": "Not a thapar.edu email"})
+            else:
+                return Response({"error": "invalid email"})
 
         token = RefreshToken.for_user(user)
         response = {}
