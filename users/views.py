@@ -14,6 +14,8 @@ class GoogleView(APIView):
         r = requests.get('https://www.googleapis.com/oauth2/v2/userinfo', params=payload)
         data = json.loads(r.text)
 
+        print(data)
+
         if 'error' in data:
             content = {'message': 'wrong google token / this google token is already expired.'}
             return Response(content)
@@ -26,6 +28,9 @@ class GoogleView(APIView):
                     user = MyUser()
                     user.password = make_password(BaseUserManager().make_random_password())
                     user.email = data['email']
+                    user.username = data['given_name']
+                    user.firstName = data['given_name']
+                    user.lastName = data['family_name']
                     user.save()
                 else:
                     return Response({"error": "Not a thapar.edu email"})

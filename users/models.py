@@ -104,7 +104,7 @@ class Profile(models.Model):
         ('BE-MBA(ECE)', 'Electroincs MBA Dual Degree'),
         ('Others', 'Other'),
     )
-    year = models.CharField(max_length=1, choices=YEAR_CHOICES, default='1')
+    year = models.CharField(max_length=1, choices=YEAR_CHOICES)
     branch = models.CharField(max_length=11, choices=BRANCH_CHOICES)
 
     def __str__(self):
