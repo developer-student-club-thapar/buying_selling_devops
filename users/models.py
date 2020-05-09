@@ -75,7 +75,7 @@ class SavedPosts(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(MyUser, on_delete=models.CASCADE)
-    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    image = models.ImageField(upload_to='profile_pics', blank=True, null=True)
     bio = models.TextField()
     YEAR_CHOICES = (
         ('1', 'First'),
@@ -113,7 +113,10 @@ class Profile(models.Model):
     def save(self, **args):
         super().save()
 
-        img = Image.open(self.image.path)
+        if self.image:
+            img = Image.open(self.image.path)
+        else:
+            return
 
         if img.height > 300 or img.width > 300:
             output_size = (300, 300)
