@@ -16,6 +16,11 @@ class Category(models.Model):
 
 
 class Post(models.Model):
+
+    CONDITION_CHOICES = (('VB', 'Very Bad'), ('BA', 'Bad'), ('G', 'Good'), ('BE', 'Best'), ('E', 'Couldn\'t be better'))
+
+    AGE_CHOICES = (('l6', 'Less than 6 months'), ('6to1', '6 months to 1 year'), ('1to3', '1-3 years'), ('3to5', '3-5 years'), ('g5', 'More than 5 years'))
+
     category = models.ManyToManyField(Category)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=100)
@@ -26,16 +31,10 @@ class Post(models.Model):
     isSold = models.BooleanField(default=False)
     onDiscount = models.BooleanField(default=False)
     discountPercent = models.DecimalField(max_digits=4, decimal_places=2)
-    age = models.IntegerField()
+    age = models.CharField(max_length=4, choices=AGE_CHOICES)
     brand = models.CharField(max_length=50)
-    CONDITION_CHOICES = (
-        ('VB', 'Very Bad'),
-        ('BA', 'Bad'),
-        ('G', 'Good'),
-        ('BE', 'Best'),
-        ('E', 'Couldn\'t be better')
-    )
-    condition = models.CharField(max_length=3, choices=CONDITION_CHOICES, default='G')
+
+    condition = models.CharField(max_length=3, choices=CONDITION_CHOICES)
 
     def __str__(self):
         return self.title
