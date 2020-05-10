@@ -1,6 +1,7 @@
 # Thapar Buying / Selling - OLX (Full Stack + DevOps)
 This repository contains code for the project in Django (Backend) & React (Frontend)
-
+# Design File
+https://www.figma.com/file/xGOjZ0lOckpjGTFVsVKwhK/Thapar_olx?node-id=0%3A1
 ## Current goals for the project are:
 
 Frontend
