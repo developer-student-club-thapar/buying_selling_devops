@@ -13,14 +13,14 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['mobile']
+        fields = ['email']
 
-    def clean_mobile(self):
-        mobile = self.cleaned_data.get('mobile')
-        qs = User.objects.filter(mobile=mobile)
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        qs = User.objects.filter(email=email)
         if qs.exists():
-            raise forms.ValidationError("Mobile number already exists!")
-        return mobile
+            raise forms.ValidationError("Email already exists!")
+        return email
 
     def clean_password(self):
         password1 = self.cleaned_data.get('password1')
