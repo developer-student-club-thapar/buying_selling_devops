@@ -1,6 +1,5 @@
 import React from 'react';
-import LoginBG from '../assets/login_bg.jpg';
-import { Row, Col, Divider } from 'antd';
+import { Row, Col } from 'antd';
 import { Typography } from 'antd';
 import styles from '../styles/Login.module.css';
 import { Button } from 'antd';
