@@ -53,7 +53,7 @@ const Login = () => {
           </Col>
           <Col span={24}>
             <GoogleLogin
-              clientId="816952665292-4ekgnim95k6fa6bfjviuc334p4ecdhqh.apps.googleusercontent.com"
+              clientId=""
               render={renderProps => (
                 <Button
                   type="primary"
