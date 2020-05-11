@@ -2,7 +2,6 @@
   background: url('../assets/login_bg.jpg') no-repeat center center fixed #000;
   height: 100vh;
   background-size: cover;
-  overflow: hidden;
 }
 
 .heading {
