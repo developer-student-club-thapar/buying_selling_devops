@@ -49,6 +49,17 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
+## Generating a CLIENT ID for Google OAuth Login
+- Create a new project with name **Thapar OLX** in _Google Cloud Platform_.
+- Enable **Cloud OS Login API** from the API Library in _Google Cloud Platform_.
+- Go to **API & Services** section and click on **Create Credential**.
+- Choose _OAuth Client ID_.
+- Setup the consent screen if asked to do so.
+- Select **Web Application** as the _Application Type_.
+- Whitelist `localhost:3000` under _Authorised Javascript Origins_.
+- Click on **Create**
+- Copy the **ClientID** and paste it in `.env` file alongside **REACT_APP_OAUTH_CLIENT_ID**.
+
 #### Note
 - As the project now uses ```poetry``` to manage dependencies, you need to run ```poetry add <package_name>``` to install the new package.
 - Use only ```yarn add package_name``` to add new packages to the frontend part.
