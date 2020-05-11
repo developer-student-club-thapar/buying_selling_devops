@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
-import test from '../pages/test';
 import PrivateTest from '../pages/PrivateTest';
 import Route from './Route';
 import Login from '../pages/Login';
