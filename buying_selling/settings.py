@@ -1,5 +1,6 @@
 import os
 import environ
+from .jwt_settings import JWT_CONFIG
 
 env = environ.Env(DEBUG=(bool, False))
 
@@ -96,3 +97,6 @@ REST_FRAMEWORK = {
 
 # CORS SETTINGS
 CORS_ORIGIN_ALLOW_ALL = True
+
+# JWT SETTINGS
+SIMPLE_JWT = JWT_CONFIG
