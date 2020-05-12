@@ -11,7 +11,9 @@ const GoogleLoginButton = () => {
   const responseGoogle = response => {
     console.log(response);
     axios
-      .post('http://127.0.0.1:8000/google/', { token: response.accessToken })
+      .post('http://127.0.0.1:8000/google/auth/token/', {
+        token: response.accessToken,
+      })
       .then(res => console.log(res.data));
   };
   return (
