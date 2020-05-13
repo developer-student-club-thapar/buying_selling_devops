@@ -38,3 +38,13 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class PostImage(models.Model):
+
+    post = models.ForeignKey(Post, default=None, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='posts-images', verbose_name='Image')
+
+    class Meta:
+        verbose_name = 'image'
+        verbose_name_plural = 'PostImages'
