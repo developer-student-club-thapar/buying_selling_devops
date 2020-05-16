@@ -31,8 +31,8 @@ pre-commit install
 ```python manage.py makemigrations```
 ```python manage.py migrate```
 
-- Start the backend server 
-```python manage.py runserver```
+- Start the backend dev server 
+```python manage.py runserver --settings=buying_selling.settings.dev```
 Runs the backend server at default port ```8000```.<br />
 Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
 
@@ -59,6 +59,16 @@ You will also see any lint errors in the console.
 - Whitelist `localhost:3000` under _Authorised Javascript Origins_.
 - Click on **Create**
 - Copy the **ClientID** and paste it in `.env` file alongside **REACT_APP_OAUTH_CLIENT_ID**.
+
+## Using Google Cloud Storage for storing _static_ and _media_ files
+- First, you need a service account for connecting to GCP
+- Head over to this [page](https://cloud.google.com/docs/authentication/getting-started) and click on **Create Service Account**
+- Select the relavant project
+- From the dropdown for _Service Account_ choose _New-service account_
+- Download the `JSON` file and store it at your project root.
+- Rename the file to `service-account.json`
+- Create a bucket on GCP with the relavant name
+- Copy the bucket name and in `.env` file set `GS_BUCKET_NAME` to your bucket name.
 
 #### Note
 - As the project now uses ```poetry``` to manage dependencies, you need to run ```poetry add <package_name>``` to install the new package.

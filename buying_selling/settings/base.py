@@ -2,17 +2,16 @@ import os
 import environ
 from .jwt_settings import JWT_CONFIG
 
-env = environ.Env(DEBUG=(bool, False))
+env = environ.Env()
 
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 environ.Env.read_env(env_file=os.path.join(BASE_DIR, ".env"))
 
-DEBUG = env("DEBUG")
 SECRET_KEY = env("SECRET_KEY")
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'users.MyUser'
 
@@ -82,12 +81,6 @@ TIME_ZONE = "Asia/Kolkata"
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static_files")]
-STATIC_ROOT = os.path.join(BASE_DIR, "static_root")
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
 # REST FRAMEWORK

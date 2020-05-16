@@ -18,6 +18,9 @@ pre-commit = "2.2.0"
 uuid = "^1.30"
 djangorestframework-simplejwt = "^4.4.0"
 requests = "^2.23.0"
+protobuf = "3.11.3"
+django-storages = {extras = ["google"], version = "^1.9.1"}
+google-cloud-storage = "^1.28.1"
 
 [tool.black]
 line-length = 200
