@@ -2,6 +2,11 @@
 This repository contains code for the project in Django (Backend) & React (Frontend)
 # Design File
 [Here is the Figma Design!](https://www.figma.com/file/xGOjZ0lOckpjGTFVsVKwhK/Thapar_olx?node-id=0%3A1)
+
+# Contribution Guidelines and project setup
+
+Checkout this [file](https://github.com/developer-student-club-thapar/buying_selling_devops/blob/master/CONTRIBUTION.md)
+
 ## Current goals for the project are:
 
 Frontend
