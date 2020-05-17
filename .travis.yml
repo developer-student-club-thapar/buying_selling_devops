@@ -1,0 +1,29 @@
+sudo: required
+matrix:
+  include:
+    - language: node_js
+      node_js:
+      - "stable"
+      cache:
+        yarn: true
+        directories:
+          - node_modeules
+      install:
+        - yarn
+      scripts:
+        - yarn test
+        - yarn build
+    
+    - language: python
+      python:
+      - 3.8
+      before_install:
+      - pip install poetry
+      install:
+      - poetry install
+      - pre-commit install
+      scripts:
+      - python manage.py makemigrations
+      - python manage.py migrate
+      - python manage.py test
+      - pre-commit run --all-files
