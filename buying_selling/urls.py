@@ -6,7 +6,6 @@ from users import views as user_views
 from rest_framework_simplejwt.views import TokenRefreshView
 
 urlpatterns = [
-    path('api-auth/', include('rest_framework.urls')),
     path('api/posts/', include('posts.api.urls')),
     path('admin/', admin.site.urls),
     path("google/auth/token/", user_views.GoogleView.as_view(), name='google'),

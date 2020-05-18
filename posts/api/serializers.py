@@ -10,7 +10,6 @@ class PostCreateSerializer(ModelSerializer):
             'title',
             'description',
             'category',
-            'author',
             'price',
             'isSold',
             'onDiscount',
