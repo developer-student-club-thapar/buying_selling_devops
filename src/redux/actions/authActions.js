@@ -21,7 +21,7 @@ export const loginUser = accessToken => async dispatch => {
 };
 
 //Logout User
-export const logoutUser = dispatch => {
+export const logoutUser = () => dispatch => {
   dispatch({
     type: LOGOUT,
   });

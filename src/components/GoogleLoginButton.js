@@ -4,19 +4,13 @@ import styles from '../styles/Login.module.css';
 import { Button } from 'antd';
 import { GoogleOutlined } from '@ant-design/icons';
 import GoogleLogin from 'react-google-login';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { loginUser } from '../redux/actions/authActions';
 
-const GoogleLoginButton = ({ loginUser }) => {
+const GoogleLoginButton = ({ auth: { user, isAuthenticated }, loginUser }) => {
   const { Title } = Typography;
   const responseGoogle = response => {
     console.log(response);
-    // axios
-    //   .post('http://127.0.0.1:8000/google/auth/token/', {
-    //     token: response.accessToken,
-    //   })
-    //   .then(res => console.log(res.data));
     loginUser(response.accessToken);
   };
   return (
@@ -49,4 +43,8 @@ const GoogleLoginButton = ({ loginUser }) => {
   );
 };
 
-export default connect(null, { loginUser })(GoogleLoginButton);
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { loginUser })(GoogleLoginButton);
