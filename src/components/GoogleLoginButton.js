@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { Typography } from 'antd';
 import styles from '../styles/Login.module.css';
 import { Button } from 'antd';
 import { GoogleOutlined } from '@ant-design/icons';
@@ -9,7 +8,6 @@ import { loginUser } from '../redux/actions/authActions';
 import '../App.css';
 
 const GoogleLoginButton = ({ auth: { user, isAuthenticated }, loginUser }) => {
-  const { Title } = Typography;
   const responseGoogle = response => {
     console.log(response);
     loginUser(response.accessToken);
@@ -29,6 +27,7 @@ const GoogleLoginButton = ({ auth: { user, isAuthenticated }, loginUser }) => {
             }}
             className={styles.button}
             icon={<GoogleOutlined />}
+            size="large"
             onClick={renderProps.onClick}
             disabled={renderProps.disabled}
           >

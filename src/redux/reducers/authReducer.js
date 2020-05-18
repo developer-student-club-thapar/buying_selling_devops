@@ -11,6 +11,9 @@ const defaultState = {
 export default (state = defaultState, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
+      if (action.payload.message) {
+        return state;
+      }
       return {
         ...state,
         token: action.payload.access_token,
@@ -34,6 +37,6 @@ export default (state = defaultState, action) => {
         loading: true,
       };
     default:
-      return defaultState;
+      return state;
   }
 };
