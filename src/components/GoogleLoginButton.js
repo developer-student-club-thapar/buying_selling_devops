@@ -5,16 +5,19 @@ import { Button } from 'antd';
 import { GoogleOutlined } from '@ant-design/icons';
 import GoogleLogin from 'react-google-login';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { loginUser } from '../redux/actions/authActions';
 
-const GoogleLoginButton = () => {
+const GoogleLoginButton = ({ loginUser }) => {
   const { Title } = Typography;
   const responseGoogle = response => {
     console.log(response);
-    axios
-      .post('http://127.0.0.1:8000/google/auth/token/', {
-        token: response.accessToken,
-      })
-      .then(res => console.log(res.data));
+    // axios
+    //   .post('http://127.0.0.1:8000/google/auth/token/', {
+    //     token: response.accessToken,
+    //   })
+    //   .then(res => console.log(res.data));
+    loginUser(response.accessToken);
   };
   return (
     <Fragment>
@@ -46,4 +49,4 @@ const GoogleLoginButton = () => {
   );
 };
 
-export default GoogleLoginButton;
+export default connect(null, { loginUser })(GoogleLoginButton);
