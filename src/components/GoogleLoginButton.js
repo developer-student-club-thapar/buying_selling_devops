@@ -6,6 +6,7 @@ import { GoogleOutlined } from '@ant-design/icons';
 import GoogleLogin from 'react-google-login';
 import { connect } from 'react-redux';
 import { loginUser } from '../redux/actions/authActions';
+import '../App.css';
 
 const GoogleLoginButton = ({ auth: { user, isAuthenticated }, loginUser }) => {
   const { Title } = Typography;
@@ -20,18 +21,19 @@ const GoogleLoginButton = ({ auth: { user, isAuthenticated }, loginUser }) => {
         render={renderProps => (
           <Button
             type="primary"
+            style={{
+              background: '#333333',
+              border: 'none',
+              color: '#fff6ee',
+              fontFamily: 'Poppins',
+            }}
             className={styles.button}
             icon={<GoogleOutlined />}
             onClick={renderProps.onClick}
             disabled={renderProps.disabled}
           >
             {' '}
-            <Title
-              level={3}
-              style={{ margin: 'auto', display: 'inline-block' }}
-            >
-              Log in with Google
-            </Title>
+            Log in with Google
           </Button>
         )}
         onSuccess={responseGoogle}

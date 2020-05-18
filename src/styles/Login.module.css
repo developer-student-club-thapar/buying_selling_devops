@@ -23,10 +23,7 @@
 }
 
 .button {
-  width: 250px;
-  height: 40px;
-  background-color: #333333;
-  color: #fff6ee;
+  /* height: 40px; */
+  /* color: #fff6ee; */
   margin-top: 80px;
-  cursor: pointer;
 }
