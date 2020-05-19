@@ -1,13 +1,23 @@
-from rest_framework.generics import CreateAPIView, DestroyAPIView, ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView
-from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
-import jwt
-
 from posts.models import Post
 from .serializers import PostCreateSerializer, PostDetailSerializer, PostListSerializer, PostUpdateSerializer
 
 
+from .permissions import IsOwnerOrReadOnly
+from rest_framework.generics import CreateAPIView, DestroyAPIView, ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
+import jwt
+import environ
+import os
+
+env = environ.Env()
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+environ.Env.read_env(env_file=os.path.join(BASE_DIR, ".env"))
+
+
 def jwt_decoder(encoded_token):
-    return jwt.decode(encoded_token, secret_base_encoded=False, algorithms=['HS256'])
+    return jwt.decode(encoded_token, env('SIGNING_KEY'), algorithms=['HS256'])
 
 
 class PostCreateAPIView(CreateAPIView):
@@ -16,7 +26,7 @@ class PostCreateAPIView(CreateAPIView):
     permission_classes = (IsAuthenticated,)
 
     def perform_create(self, serializer):
-        payload = jwt_decoder(self.request.headers['Token'])
+        payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
         serializer.save(author_id=payload['user_id'])
 
 
@@ -29,17 +39,17 @@ class PostDetailAPIView(RetrieveAPIView):
 class PostUpdateAPIView(RetrieveUpdateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostUpdateSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
 
     def perform_update(self, serializer):
-        payload = jwt_decoder(self.request.headers['Token'])
+        payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
         serializer.save(author_id=payload['user_id'])
 
 
 class PostDestroyAPIView(DestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostDetailSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
 
 
 class PostListAPIView(ListAPIView):
