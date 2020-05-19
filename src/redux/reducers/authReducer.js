@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, SET_LOADING } from '../types';
+import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_USER, SET_LOADING } from '../types';
 
 const defaultState = {
   token: null,
@@ -22,7 +22,7 @@ export default (state = defaultState, action) => {
         loading: false,
       };
     case LOGIN_FAIL:
-    case LOGOUT:
+    case LOGOUT_USER:
       return {
         ...state,
         token: null,

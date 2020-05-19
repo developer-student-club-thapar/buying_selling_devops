@@ -23,7 +23,6 @@ const GoogleLoginButton = ({ auth: { user, isAuthenticated }, loginUser }) => {
               background: '#333333',
               border: 'none',
               color: '#fff6ee',
-              fontFamily: 'Poppins',
             }}
             className={styles.button}
             icon={<GoogleOutlined />}

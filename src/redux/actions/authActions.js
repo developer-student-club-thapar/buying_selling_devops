@@ -1,14 +1,15 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, SET_LOADING } from '../types';
+import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_USER, SET_LOADING } from '../types';
 import axios from 'axios';
 import store from '../store/index';
-import ActionButton from 'antd/lib/modal/ActionButton';
 
 console.log(store.getState());
 const reduxState = store.getState();
 //Login User
 export const loginUser = accessToken => async dispatch => {
   try {
-    setLoading();
+    dispatch({
+      type: SET_LOADING,
+    });
     const res = await axios.post(
       `${reduxState.gen.backendEndpoint}/google/auth/token/`,
       {
@@ -28,10 +29,10 @@ export const loginUser = accessToken => async dispatch => {
 };
 
 //Logout User
-export const logoutUser = () => dispatch => {
-  dispatch({
-    type: LOGOUT,
-  });
+export const logoutUser = () => {
+  return {
+    type: LOGOUT_USER,
+  };
 };
 
 // Set loading to true
