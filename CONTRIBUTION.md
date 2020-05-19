@@ -25,7 +25,7 @@ pre-commit install
 - Make a new file named ```.env``` exactly similar to ```.env.example```.
 - Inside ```.env``` file set secret key for your django project.
 - You can use [https://djecrety.ir/] to generate your secret key
-- Set ```DEBUG = True``` during development in ```.env``` file
+- Set ```SIGNING_KEY``` to something random of your choice in `.env` file.
 
 - After the above setup, run <br>
 ```python manage.py makemigrations```
@@ -67,6 +67,7 @@ You will also see any lint errors in the console.
 - From the dropdown for _Service Account_ choose _New-service account_
 - Download the `JSON` file and store it at your project root.
 - Rename the file to `service-account.json`
+- Set `GOOGLE_APPLICATION_CREDENTIALS` to the path to `service-account.json` in above point in the `.env` file.
 - Create a bucket on GCP with the relavant name
 - Copy the bucket name and in `.env` file set `GS_BUCKET_NAME` to your bucket name.
 
