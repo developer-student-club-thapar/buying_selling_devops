@@ -20,6 +20,16 @@ def jwt_decoder(encoded_token):
     return jwt.decode(encoded_token, env('SIGNING_KEY'), algorithms=['HS256'])
 
 
+class MyPostListAPIView(ListAPIView):
+    serializer_class = PostListSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self, *args, **kwargs):
+        payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
+        queryset = Post.objects.filter(author_id=payload['user_id'])
+        return queryset
+
+
 class PostCreateAPIView(CreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostCreateSerializer
