@@ -35,6 +35,13 @@ export const logoutUser = () => {
   };
 };
 
+//Login Fail
+export const loginFail = error => {
+  return {
+    type: LOGIN_FAIL,
+    payload: error,
+  };
+};
 // Set loading to true
 export const setLoading = () => {
   return {
