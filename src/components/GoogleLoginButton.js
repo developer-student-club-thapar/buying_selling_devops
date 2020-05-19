@@ -1,21 +1,27 @@
-import React, { Fragment } from 'react';
-import { Typography } from 'antd';
+import React, { Fragment, useState } from 'react';
 import styles from '../styles/Login.module.css';
 import { Button } from 'antd';
 import { GoogleOutlined } from '@ant-design/icons';
 import GoogleLogin from 'react-google-login';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { loginUser, loginFail } from '../redux/actions';
+import '../App.css';
 
-const GoogleLoginButton = () => {
-  const { Title } = Typography;
+const GoogleLoginButton = ({
+  auth: { user, isAuthenticated },
+  loginUser,
+  loginFail,
+}) => {
   const responseGoogle = response => {
     console.log(response);
-    axios
-      .post('http://127.0.0.1:8000/google/auth/token/', {
-        token: response.accessToken,
-      })
-      .then(res => console.log(res.data));
+    setLoading(true);
+    loginUser(response.accessToken);
   };
+  const responseGoogleFail = response => {
+    console.log(response);
+    loginFail(response.error);
+  };
+  const [loading, setLoading] = useState(false);
   return (
     <Fragment>
       <GoogleLogin
@@ -23,22 +29,24 @@ const GoogleLoginButton = () => {
         render={renderProps => (
           <Button
             type="primary"
+            style={{
+              background: '#333333',
+              border: 'none',
+              color: '#fff6ee',
+            }}
             className={styles.button}
             icon={<GoogleOutlined />}
+            size="large"
             onClick={renderProps.onClick}
             disabled={renderProps.disabled}
+            loading={loading}
           >
             {' '}
-            <Title
-              level={3}
-              style={{ margin: 'auto', display: 'inline-block' }}
-            >
-              Log in with Google
-            </Title>
+            Log in with Google
           </Button>
         )}
         onSuccess={responseGoogle}
-        onFailure={responseGoogle}
+        onFailure={responseGoogleFail}
         cookiePolicy={'single_host_origin'}
         hostedDomain={'thapar.edu'}
       />
@@ -46,4 +54,10 @@ const GoogleLoginButton = () => {
   );
 };
 
-export default GoogleLoginButton;
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { loginUser, loginFail })(
+  GoogleLoginButton,
+);

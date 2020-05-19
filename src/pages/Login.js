@@ -15,7 +15,9 @@ const Login = () => {
           className={styles.heading}
         >
           <Col span={24}>
-            <Title level={1}>ThaparX</Title>
+            <Title level={1} style={{ fontFamily: 'Leckerli One' }}>
+              ThaparX
+            </Title>
           </Col>
           <Col span={24}>
             <Title level={3} className={styles.subHeading}>
