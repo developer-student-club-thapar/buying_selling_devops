@@ -30,7 +30,7 @@ const Login = ({ auth: { error }, resetState }) => {
             <GoogleLoginButton />
           </Col>
           {error &&
-            message.info('Login Failed. Please try again.', 2, resetState())}
+            message.error('Login Failed. Please try again.', 2, resetState())}
         </Row>
       </div>
     </div>
