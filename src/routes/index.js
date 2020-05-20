@@ -4,6 +4,7 @@ import PrivateTest from '../pages/PrivateTest';
 import Route from './Route';
 import Login from '../pages/Login';
 import Welcome from '../pages/Welcome';
+import Product from '../pages/Product';
 
 const Routes = () => {
   return (
@@ -11,6 +12,7 @@ const Routes = () => {
       <Route exact path="/" component={Login} />
       <Route exact path="/private" component={PrivateTest} isPrivate />
       <Route exact path="/welcome" component={Welcome} isPrivate />
+      <Route exact path="/product" component={Product} />
       <Route component={Login} />
     </Switch>
   );
