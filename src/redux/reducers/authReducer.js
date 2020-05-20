@@ -1,4 +1,10 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_USER, SET_LOADING } from '../types';
+import {
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT_USER,
+  SET_LOADING,
+  RESET_STATE,
+} from '../types';
 
 const defaultState = {
   token: null,
@@ -33,6 +39,11 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         loading: true,
+      };
+    case RESET_STATE:
+      return {
+        ...state,
+        error: null,
       };
     default:
       return state;

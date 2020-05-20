@@ -3,8 +3,11 @@ import { Row, Col } from 'antd';
 import { Typography } from 'antd';
 import styles from '../styles/Login.module.css';
 import GoogleLoginButton from '../components/GoogleLoginButton';
+import { connect } from 'react-redux';
+import { Alert } from 'antd';
+import { resetState } from '../redux/actions';
 
-const Login = () => {
+const Login = ({ auth: { error }, resetState }) => {
   const { Title } = Typography;
 
   return (
@@ -27,10 +30,27 @@ const Login = () => {
           <Col span={24}>
             <GoogleLoginButton />
           </Col>
+          {error && (
+            <Col xs={18} lg={3} style={{ margin: 'auto', paddingTop: '30px' }}>
+              <Alert
+                message="Login Failed. Please try again."
+                type="error"
+                showIcon
+                closable={true}
+                onClose={() => {
+                  resetState();
+                }}
+              />
+            </Col>
+          )}
         </Row>
       </div>
     </div>
   );
 };
 
-export default Login;
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { resetState })(Login);

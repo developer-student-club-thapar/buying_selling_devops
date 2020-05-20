@@ -1,4 +1,10 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_USER, SET_LOADING } from '../types';
+import {
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT_USER,
+  SET_LOADING,
+  RESET_STATE,
+} from '../types';
 import axios from 'axios';
 import store from '../store/index';
 
@@ -46,5 +52,12 @@ export const loginFail = error => {
 export const setLoading = () => {
   return {
     type: SET_LOADING,
+  };
+};
+
+//Reset State
+export const resetState = () => {
+  return {
+    type: RESET_STATE,
   };
 };
