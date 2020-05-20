@@ -5,7 +5,6 @@ import { GoogleOutlined } from '@ant-design/icons';
 import GoogleLogin from 'react-google-login';
 import { connect } from 'react-redux';
 import { loginUser, loginFail } from '../redux/actions';
-import '../App.css';
 
 const GoogleLoginButton = ({
   auth: { user, isAuthenticated },
