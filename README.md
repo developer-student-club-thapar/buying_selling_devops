@@ -20,7 +20,7 @@ This repository contains code for the project in Django (Backend) & React (Front
 
 # Contribution Guidelines and project setup
 
-Checkout this [file](https://github.com/developer-student-club-thapar/buying_selling_devops/blob/master/CONTRIBUTION.md)
+Checkout this [file](https://github.com/developer-student-club-thapar/buying_selling_devops/blob/master/CONTRIBUTING.md)
 
 ## Current goals for the project are:
 
