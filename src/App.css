@@ -1,16 +1,6 @@
-@import '~antd/dist/antd.css';
+@import '~antd/dist/antd.dark.css';
 * {
   font-family: 'Poppins';
-}
-
-.ant-carousel .slick-dots li button {
-  background: #000000;
-  opacity: 0.4;
-}
-
-.ant-carousel .slick-dots li.slick-active button {
-  opacity: 1;
-  background: #000000;
 }
 
 .ant-carousel .slick-slide {

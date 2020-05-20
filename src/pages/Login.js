@@ -17,12 +17,15 @@ const Login = ({ auth: { error }, resetState }) => {
           className={styles.heading}
         >
           <Col span={24}>
-            <Title level={1} style={{ fontFamily: 'Leckerli One' }}>
+            <Title
+              level={1}
+              style={{ fontFamily: 'Leckerli One', color: 'black' }}
+            >
               ThaparX
             </Title>
           </Col>
           <Col span={24}>
-            <Title level={3} className={styles.subHeading}>
+            <Title level={3} style={{ color: 'black' }}>
               Buying and Selling made easy
             </Title>
           </Col>
