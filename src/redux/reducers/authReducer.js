@@ -41,10 +41,7 @@ export default (state = defaultState, action) => {
         loading: true,
       };
     case RESET_STATE:
-      return {
-        ...state,
-        error: null,
-      };
+      return defaultState;
     default:
       return state;
   }

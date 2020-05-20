@@ -1,10 +1,9 @@
 import React from 'react';
-import { Row, Col } from 'antd';
+import { Row, Col, message } from 'antd';
 import { Typography } from 'antd';
 import styles from '../styles/Login.module.css';
 import GoogleLoginButton from '../components/GoogleLoginButton';
 import { connect } from 'react-redux';
-import { Alert } from 'antd';
 import { resetState } from '../redux/actions';
 
 const Login = ({ auth: { error }, resetState }) => {
@@ -30,19 +29,8 @@ const Login = ({ auth: { error }, resetState }) => {
           <Col span={24}>
             <GoogleLoginButton />
           </Col>
-          {error && (
-            <Col xs={18} lg={3} style={{ margin: 'auto', paddingTop: '30px' }}>
-              <Alert
-                message="Login Failed. Please try again."
-                type="error"
-                showIcon
-                closable={true}
-                onClose={() => {
-                  resetState();
-                }}
-              />
-            </Col>
-          )}
+          {error &&
+            message.info('Login Failed. Please try again.', 2, resetState())}
         </Row>
       </div>
     </div>
