@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col, message } from 'antd';
 import { Typography } from 'antd';
 import styles from '../styles/Login.module.css';
-import GoogleLoginButton from '../components/GoogleLoginButton';
+import GoogleLoginButton from '../components/Login/GoogleLoginButton';
 import { connect } from 'react-redux';
 import { resetState } from '../redux/actions';
 

@@ -4,9 +4,9 @@ import styles from '../styles/Product.module.css';
 import { Typography } from 'antd';
 import Text from 'antd/lib/typography/Text';
 import { Button } from 'antd';
-import ImageCarousel from '../components/ImageCarousel';
-import ProductDescription from '../components/ProductDescription';
-import ProductDetails from '../components/ProductDetails';
+import ImageCarousel from '../components/Product/ImageCarousel';
+import ProductDescription from '../components/Product/ProductDescription';
+import ProductDetails from '../components/Product/ProductDetails';
 
 const Product = () => {
   const { Title } = Typography;
@@ -22,7 +22,6 @@ const Product = () => {
               style={{
                 color: '#42FF00',
                 fontSize: '14px',
-
                 marginLeft: '20px',
               }}
             >

@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from 'react';
-import styles from '../styles/Login.module.css';
+import styles from '../../styles/Login.module.css';
 import { Button } from 'antd';
 import { GoogleOutlined } from '@ant-design/icons';
 import GoogleLogin from 'react-google-login';
 import { connect } from 'react-redux';
-import { loginUser, loginFail } from '../redux/actions';
+import { loginUser, loginFail } from '../../redux/actions';
 
 const GoogleLoginButton = ({
   auth: { user, isAuthenticated },

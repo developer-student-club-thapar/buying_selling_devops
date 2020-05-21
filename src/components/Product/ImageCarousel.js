@@ -1,8 +1,8 @@
 import React from 'react';
 import { Carousel } from 'antd';
 import { Col } from 'antd';
-import headphones from '../assets/headphones.jpeg';
-import styles from '../styles/Product.module.css';
+import headphones from '../../assets/headphones.jpeg';
+import styles from '../../styles/Product.module.css';
 
 const ImageCarousel = () => {
   return (
@@ -19,10 +19,18 @@ const ImageCarousel = () => {
           />
         </div>
         <div>
-          <img src="https://picsum.photos/360/300" alt="img3" />
+          <img
+            src="https://picsum.photos/360/300"
+            alt="img3"
+            className={styles.image}
+          />
         </div>
         <div>
-          <img src="https://picsum.photos/360/300" alt="img4" />
+          <img
+            src="https://picsum.photos/360/300"
+            alt="img4"
+            className={styles.image}
+          />
         </div>
       </Carousel>
     </Col>
