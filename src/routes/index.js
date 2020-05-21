@@ -9,7 +9,7 @@ import Product from '../pages/Product';
 const Routes = () => {
   return (
     <Switch>
-      <Route exact path="/" component={Login} />
+      <Route exact path="/" component={Login} isLoginRoute />
       <Route exact path="/private" component={PrivateTest} isPrivate />
       <Route exact path="/welcome" component={Welcome} isPrivate />
       <Route exact path="/product" component={Product} />

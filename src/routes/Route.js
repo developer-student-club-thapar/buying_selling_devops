@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 function RouteWrapper({
   component: Component,
   isPrivate,
+  isLoginRoute,
   auth: { isAuthenticated },
   ...rest
 }) {
@@ -21,7 +22,8 @@ function RouteWrapper({
    * Redirect user to Main page if he tries to access a non private route
    * (SignIn or SignUp) after being authenticated.
    */
-  if (!isPrivate && isAuthenticated) {
+
+  if (isLoginRoute && isAuthenticated) {
     return <Redirect to="/welcome" />;
   }
 
