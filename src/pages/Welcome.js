@@ -11,7 +11,7 @@ const Welcome = ({ auth: { user, isAuthenticated }, logoutUser }) => {
   };
   return (
     <div>
-      <h1>Welcome {user}</h1>
+      <h1 style={{ color: 'white' }}>Welcome {user}</h1>
       <GoogleLogout
         clientId={process.env.REACT_APP_OAUTH_CLIENT_ID}
         buttonText="Logout"

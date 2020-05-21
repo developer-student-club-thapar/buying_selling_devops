@@ -1,4 +1,10 @@
-@import '~antd/dist/antd.css';
+@import '~antd/dist/antd.dark.css';
 * {
   font-family: 'Poppins';
+}
+
+.ant-carousel .slick-slide {
+  height: 250px;
+  overflow: hidden;
+  background: #333333;
 }
