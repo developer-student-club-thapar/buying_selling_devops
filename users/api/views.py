@@ -2,8 +2,8 @@ from users.models import Profile
 from .serializers import ProfileDetailSerializer, ProfileUpdateSerializer
 from .permissions import IsOwnerOrReadOnly
 
-
-from rest_framework.generics import RetrieveAPIView, RetrieveUpdateAPIView
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 import jwt
 import environ
@@ -20,19 +20,25 @@ def jwt_decoder(encoded_token):
     return jwt.decode(encoded_token, env('SIGNING_KEY'), algorithms=['HS256'])
 
 
-class ProfileDetailAPIView(RetrieveAPIView):
-    queryset = Profile.objects.all()
-    serializer_class = ProfileDetailSerializer
-    lookup_field = 'user'
+class ProfileDetailAPIView(APIView):
+
     permission_classes = (IsAuthenticated,)
 
+    def get(self, request, *args, **kwargs):
+        payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
+        queryset = Profile.objects.get(user_id=payload['user_id'])
+        serializer = ProfileDetailSerializer(queryset, many=False)
+        return Response(serializer.data)
 
-class ProfileUpdateAPIView(RetrieveUpdateAPIView):
-    queryset = Profile.objects.all()
-    serializer_class = ProfileUpdateSerializer
-    lookup_field = 'user'
+
+class ProfileUpdateAPIView(APIView):
     permission_classes = (IsAuthenticated, IsOwnerOrReadOnly)
 
-    def perform_update(self, serializer):
+    def put(self, request, *args, **kwargs):
         payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
-        serializer.save(author_id=payload['user_id'])
+        instance = Profile.objects.get(user_id=payload['user_id'])
+        serializer = ProfileUpdateSerializer(instance, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
