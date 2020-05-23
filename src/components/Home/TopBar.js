@@ -9,12 +9,36 @@ import user from '../../assets/user.svg';
 
 const TopBar = () => {
   const { Title } = Typography;
+  window.onscroll = function() {
+    scrollFunction();
+  };
+
+  function scrollFunction() {
+    if (
+      document.body.scrollTop > 0.08 ||
+      document.documentElement.scrollTop > 0.08
+    ) {
+      document.getElementById('searchBar').style.width = '30%';
+    } else {
+      document.getElementById('searchBar').style.width = '100%';
+    }
+  }
   return (
-    <Fragment>
+    <Fragment style={{ alignSelf: 'center' }}>
       <Row className={styles.top}>
-        <Col span={24} style={{ height: 150 }}>
+        <Col
+          span={24}
+          style={{ height: 150, alignItems: 'center', alignSelf: 'center' }}
+        >
           <br />
-          <Row style={{ paddingLeft: '10px', paddingRight: '10px' }}>
+          <Row
+            style={{
+              paddingLeft: '10px',
+              paddingRight: '10px',
+              alignItems: 'center',
+              alignSelf: 'center',
+            }}
+          >
             <Col span={8}>
               <img src={MenuIcon} alt="menu" />
             </Col>
@@ -35,7 +59,8 @@ const TopBar = () => {
           </Row>
           <br />
 
-          <Row style={{ paddingLeft: '10px', paddingRight: '10px' }}>
+          {/* <Row id="header" style={{ paddingLeft: '10px', paddingRight: '10px' }}> */}
+          <Row id="searchBar" className={styles.searchBarRow}>
             <Col span={24}>
               <Input
                 size="small"

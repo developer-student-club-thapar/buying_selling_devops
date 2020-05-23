@@ -2,6 +2,7 @@
   background: url('../assets/abstract_triangles.jpg') no-repeat center center
     fixed #000;
   background-position: 60% 60%;
+  align-items: center;
 }
 
 .topScroll {
@@ -13,6 +14,10 @@
 .searchBar {
   color: white;
   border-color: #d7d7d7;
+}
+
+.searchBarRow {
+  transition: 0.5s;
 }
 
 .main {

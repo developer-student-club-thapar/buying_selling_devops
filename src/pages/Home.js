@@ -12,9 +12,10 @@ const Home = () => {
   const { Title } = Typography;
   const scroll = useHasScrolled();
   return (
-    <Fragment>
+    <Fragment style={{ alignItems: 'center' }}>
       {scroll !== false ? console.log(scroll) : console.log('bye')}
-      {scroll === false ? <TopBar /> : <TopBarScroll />}
+      {/* {scroll === false ? <TopBar /> : <TopBarScroll />} */}
+      <TopBar />
       <div className={styles.main}>
         <br />
         <Row>
