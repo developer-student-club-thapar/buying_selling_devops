@@ -26,9 +26,9 @@ jobs:
       - poetry install
 
       scripts:
-      - python manage.py makemigrations
-      - python manage.py migrate
-      - python manage.py test
+      - python manage.py makemigrations --settings=buying_selling.settings.ci
+      - python manage.py migrate --settings=buying_selling.settings.ci
+      - python manage.py test --settings=buying_selling.settings.ci
 
     - language: python # pre-commit
 
