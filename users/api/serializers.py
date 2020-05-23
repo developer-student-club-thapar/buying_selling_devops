@@ -29,18 +29,18 @@ class UserProfileSerializer(ModelSerializer):
         read_only_fields = ['id', 'email', 'username']
 
 
-class ProfileDetailSerializer(ModelSerializer):
+class MyProfileSerializer(ModelSerializer):
 
-    user = UserDetailSerializer(read_only=True)
+    user = UserProfileSerializer(read_only=True)
 
     class Meta:
         model = Profile
         fields = ['user', 'image', 'bio', 'year', 'branch']
 
 
-class MyProfileSerializer(ModelSerializer):
+class ProfileDetailSerializer(ModelSerializer):
 
-    user = UserProfileSerializer(read_only=True)
+    user = UserDetailSerializer(read_only=True)
 
     class Meta:
         model = Profile

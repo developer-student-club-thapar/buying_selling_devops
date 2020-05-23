@@ -21,13 +21,6 @@ def jwt_decoder(encoded_token):
     return jwt.decode(encoded_token, env('SIGNING_KEY'), algorithms=['HS256'])
 
 
-class ProfileDetailAPIView(RetrieveAPIView):
-    queryset = Profile.objects.all()
-    serializer_class = ProfileDetailSerializer
-    lookup_field = 'user'
-    permission_classes = (IsAuthenticated,)
-
-
 class MyProfileAPIView(APIView):
 
     permission_classes = (IsAuthenticated,)
@@ -37,6 +30,13 @@ class MyProfileAPIView(APIView):
         queryset = Profile.objects.get(user_id=payload['user_id'])
         serializer = MyProfileSerializer(queryset, many=False)
         return Response(serializer.data)
+
+
+class ProfileDetailAPIView(RetrieveAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileDetailSerializer
+    lookup_field = 'user'
+    permission_classes = (IsAuthenticated,)
 
 
 class ProfileUpdateAPIView(APIView):
