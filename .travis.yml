@@ -21,7 +21,7 @@ jobs:
       install:
       - poetry install
       scripts:
-      - sh -c "DEBUG=False ./manage.py check --deploy --fail-level WARNING"
+      - sudo sh -c "DEBUG=False ./manage.py check --deploy --fail-level WARNING"
       - python manage.py makemigrations
       - python manage.py migrate
       - python manage.py test
