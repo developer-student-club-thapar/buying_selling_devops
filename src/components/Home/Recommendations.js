@@ -32,6 +32,10 @@ const Recommendations = () => {
               width: '140px',
               height: '50px',
               borderRadius: '0px 0px 10px 10px',
+              cursor: 'pointer',
+            }}
+            onClick={() => {
+              console.log('yo');
             }}
           >
             <div>
@@ -61,6 +65,16 @@ const Recommendations = () => {
                 }}
               >
                 Sony
+              </Text>
+              <Text
+                style={{
+                  fontSize: '8px',
+                  marginLeft: '80px',
+                  color: '#42FF00',
+                  fontWeight: 'bold',
+                }}
+              >
+                ₹ 999
               </Text>
             </div>
           </div>
@@ -85,6 +99,10 @@ const Recommendations = () => {
               width: '140px',
               height: '50px',
               borderRadius: '0px 0px 10px 10px',
+              cursor: 'pointer',
+            }}
+            onClick={() => {
+              console.log('yo');
             }}
           >
             <div>
@@ -114,6 +132,16 @@ const Recommendations = () => {
                 }}
               >
                 Sony
+              </Text>
+              <Text
+                style={{
+                  fontSize: '8px',
+                  marginLeft: '80px',
+                  color: '#42FF00',
+                  fontWeight: 'bold',
+                }}
+              >
+                ₹ 999
               </Text>
             </div>
           </div>
@@ -145,6 +173,10 @@ const Recommendations = () => {
               width: '140px',
               height: '50px',
               borderRadius: '0px 0px 10px 10px',
+              cursor: 'pointer',
+            }}
+            onClick={() => {
+              console.log('yo');
             }}
           >
             <div>
@@ -174,6 +206,16 @@ const Recommendations = () => {
                 }}
               >
                 Sony
+              </Text>
+              <Text
+                style={{
+                  fontSize: '8px',
+                  marginLeft: '80px',
+                  color: '#42FF00',
+                  fontWeight: 'bold',
+                }}
+              >
+                ₹ 999
               </Text>
             </div>
           </div>
@@ -198,6 +240,10 @@ const Recommendations = () => {
               width: '140px',
               height: '50px',
               borderRadius: '0px 0px 10px 10px',
+              cursor: 'pointer',
+            }}
+            onClick={() => {
+              console.log('yo');
             }}
           >
             <div>
@@ -227,6 +273,16 @@ const Recommendations = () => {
                 }}
               >
                 Sony
+              </Text>
+              <Text
+                style={{
+                  fontSize: '8px',
+                  marginLeft: '80px',
+                  color: '#42FF00',
+                  fontWeight: 'bold',
+                }}
+              >
+                ₹ 999
               </Text>
             </div>
           </div>
@@ -258,6 +314,10 @@ const Recommendations = () => {
               width: '140px',
               height: '50px',
               borderRadius: '0px 0px 10px 10px',
+              cursor: 'pointer',
+            }}
+            onClick={() => {
+              console.log('yo');
             }}
           >
             <div>
@@ -287,6 +347,16 @@ const Recommendations = () => {
                 }}
               >
                 Sony
+              </Text>
+              <Text
+                style={{
+                  fontSize: '8px',
+                  marginLeft: '80px',
+                  color: '#42FF00',
+                  fontWeight: 'bold',
+                }}
+              >
+                ₹ 999
               </Text>
             </div>
           </div>
@@ -311,6 +381,10 @@ const Recommendations = () => {
               width: '140px',
               height: '50px',
               borderRadius: '0px 0px 10px 10px',
+              cursor: 'pointer',
+            }}
+            onClick={() => {
+              console.log('yo');
             }}
           >
             <div>
@@ -340,6 +414,16 @@ const Recommendations = () => {
                 }}
               >
                 Sony
+              </Text>
+              <Text
+                style={{
+                  fontSize: '8px',
+                  marginLeft: '80px',
+                  color: '#42FF00',
+                  fontWeight: 'bold',
+                }}
+              >
+                ₹ 999
               </Text>
             </div>
           </div>
