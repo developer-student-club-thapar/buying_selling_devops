@@ -29,6 +29,10 @@ jobs:
       install:
       - poetry install
 
+      env:
+      - SECRET_KEY=$SECRET_KEY
+      - SIGNING_KEY=$SIGNING_KEY
+
       scripts:
       - python manage.py makemigrations --settings=buying_selling.settings.dev
       - python manage.py migrate --settings=buying_selling.settings.dev
