@@ -1,0 +1,42 @@
+jobs:
+  include:
+    - language: node_js # js testing
+
+      node_js:
+      - "stable" # latest stable node version
+
+      cache: yarn # using yarn to install dependencies
+
+      install:
+        - yarn
+      scripts: # scripts for testing and building
+
+        - yarn test
+        - yarn build
+
+    - language: python # for django test travis automatially creates a virtualenv, no need to specify it
+
+      python:
+      - 3.8
+
+      before_install:
+      - pip install poetry # using poetry to manage dependencies
+
+      install:
+      - poetry install
+
+      scripts:
+      - python manage.py makemigrations
+      - python manage.py migrate
+      - python manage.py test
+
+    - language: python # pre-commit
+
+      python:
+      - 3.8
+
+      install:
+        - pip install pre-commit
+
+      script:
+        - pre-commit run --all-files
