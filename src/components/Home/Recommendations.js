@@ -6,13 +6,11 @@ import Text from 'antd/lib/typography/Text';
 const Recommendations = () => {
   return (
     <Fragment>
-      <Row
-        style={{
-          marginLeft: '20px',
-        }}
-        gutter={16}
-      >
-        <Col span={12} style={{ height: '140px', width: '140px' }}>
+      <Row>
+        <Col
+          span={12}
+          style={{ height: '140px', width: '140px', textAlign: 'center' }}
+        >
           <img
             src={headphones}
             alt="product"
@@ -33,6 +31,8 @@ const Recommendations = () => {
               height: '50px',
               borderRadius: '0px 0px 10px 10px',
               cursor: 'pointer',
+              margin: 'auto',
+              textAlign: 'left',
             }}
             onClick={() => {
               console.log('yo');
@@ -79,7 +79,10 @@ const Recommendations = () => {
             </div>
           </div>
         </Col>
-        <Col span={12} style={{ height: '140px', width: '140px' }}>
+        <Col
+          span={12}
+          style={{ height: '140px', width: '140px', textAlign: 'center' }}
+        >
           <img
             src={headphones}
             alt="product"
@@ -100,6 +103,8 @@ const Recommendations = () => {
               height: '50px',
               borderRadius: '0px 0px 10px 10px',
               cursor: 'pointer',
+              margin: 'auto',
+              textAlign: 'left',
             }}
             onClick={() => {
               console.log('yo');
@@ -148,13 +153,11 @@ const Recommendations = () => {
         </Col>
       </Row>
       <br />
-      <Row
-        style={{
-          marginLeft: '20px',
-        }}
-        gutter={16}
-      >
-        <Col span={12} style={{ height: '140px', width: '140px' }}>
+      <Row>
+        <Col
+          span={12}
+          style={{ height: '140px', width: '140px', textAlign: 'center' }}
+        >
           <img
             src={headphones}
             alt="product"
@@ -165,6 +168,7 @@ const Recommendations = () => {
               console.log('yo');
             }}
           />
+
           <div
             style={{
               position: 'relative',
@@ -174,6 +178,8 @@ const Recommendations = () => {
               height: '50px',
               borderRadius: '0px 0px 10px 10px',
               cursor: 'pointer',
+              margin: 'auto',
+              textAlign: 'left',
             }}
             onClick={() => {
               console.log('yo');
@@ -220,7 +226,10 @@ const Recommendations = () => {
             </div>
           </div>
         </Col>
-        <Col span={12} style={{ height: '140px', width: '140px' }}>
+        <Col
+          span={12}
+          style={{ height: '140px', width: '140px', textAlign: 'center' }}
+        >
           <img
             src={headphones}
             alt="product"
@@ -241,6 +250,8 @@ const Recommendations = () => {
               height: '50px',
               borderRadius: '0px 0px 10px 10px',
               cursor: 'pointer',
+              margin: 'auto',
+              textAlign: 'left',
             }}
             onClick={() => {
               console.log('yo');
@@ -289,13 +300,11 @@ const Recommendations = () => {
         </Col>
       </Row>
       <br />
-      <Row
-        style={{
-          marginLeft: '20px',
-        }}
-        gutter={16}
-      >
-        <Col span={12} style={{ height: '140px', width: '140px' }}>
+      <Row>
+        <Col
+          span={12}
+          style={{ height: '140px', width: '140px', textAlign: 'center' }}
+        >
           <img
             src={headphones}
             alt="product"
@@ -306,6 +315,7 @@ const Recommendations = () => {
               console.log('yo');
             }}
           />
+
           <div
             style={{
               position: 'relative',
@@ -315,6 +325,8 @@ const Recommendations = () => {
               height: '50px',
               borderRadius: '0px 0px 10px 10px',
               cursor: 'pointer',
+              margin: 'auto',
+              textAlign: 'left',
             }}
             onClick={() => {
               console.log('yo');
@@ -361,7 +373,10 @@ const Recommendations = () => {
             </div>
           </div>
         </Col>
-        <Col span={12} style={{ height: '140px', width: '140px' }}>
+        <Col
+          span={12}
+          style={{ height: '140px', width: '140px', textAlign: 'center' }}
+        >
           <img
             src={headphones}
             alt="product"
@@ -382,6 +397,8 @@ const Recommendations = () => {
               height: '50px',
               borderRadius: '0px 0px 10px 10px',
               cursor: 'pointer',
+              margin: 'auto',
+              textAlign: 'left',
             }}
             onClick={() => {
               console.log('yo');
