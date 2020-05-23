@@ -12,6 +12,9 @@ class UserDetailSerializer(ModelSerializer):
             'firstName',
             'lastName',
         ]
+        read_only_fields = [
+            'username',
+        ]
 
 
 class UserProfileSerializer(ModelSerializer):
@@ -48,6 +51,9 @@ class ProfileDetailSerializer(ModelSerializer):
 
 
 class ProfileUpdateSerializer(ModelSerializer):
+
+    user = UserDetailSerializer()
+
     class Meta:
         model = Profile
         fields = ['user', 'image', 'bio', 'year', 'branch']
