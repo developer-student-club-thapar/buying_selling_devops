@@ -3,14 +3,18 @@ jobs:
     - language: node_js # js testing
 
       node_js:
-      - "stable" # latest stable node version
+      - "12.16.1"
 
-      cache: yarn # using yarn to install dependencies
+      cache: yarn
+
+      before_install:  # using yarn to install dependencies
+        - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.22.0
+        - export PATH="$HOME/.yarn/bin:$PATH"
 
       install:
-        - yarn
-      scripts: # scripts for testing and building
+        - yarn install --frozen-lockfile
 
+      scripts: # scripts for testing and building
         - yarn test
         - yarn build
 
