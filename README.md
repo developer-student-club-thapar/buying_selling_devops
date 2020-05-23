@@ -29,12 +29,18 @@ Frontend
     1. Find UI Libraries.
     2. Prepare a rough layout.
     3. Start laying out frontend pages
+    4. React Version: 16.13.1
+    5. Redux Version: 4.0.5
+    6. react-redux: 7.2.0
 
 Backend
 
     1. Create a flowchart / diagram for whole process
     2. Code out models
     3. Create API using Django Rest Framework [https://django-rest-framework.org]
+    4. Python Version: 3.8.x
+    5. Django Version: 2.2.10
+    6. Djangorestframework Version: 3.10.3
 
 DevOps
 
