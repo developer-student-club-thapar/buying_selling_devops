@@ -72,36 +72,38 @@ const Product = () => {
           <ProductDescription />
         </Row>
         <ProductDetails />
-        <Row>
-          <Col
-            span={24}
-            style={{
-              paddingLeft: '20px',
-              paddingRight: '20px',
-              marginTop: '30px',
-            }}
-          >
-            <Button
-              type="primary"
-              block
-              style={{ backgroundColor: '#4F4F4F', border: 'none' }}
-            >
-              Contact the seller
-            </Button>
-          </Col>
-        </Row>
-        <Row>
-          <Col span={24} style={{ marginTop: '20px', textAlign: 'center' }}>
-            <Text
+        <div className={styles.footer}>
+          <Row>
+            <Col
+              span={24}
               style={{
-                color: '#42FF00',
-                fontSize: '14px',
+                paddingLeft: '20px',
+                paddingRight: '20px',
+                marginTop: '30px',
               }}
             >
-              Posted 3 days Ago
-            </Text>
-          </Col>
-        </Row>
+              <Button
+                type="primary"
+                block
+                style={{ backgroundColor: '#4F4F4F', border: 'none' }}
+              >
+                Contact the seller
+              </Button>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={24} style={{ marginTop: '20px', textAlign: 'center' }}>
+              <Text
+                style={{
+                  color: '#42FF00',
+                  fontSize: '14px',
+                }}
+              >
+                Posted 3 days Ago
+              </Text>
+            </Col>
+          </Row>
+        </div>
       </div>
     </Fragment>
   );

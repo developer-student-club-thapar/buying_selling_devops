@@ -4,7 +4,6 @@ import Routes from './routes';
 import history from './services/history';
 import { Provider } from 'react-redux';
 import store from './redux/store/index';
-import './App.css';
 
 const App = () => {
   return (

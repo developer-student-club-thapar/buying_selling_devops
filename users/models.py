@@ -4,6 +4,7 @@ from django.db import models
 from django.core.validators import RegexValidator
 from django.utils import timezone
 from PIL import Image
+import uuid
 
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
@@ -33,6 +34,7 @@ class MyUserManager(BaseUserManager):
 
 
 class MyUser(AbstractBaseUser):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     mobile = models.CharField(max_length=16, validators=[RegexValidator(regex=MOBILE_REGEX, message='Enter a valid mobile number', code='invalid_mobile')])
     username = models.CharField(max_length=300, validators=[RegexValidator(regex=USERNAME_REGEX, message='Username must be alphanumeric or contain numbers', code='invalid_username')], unique=True)
     email = models.EmailField(max_length=255, unique=True, verbose_name='email address')

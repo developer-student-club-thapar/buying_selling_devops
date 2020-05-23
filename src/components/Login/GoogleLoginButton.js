@@ -40,8 +40,7 @@ const GoogleLoginButton = ({
             disabled={renderProps.disabled}
             loading={loading}
           >
-            {' '}
-            Log in with Google
+            <span style={{ fontWeight: '200' }}>Login with Google</span>
           </Button>
         )}
         onSuccess={responseGoogle}
