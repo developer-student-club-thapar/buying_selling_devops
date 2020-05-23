@@ -14,9 +14,9 @@ We follow a systematic Git Workflow -
 - Go in the repo and setup virtualenvironment using <br>
   `python -m virtualenv env`
 - Then activate the environment using <br>
-```source env/Scripts/activate```
+  `source env/Scripts/activate`
   (If you are a linux/macos user, activate it by using <br>
-  ```source env/bin/activate```
+  `source env/bin/activate`
 - If you had a previous version of the project, please delete the old env folder and create a new one
 - The project now uses `poetry` to manage dependencies.
 - Install [Poetry](https://python-poetry.org/docs/)
