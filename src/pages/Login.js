@@ -5,12 +5,11 @@ import styles from '../styles/Login.module.css';
 import GoogleLoginButton from '../components/Login/GoogleLoginButton';
 import { connect } from 'react-redux';
 import { resetState } from '../redux/actions';
-
 const Login = ({ auth: { error }, resetState }) => {
   const { Title } = Typography;
 
   return (
-    <div>
+    <div style={{ height: '100vh' }}>
       <div className={styles.main}>
         <Row
           gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}
