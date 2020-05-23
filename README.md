@@ -31,7 +31,7 @@ Frontend
     3. Start laying out frontend pages
     4. React Version: 16.13.1
     5. Redux Version: 4.0.5
-    6. react-redux: 7.2.0
+    6. React Redux Version: 7.2.0
 
 Backend
 
