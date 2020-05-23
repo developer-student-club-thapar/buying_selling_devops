@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { Row, Col } from 'antd';
 import headphones from '../../assets/headphones.jpeg';
-import Title from 'antd/lib/skeleton/Title';
 import Text from 'antd/lib/typography/Text';
 
 const Recommendations = () => {

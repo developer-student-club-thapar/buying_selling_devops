@@ -24,6 +24,7 @@ export const useHasScrolled = (distance = 10) => {
     return () => {
       document.removeEventListener('scroll', onScroll);
     };
+    //eslint-disable-next-line
   }, [scroll, setScroll]);
 
   return scroll;

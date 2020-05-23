@@ -1,16 +1,12 @@
 import React, { Fragment } from 'react';
 import { Row, Col } from 'antd';
 import styles from '../../styles/Home.module.css';
-import { Typography } from 'antd';
 import { Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-import Text from 'antd/lib/typography/Text';
-import { Button } from 'antd';
 import MenuIcon from '../../assets/MenuIcon.svg';
 import user from '../../assets/user.svg';
 
 const TopBarScroll = () => {
-  const { Title } = Typography;
   return (
     <Fragment>
       <Row className={styles.topScroll}>
