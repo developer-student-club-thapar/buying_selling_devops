@@ -1,50 +1,35 @@
 jobs:
   include:
     - language: node_js # js testing
-
       node_js:
       - "12.16.1"
-
       cache: yarn
-
       before_install:  # using yarn to install dependencies
         - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.22.0
         - export PATH="$HOME/.yarn/bin:$PATH"
-
       install:
         - yarn install --frozen-lockfile
-
       scripts: # scripts for testing and building
         - yarn test
         - yarn build
 
     - language: python # for django test travis automatially creates a virtualenv, no need to specify it
-
       python:
       - 3.8
-
       before_install:
       - pip install poetry # using poetry to manage dependencies
-
       install:
       - poetry install
-
-      env:
-      - SECRET_KEY=$SECRET_KEY
-      - SIGNING_KEY=$SIGNING_KEY
-
       scripts:
-      - python manage.py makemigrations --settings=buying_selling.settings.dev
-      - python manage.py migrate --settings=buying_selling.settings.dev
-      - python manage.py test --settings=buying_selling.settings.dev
+      - python manage.py check --deploy
+      - python manage.py makemigrations
+      - python manage.py migrate
+      - python manage.py test
 
     - language: python # pre-commit
-
       python:
       - 3.8
-
       install:
         - pip install pre-commit
-
       script:
         - pre-commit run --all-files
