@@ -1,3 +1,5 @@
+@import '~antd/dist/antd.dark.css';
+@import '~react-image-gallery/styles/css/image-gallery.css';
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +7,18 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+* {
+  font-family: 'Poppins';
+}
+.ant-carousel .slick-slide {
+  height: 250px;
+  overflow: hidden;
+  background: #333333;
 }
