@@ -2,7 +2,7 @@ from django.apps import AppConfig
 
 
 class UsersConfig(AppConfig):
-    name = 'users'
+    name = 'buying_selling.users'
 
     def ready(self):
-        import users.signals  # noqa
+        import buying_selling.users.signals  # noqa
