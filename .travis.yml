@@ -20,9 +20,6 @@ jobs:
       - pip install poetry # using poetry to manage dependencies
       install:
       - poetry install
-      env:
-      - SECRET_KEY=$SECRET_KEY
-      - SIGNING_KEY=$SIGNING_KEY
       scripts:
       - sh -c "DEBUG=False ./manage.py check --deploy --fail-level WARNING"
       - python manage.py makemigrations
