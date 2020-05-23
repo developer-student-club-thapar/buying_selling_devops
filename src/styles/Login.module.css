@@ -7,7 +7,17 @@
   height: 100%;
   overflow: hidden;
 }
-
+.main::before {
+  -webkit-backdrop-filter: blur(
+    5px
+  ); /* Use for Safari 9+, Edge 17+ (not a mistake) and iOS Safari 9.2+ */
+  backdrop-filter: blur(3px) brightness(100%) contrast(60%); /* Supported in Chrome 76 */
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
 .heading {
   width: 100vw;
   height: 100px;
@@ -21,5 +31,6 @@
 }
 
 .button {
-  margin-top: 80px;
+  margin-top: 120px;
+  width: 80%;
 }

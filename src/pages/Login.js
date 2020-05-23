@@ -18,13 +18,26 @@ const Login = ({ auth: { error }, resetState }) => {
           <Col span={24}>
             <Title
               level={1}
-              style={{ fontFamily: 'Leckerli One', color: 'black' }}
+              style={{
+                fontFamily: 'Leckerli One',
+                color: 'black',
+                fontWeight: '400',
+                fontSize: '48px',
+                margin: 0,
+              }}
             >
               ThaparX
             </Title>
           </Col>
           <Col span={24}>
-            <Title level={3} style={{ color: 'black' }}>
+            <Title
+              level={3}
+              style={{
+                color: 'black',
+                fontWeight: '300',
+                fontSize: '24px',
+              }}
+            >
               Buying and Selling made easy
             </Title>
           </Col>
