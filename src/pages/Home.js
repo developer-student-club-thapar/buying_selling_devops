@@ -10,47 +10,17 @@ import Categories from '../components/Home/Categories';
 import Recommendations from '../components/Home/Recommendations';
 import MenuIcon from '../assets/MenuIcon.svg';
 import user from '../assets/user.svg';
+import { useHasScrolled } from '../components/Home/hooks/useScrollHandler';
+import TopBar from '../components/Home/TopBar';
+import TopBarScroll from '../components/Home/TopBarScroll';
 
 const Home = () => {
   const { Title } = Typography;
+  const scroll = useHasScrolled();
   return (
     <Fragment>
-      <Row className={styles.top}>
-        <Col span={24} style={{ height: 150 }}>
-          <br />
-          <Row style={{ paddingLeft: '10px', paddingRight: '10px' }}>
-            <Col span={8}>
-              <img src={MenuIcon} alt="menu" />
-            </Col>
-            <Col span={8}>
-              <Title
-                level={3}
-                style={{
-                  fontFamily: 'Leckerli One',
-                  textAlign: 'center',
-                }}
-              >
-                ThaparX
-              </Title>
-            </Col>
-            <Col span={8} style={{ textAlign: 'right' }}>
-              <img src={user} alt="profile" />
-            </Col>
-          </Row>
-          <br />
-
-          <Row style={{ paddingLeft: '10px', paddingRight: '10px' }}>
-            <Col span={24}>
-              <Input
-                size="small"
-                placeholder="Search for Products, Categories, etc."
-                prefix={<SearchOutlined />}
-                style={{ color: 'white', borderColor: '#D7D7D7' }}
-              />
-            </Col>
-          </Row>
-        </Col>
-      </Row>
+      {scroll !== false ? console.log(scroll) : console.log('bye')}
+      {scroll === false ? <TopBar /> : <TopBarScroll />}
       <div className={styles.main}>
         <br />
         <Row>

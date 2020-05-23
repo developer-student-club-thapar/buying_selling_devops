@@ -4,6 +4,12 @@
   background-position: 60% 60%;
 }
 
+.topScroll {
+  background: url('../assets/abstract_triangles.jpg') no-repeat center center
+    fixed #000;
+  background-position: 60% 60%;
+}
+
 .searchBar {
   color: white;
   border-color: #d7d7d7;
