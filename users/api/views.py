@@ -1,8 +1,9 @@
 from users.models import Profile
-from .serializers import ProfileDetailSerializer, ProfileUpdateSerializer
+from .serializers import MyProfileSerializer, ProfileDetailSerializer, ProfileUpdateSerializer
 from .permissions import IsOwnerOrReadOnly
 
 from rest_framework.views import APIView
+from rest_framework.generics import RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 import jwt
@@ -20,14 +21,21 @@ def jwt_decoder(encoded_token):
     return jwt.decode(encoded_token, env('SIGNING_KEY'), algorithms=['HS256'])
 
 
-class ProfileDetailAPIView(APIView):
+class ProfileDetailAPIView(RetrieveAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileDetailSerializer
+    lookup_field = 'user'
+    permission_classes = (IsAuthenticated,)
+
+
+class MyProfileAPIView(APIView):
 
     permission_classes = (IsAuthenticated,)
 
     def get(self, request, *args, **kwargs):
         payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
         queryset = Profile.objects.get(user_id=payload['user_id'])
-        serializer = ProfileDetailSerializer(queryset, many=False)
+        serializer = MyProfileSerializer(queryset, many=False)
         return Response(serializer.data)
 
 

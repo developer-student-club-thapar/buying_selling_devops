@@ -3,7 +3,18 @@ from rest_framework.serializers import ModelSerializer
 from users.models import Profile, MyUser
 
 
-class UserSerializer(ModelSerializer):
+class UserDetailSerializer(ModelSerializer):
+    class Meta:
+        model = MyUser
+        fields = [
+            'username',
+            'dateJoined',
+            'firstName',
+            'lastName',
+        ]
+
+
+class UserProfileSerializer(ModelSerializer):
     class Meta:
         model = MyUser
         fields = [
@@ -20,7 +31,16 @@ class UserSerializer(ModelSerializer):
 
 class ProfileDetailSerializer(ModelSerializer):
 
-    user = UserSerializer(read_only=True)
+    user = UserDetailSerializer(read_only=True)
+
+    class Meta:
+        model = Profile
+        fields = ['user', 'image', 'bio', 'year', 'branch']
+
+
+class MyProfileSerializer(ModelSerializer):
+
+    user = UserProfileSerializer(read_only=True)
 
     class Meta:
         model = Profile
