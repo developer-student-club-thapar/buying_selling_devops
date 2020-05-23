@@ -1,4 +1,4 @@
-from backend.posts.models import Post
+from buying_selling.posts.models import Post
 from .serializers import PostCreateSerializer, PostDetailSerializer, PostListSerializer, PostUpdateSerializer
 from .permissions import IsOwnerOrReadOnly
 

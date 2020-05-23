@@ -1,4 +1,4 @@
-from backend.users.models import Profile
+from buying_selling.users.models import Profile
 from .serializers import MyProfileSerializer, ProfileDetailSerializer, ProfileUpdateSerializer
 
 # from .permissions import IsOwnerOrReadOnly

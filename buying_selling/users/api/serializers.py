@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from backend.users.models import Profile, MyUser
+from buying_selling.users.models import Profile, MyUser
 
 
 class UserDetailSerializer(ModelSerializer):

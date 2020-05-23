@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class PostsConfig(AppConfig):
-    name = 'backend.posts'
+    name = 'buying_selling.posts'
