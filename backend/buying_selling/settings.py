@@ -27,8 +27,8 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "corsheaders",
     "rest_framework",
-    "posts.apps.PostsConfig",
-    "users.apps.UsersConfig",
+    "backend.posts.apps.PostsConfig",
+    "backend.users.apps.UsersConfig",
 ]
 
 if DEBUG:
