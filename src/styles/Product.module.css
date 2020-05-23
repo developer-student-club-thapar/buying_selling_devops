@@ -8,5 +8,14 @@
   border-radius: 24px;
   position: relative;
   bottom: 30px;
+  display: flex;
+  flex-direction: column;
   background-color: black;
+  padding: 2.5%;
+  padding-top: 5%;
+}
+
+.footer {
+  margin-top: 50px;
+  justify-self: flex-end;
 }
