@@ -2,7 +2,7 @@ from django.apps import AppConfig
 
 
 class UsersConfig(AppConfig):
-    name = 'users'
+    name = 'backend.users'
 
     def ready(self):
-        import users.signals  # noqa
+        import backend.users.signals  # noqa

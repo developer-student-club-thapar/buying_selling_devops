@@ -8,7 +8,7 @@ import uuid
 
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
-from posts.models import Post
+from backend.posts.models import Post
 
 USERNAME_REGEX = '^[a-zA-Z0-9.+-]*$'
 MOBILE_REGEX = '^(\+\d{1,3}[- ]?)?\d{10}$'  # noqa
