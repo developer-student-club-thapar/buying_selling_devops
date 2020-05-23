@@ -5,16 +5,15 @@ from datetime import timedelta
 env = environ.Env()
 
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 environ.Env.read_env(env_file=os.path.join(BASE_DIR, ".env"))
 
-SECRET_KEY = env(
-    "SECRET_KEY",
-    default='secret-key-of-at-least-50-characters-to-pass-check-deploy',
-)
+DEBUG = env.bool("DEBUG", default=True)
 
-ALLOWED_HOSTS = []
+SECRET_KEY = env("SECRET_KEY", default='secret-key-of-at-least-50-characters-to-pass-check-deploy',)
+
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'users.MyUser'
 
@@ -38,6 +37,12 @@ if DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, "static_root")
     MEDIA_URL = "/media/"
     MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+else:
+    DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+    STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+    GS_BUCKET_NAME = env("GS_BUCKET_NAME")
+    STATIC_ROOT = "static/"
+    MEDIA_ROOT = "media/"
 
 SITE_ID = 1
 
@@ -101,15 +106,12 @@ REST_FRAMEWORK = {
 # CORS SETTINGS
 CORS_ORIGIN_ALLOW_ALL = True
 
+
 # JWT SETTINGS
-SIMPLE_JWT = JWT_CONFIG
 
-SIGNING_KEY=env(
-    "SIGNING_KEY",
-    default="",
-)
+SIGNING_KEY = env("SIGNING_KEY", default="",)
 
-JWT_CONFIG = {
+SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': True,
