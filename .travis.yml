@@ -24,6 +24,7 @@ jobs:
       - SECRET_KEY=$SECRET_KEY
       - SIGNING_KEY=$SIGNING_KEY
       scripts:
+      - sh -c "DEBUG=False ./manage.py check --deploy --fail-level WARNING"
       - python manage.py makemigrations
       - python manage.py migrate
       - python manage.py test

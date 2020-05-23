@@ -9,7 +9,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 
 environ.Env.read_env(env_file=os.path.join(BASE_DIR, ".env"))
 
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = env(
+    "SECRET_KEY",
+    default='secret-key-of-at-least-50-characters-to-pass-check-deploy',
+)
 
 ALLOWED_HOSTS = []
 
