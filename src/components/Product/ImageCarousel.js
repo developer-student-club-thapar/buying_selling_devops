@@ -1,38 +1,29 @@
 import React from 'react';
-import { Carousel } from 'antd';
 import { Col } from 'antd';
 import headphones from '../../assets/headphones.jpeg';
-import styles from '../../styles/Product.module.css';
+import ImageGallery from 'react-image-gallery';
 
 const ImageCarousel = () => {
+  const images = [
+    {
+      original: `${headphones}`,
+    },
+    {
+      original: `${headphones}`,
+    },
+    {
+      original: `${headphones}`,
+    },
+  ];
   return (
     <Col xs={24}>
-      <Carousel>
-        <div>
-          <img src={headphones} alt="img1" className={styles.image} />
-        </div>
-        <div>
-          <img
-            src="https://picsum.photos/360/300"
-            alt="img2"
-            className={styles.image}
-          />
-        </div>
-        <div>
-          <img
-            src="https://picsum.photos/360/300"
-            alt="img3"
-            className={styles.image}
-          />
-        </div>
-        <div>
-          <img
-            src="https://picsum.photos/360/300"
-            alt="img4"
-            className={styles.image}
-          />
-        </div>
-      </Carousel>
+      <ImageGallery
+        items={images}
+        showBullets={true}
+        autoPlay={true}
+        showPlayButton={false}
+        showFullscreenButton={false}
+      />
     </Col>
   );
 };
