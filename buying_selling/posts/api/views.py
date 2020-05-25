@@ -6,18 +6,11 @@ from .permissions import IsOwnerOrReadOnly
 from rest_framework.generics import CreateAPIView, DestroyAPIView, ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
 import jwt
-import environ
-import os
-
-env = environ.Env()
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-environ.Env.read_env(env_file=os.path.join(BASE_DIR, ".env"))
+from django.conf import settings
 
 
 def jwt_decoder(encoded_token):
-    return jwt.decode(encoded_token, env('SIGNING_KEY'), algorithms=['HS256'])
+    return jwt.decode(encoded_token, settings.SIGNING_KEY, algorithms=['HS256'])
 
 
 class MyPostListAPIView(ListAPIView):
