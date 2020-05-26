@@ -22,6 +22,7 @@ export const loginUser = accessToken => async dispatch => {
         token: accessToken,
       },
     );
+    console.log(res.data);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,

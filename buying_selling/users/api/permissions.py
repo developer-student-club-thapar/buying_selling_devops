@@ -13,4 +13,4 @@ class IsOwnerOrReadOnly(BasePermission):
     def has_object_permission(self, request, view, obj):
         payload = jwt_decoder(request.headers['Authorization'].split()[1])
         user_id = payload['user_id']
-        return obj.user_id == user_id
+        return str(obj.user_id) == user_id
