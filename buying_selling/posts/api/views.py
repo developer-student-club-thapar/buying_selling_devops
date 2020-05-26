@@ -43,7 +43,6 @@ class PostViewset(viewsets.ModelViewSet):
     }
 
     def get_serializer_class(self):
-        print(self.action)
         return self.serializer_action_classes[self.action]
 
     def get_permissions(self):
