@@ -1,6 +1,7 @@
-from buying_selling.posts.models import Post
-from .serializers import PostCreateSerializer, PostDetailSerializer, PostListSerializer, PostUpdateSerializer
+from buying_selling.posts.models import Post, PostImage
+from .serializers import ImageSerializer, PostCreateSerializer, PostDetailSerializer, PostListSerializer, PostUpdateSerializer
 from .permissions import IsOwnerOrReadOnly
+from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 import jwt
 from django.conf import settings
@@ -50,6 +51,18 @@ class PostViewset(viewsets.ModelViewSet):
             return [permission() for permission in self.permission_classes_by_action[self.action]]
         except KeyError:
             return [permission() for permission in self.permission_classes]
+
+    def retrieve(self, request, pk, format=None):
+        post = Post.objects.get(pk=pk)
+        images = PostImage.objects.filter(post_id=pk)
+        post_serializer = PostDetailSerializer(post, context={'request': request}).data
+        image_serializer = ImageSerializer(images, many=True, context={'request': request}).data
+        i = 0
+        print(image_serializer)
+        for image in image_serializer:
+            post_serializer[f"image{i}"] = image
+            i += 1
+        return Response(post_serializer)
 
     def perform_create(self, serializer):
         payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
