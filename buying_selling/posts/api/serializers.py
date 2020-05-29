@@ -1,6 +1,14 @@
 from rest_framework.serializers import ModelSerializer
 
-from buying_selling.posts.models import Post
+from buying_selling.posts.models import Post, PostImage
+
+
+class ImageSerializer(ModelSerializer):
+    class Meta:
+        model = PostImage
+        fields = [
+            'image',
+        ]
 
 
 class PostCreateSerializer(ModelSerializer):
