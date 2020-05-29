@@ -57,12 +57,10 @@ class PostViewset(viewsets.ModelViewSet):
         images = PostImage.objects.filter(post_id=pk)
         post_serializer = PostDetailSerializer(post, context={'request': request}).data
         image_serializer = ImageSerializer(images, many=True, context={'request': request}).data
-        i = 0
         images = []
         print(image_serializer)
         for image in image_serializer:
             images.append(image)
-            i += 1
         post_serializer['images'] = images
         return Response(post_serializer)
 
