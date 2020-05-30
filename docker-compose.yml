@@ -4,12 +4,13 @@ services:
   backend:
     build:
       context: .
-      dockerfile: docker/dev/dev.Dockerfile
+      dockerfile: docker/dev.Dockerfile
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/usr/src/app
     ports:
       - 8000:8000
+    entrypoint: './docker/entrypoint.sh'
     environment: 
       - IN_DOCKER=True
       - DATABASE=postgres
