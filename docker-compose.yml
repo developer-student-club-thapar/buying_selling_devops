@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: docker/dev.Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 8000:8000
+    entrypoint: './docker/entrypoint.sh'
+    environment: 
+      - IN_DOCKER=True
+      - DATABASE=postgres
+      - SQL_HOST=db
+      - SQL_PORT=5432
+  db:
+    image: postgres:12.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=thapar_olx
+      - POSTGRES_PASSWORD=thapar_olx
+      - POSTGRES_DB=thapar_olx
+
+volumes:
+  postgres_data:

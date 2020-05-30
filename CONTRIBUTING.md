@@ -52,6 +52,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
+## Running with Docker (Backend)
+
+- Ensure that you have `docker` and `docker-compose` already installed.
+- At the root of the project directory run `docker-compose build` to build the image for the first time.
+- To start the backend run `docker-compose up -d`.
+- Ensure that the backend is running by going to [http://127.0.0.1:8000](http://127.0.0.1:8000).
+
 ## Generating a CLIENT ID for Google OAuth Login
 
 - Create a new project with name **Thapar OLX** in _Google Cloud Platform_.
