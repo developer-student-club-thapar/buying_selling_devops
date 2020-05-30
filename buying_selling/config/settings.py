@@ -80,8 +80,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "buying_selling.config.wsgi.application"
 
-
-DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": os.path.join(BASE_DIR, "db.sqlite3"),}}
+IN_DOCKER = env.bool("IN_DOCKER", default=False)
+DATABASES = {
+    "default": {
+        "ENGINE": env("SQL_ENGINE", default="django.db.backends.postgresql"),
+        "NAME": env("SQL_DATABASE", default="thapar_olx"),
+        "USER": env("SQL_USER", default="thapar_olx"),
+        "PASSWORD": env("SQL_PASSWORD", default="thapar_olx"),
+        "HOST": env("SQL_HOST", default="db" if IN_DOCKER else "localhost"),
+        "PORT": env("SQL_PORT", default="5432"),
+    }
+}
 
 
 AUTH_PASSWORD_VALIDATORS = [

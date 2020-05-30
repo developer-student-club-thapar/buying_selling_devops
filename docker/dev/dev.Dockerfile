@@ -17,5 +17,11 @@ RUN poetry config virtualenvs.create false
 COPY pyproject.toml poetry.lock README.md CONTRIBUTING.md /usr/src/app/
 RUN poetry install --no-dev
 
+# copy entrypoint.sh
+COPY entrypoint.sh /usr/src/app/entrypoint.sh
+
 # copy project
 COPY . /usr/src/app/
+
+# run entrypoint.sh
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
