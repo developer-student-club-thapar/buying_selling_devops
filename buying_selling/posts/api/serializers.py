@@ -11,6 +11,15 @@ class ImageSerializer(ModelSerializer):
         ]
 
 
+class AddImageSerializer(ModelSerializer):
+    class Meta:
+        model = PostImage
+        fields = [
+            'post',
+            'image',
+        ]
+
+
 class PostCreateSerializer(ModelSerializer):
     class Meta:
         model = Post
