@@ -7,4 +7,8 @@ router = DefaultRouter()
 router.register('', views.PostViewset)
 
 
-urlpatterns = [path('', include(router.urls)), path('manage/myposts/', views.MyPostListAPIView.as_view(), name="my-posts")]
+urlpatterns = [
+    path('', include(router.urls)),
+    path('manage/myposts/', views.MyPostListAPIView.as_view(), name="my-posts"),
+    path('<pk>/images/', views.ImageView.as_view(), name='uppload-images'),
+]

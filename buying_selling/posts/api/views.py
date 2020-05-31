@@ -1,7 +1,10 @@
 from buying_selling.posts.models import Post, PostImage
-from .serializers import ImageSerializer, PostCreateSerializer, PostDetailSerializer, PostListSerializer, PostUpdateSerializer
-from .permissions import IsOwnerOrReadOnly
+from .serializers import AddImageSerializer, ImageSerializer, PostCreateSerializer, PostDetailSerializer, PostListSerializer, PostUpdateSerializer
+from .permissions import IsOwnerOrReadOnly, IsOwnerForPostImage
 from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 import jwt
 from django.conf import settings
@@ -10,6 +13,42 @@ from rest_framework import viewsets, generics
 
 def jwt_decoder(encoded_token):
     return jwt.decode(encoded_token, settings.SIGNING_KEY, algorithms=['HS256'])
+
+
+def modify_input_for_multiple_files(post_id, image):
+    dict = {}
+    dict['post'] = post_id
+    dict['image'] = image
+    return dict
+
+
+class ImageView(APIView):
+    parser_classes = (MultiPartParser, FormParser)
+    permission_classes = [
+        IsAuthenticated,
+        IsOwnerForPostImage,
+    ]
+
+    def post(self, request, pk, *args, **kwargs):
+        post_id = pk
+
+        # converts querydict to original dict
+        images = dict((request.data).lists())['image']
+        flag = 1
+        arr = []
+        for img_name in images:
+            modified_data = modify_input_for_multiple_files(post_id, img_name)
+            file_serializer = AddImageSerializer(data=modified_data, context={"request": request})
+            if file_serializer.is_valid():
+                file_serializer.save()
+                arr.append(file_serializer.data)
+            else:
+                flag = 0
+
+        if flag == 1:
+            return Response(arr, status=status.HTTP_201_CREATED)
+        else:
+            return Response(arr, status=status.HTTP_400_BAD_REQUEST)
 
 
 class MyPostListAPIView(generics.ListAPIView):
