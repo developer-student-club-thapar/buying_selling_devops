@@ -16,6 +16,7 @@ RUN pip install poetry
 RUN poetry config virtualenvs.create false
 COPY pyproject.toml poetry.lock README.md CONTRIBUTING.md /usr/src/app/
 RUN poetry install --no-dev
+RUN poetry add psycopg2-binary
 
 # copy project
 COPY . /usr/src/app/
