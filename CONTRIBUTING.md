@@ -29,6 +29,11 @@ pre-commit install
 
 - This will setup the project requirements and pre-commit test hooks!
 
+- Ensure you have PostgreSQl installed on your machine.
+- Create a new admin user in postgres with username `thapar_olx` and password `thapar_olx`.
+- Create a new database in postgres with name `thapar_olx` owned by the user created in previous step.
+- Ensure that postgres server is running on default port **5432**.
+
 - After the above setup, run <br>
   `python manage.py makemigrations`
   `python manage.py migrate`
