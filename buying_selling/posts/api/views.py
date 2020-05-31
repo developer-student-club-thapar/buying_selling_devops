@@ -29,11 +29,6 @@ class ImageView(APIView):
         IsOwnerForPostImage,
     ]
 
-    def get(self, request, pk):
-        all_images = PostImage.objects.filter(post_id=pk)
-        serializer = ImageSerializer(all_images, many=True)
-        return Response(serializer.data)
-
     def post(self, request, pk, *args, **kwargs):
         post_id = pk
 
