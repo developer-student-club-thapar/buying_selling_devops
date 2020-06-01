@@ -6,11 +6,7 @@ import {
   RESET_STATE,
 } from '../types';
 import axios from 'axios';
-import store from '../store/index';
-import { BACKEND_ENDPOINT, AUTH_ENDPOINT } from '../../constants/index';
-
-// console.log(store.getState());
-// const reduxState = store.getState();
+import { AUTH_ENDPOINT } from '../../constants';
 
 //Login User
 export const loginUser = accessToken => async dispatch => {

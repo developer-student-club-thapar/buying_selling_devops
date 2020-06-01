@@ -3,16 +3,19 @@ import { HashRouter as Router } from 'react-router-dom';
 import Routes from './routes';
 import history from './services/history';
 import { Provider } from 'react-redux';
-import store from './redux/store/index';
+import store, { persistor } from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const App = () => {
   return (
     <Provider store={store}>
-      <div className="App">
-        <Router history={history}>
-          <Routes />
-        </Router>
-      </div>
+      <PersistGate loading={null} persistor={persistor}>
+        <div className="App">
+          <Router history={history}>
+            <Routes />
+          </Router>
+        </div>
+      </PersistGate>
     </Provider>
   );
 };

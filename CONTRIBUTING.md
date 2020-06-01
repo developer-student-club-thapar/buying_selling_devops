@@ -22,8 +22,8 @@ We follow a systematic Git Workflow -
 - Install [Poetry](https://python-poetry.org/docs/)
 
 - (Only for Linux users) At the root of your project directory <br>
-```sudo apt-get update```<br>
-```sudo apt-get install libpq-dev python-dev```
+  `sudo apt-get update`<br>
+  `sudo apt-get install libpq-dev python-dev`
 - At the root of your project directory <br>
 
 ```bash

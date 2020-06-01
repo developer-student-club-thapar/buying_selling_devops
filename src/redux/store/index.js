@@ -8,21 +8,21 @@ import rootReducer from '../reducers';
 const intialState = {};
 
 const persistConfig = {
-  key: 'authReducer',
-  storage: storage,
-  whitelist: ['authReducer'], // which reducer want to store
+  key: 'root',
+  storage,
+  whitelist: ['auth'], // which reducer want to store
 };
 
-const pReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const middleware = [thunk];
 
 const store = createStore(
-  rootReducer,
+  persistedReducer,
   intialState,
   composeWithDevTools(applyMiddleware(...middleware)),
 );
 
-const persistor = persistStore(store);
+export const persistor = persistStore(store);
 
-export default { persistor, store };
+export default store;
