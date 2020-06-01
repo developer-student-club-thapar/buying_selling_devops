@@ -14,7 +14,11 @@ const GoogleLoginButton = ({
   const responseGoogle = response => {
     console.log(response);
     setLoading(true);
-    loginUser(response.accessToken);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    loginUser(response.wc.access_token);
   };
   const responseGoogleFail = response => {
     console.log(response);

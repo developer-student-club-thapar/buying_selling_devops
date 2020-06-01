@@ -18,10 +18,17 @@ export const loginUser = accessToken => async dispatch => {
       token: accessToken,
     });
     console.log(res.data);
-    dispatch({
-      type: LOGIN_SUCCESS,
-      payload: res.data,
-    });
+    if (res.data.error) {
+      dispatch({
+        type: LOGIN_FAIL,
+        payload: res.data.error,
+      });
+    } else {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data,
+      });
+    }
   } catch (err) {
     dispatch({
       type: LOGIN_FAIL,
