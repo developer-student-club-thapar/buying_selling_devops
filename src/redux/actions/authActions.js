@@ -6,7 +6,7 @@ import {
   RESET_STATE,
 } from '../types';
 import axios from 'axios';
-import { AUTH_ENDPOINT } from '../../constants';
+import { AUTH_ENDPOINT } from '../../constants/endpoints/index';
 
 //Login User
 export const loginUser = accessToken => async dispatch => {
