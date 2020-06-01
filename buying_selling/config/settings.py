@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django_cleanup.apps.CleanupConfig',
     "corsheaders",
     "rest_framework",
+    "django_filters",
     "buying_selling.posts.apps.PostsConfig",
     "buying_selling.users.apps.UsersConfig",
 ]

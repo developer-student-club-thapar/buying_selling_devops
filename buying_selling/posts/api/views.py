@@ -9,6 +9,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 import jwt
 from django.conf import settings
 from rest_framework import viewsets, generics
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 def jwt_decoder(encoded_token):
@@ -81,6 +82,9 @@ class PostViewset(viewsets.ModelViewSet):
         'partial_update': [IsAuthenticated, IsOwnerOrReadOnly],
         'destroy': [IsAuthenticated, IsOwnerOrReadOnly],
     }
+
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('isSold', 'onDiscount', 'category', 'condition')
 
     def get_serializer_class(self):
         return self.serializer_action_classes[self.action]
