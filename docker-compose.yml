@@ -11,7 +11,7 @@ services:
     ports:
       - 8000:8000
     entrypoint: './docker/entrypoint.sh'
-    environment: 
+    environment:
       - IN_DOCKER=True
       - DATABASE=postgres
       - SQL_HOST=db
