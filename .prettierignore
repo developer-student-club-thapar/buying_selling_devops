@@ -1,9 +1,8 @@
 static
 templates
 .vscode
-README.md
 *.yml
 *.yaml
-CONTRIBUTING.md
 env/
+*.md
 .gitignore
