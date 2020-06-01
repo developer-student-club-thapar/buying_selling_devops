@@ -4,6 +4,6 @@ templates
 README.md
 *.yml
 *.yaml
-CONTRIBUTION.md
+CONTRIBUTING.md
 env/
 .gitignore
