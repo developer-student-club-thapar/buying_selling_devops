@@ -7,21 +7,20 @@ import {
 } from '../types';
 import axios from 'axios';
 import store from '../store/index';
+import { BACKEND_ENDPOINT, AUTH_ENDPOINT } from '../../constants/index';
 
-console.log(store.getState());
-const reduxState = store.getState();
+// console.log(store.getState());
+// const reduxState = store.getState();
+
 //Login User
 export const loginUser = accessToken => async dispatch => {
   try {
     dispatch({
       type: SET_LOADING,
     });
-    const res = await axios.post(
-      `${reduxState.gen.backendEndpoint}/google/auth/token/`,
-      {
-        token: accessToken,
-      },
-    );
+    const res = await axios.post(`${AUTH_ENDPOINT}`, {
+      token: accessToken,
+    });
     console.log(res.data);
     dispatch({
       type: LOGIN_SUCCESS,
