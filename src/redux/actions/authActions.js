@@ -11,9 +11,6 @@ import { AUTH_ENDPOINT } from '../../constants/endpoints/index';
 //Login User
 export const loginUser = accessToken => async dispatch => {
   try {
-    dispatch({
-      type: SET_LOADING,
-    });
     const res = await axios.post(`${AUTH_ENDPOINT}`, {
       token: accessToken,
     });
