@@ -8,6 +8,7 @@ import {
 
 const defaultState = {
   token: null,
+  refreshToken: null,
   isAuthenticated: null,
   loading: false,
   user: null,
@@ -20,6 +21,7 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         token: action.payload.access_token,
+        refreshToken: action.payload.refresh_token,
         user: action.payload.username,
         isAuthenticated: true,
         loading: false,
@@ -30,6 +32,7 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         token: null,
+        refreshToken: null,
         isAuthenticated: false,
         loading: false,
         user: null,

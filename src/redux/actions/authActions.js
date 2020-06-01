@@ -6,27 +6,26 @@ import {
   RESET_STATE,
 } from '../types';
 import axios from 'axios';
-import store from '../store/index';
+import { AUTH_ENDPOINT } from '../../constants/endpoints/index';
 
-console.log(store.getState());
-const reduxState = store.getState();
 //Login User
 export const loginUser = accessToken => async dispatch => {
   try {
-    dispatch({
-      type: SET_LOADING,
+    const res = await axios.post(`${AUTH_ENDPOINT}`, {
+      token: accessToken,
     });
-    const res = await axios.post(
-      `${reduxState.gen.backendEndpoint}/google/auth/token/`,
-      {
-        token: accessToken,
-      },
-    );
     console.log(res.data);
-    dispatch({
-      type: LOGIN_SUCCESS,
-      payload: res.data,
-    });
+    if (res.data.error) {
+      dispatch({
+        type: LOGIN_FAIL,
+        payload: res.data.error,
+      });
+    } else {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data,
+      });
+    }
   } catch (err) {
     dispatch({
       type: LOGIN_FAIL,

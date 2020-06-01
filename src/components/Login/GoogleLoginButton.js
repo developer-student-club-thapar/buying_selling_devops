@@ -1,26 +1,27 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import styles from '../../styles/Login.module.css';
 import { Button } from 'antd';
 import { GoogleOutlined } from '@ant-design/icons';
 import GoogleLogin from 'react-google-login';
 import { connect } from 'react-redux';
-import { loginUser, loginFail } from '../../redux/actions';
+import { loginUser, loginFail, setLoading } from '../../redux/actions';
 
 const GoogleLoginButton = ({
-  auth: { user, isAuthenticated },
+  auth: { loading },
   loginUser,
   loginFail,
+  setLoading,
 }) => {
   const responseGoogle = response => {
     console.log(response);
-    setLoading(true);
-    loginUser(response.accessToken);
+    setLoading();
+
+    loginUser(response.wc.access_token);
   };
   const responseGoogleFail = response => {
     console.log(response);
     loginFail(response.error);
   };
-  const [loading, setLoading] = useState(false);
   return (
     <Fragment>
       <GoogleLogin
@@ -56,6 +57,6 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { loginUser, loginFail })(
+export default connect(mapStateToProps, { loginUser, loginFail, setLoading })(
   GoogleLoginButton,
 );
