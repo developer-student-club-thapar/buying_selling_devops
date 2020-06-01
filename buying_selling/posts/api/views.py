@@ -10,6 +10,7 @@ import jwt
 from django.conf import settings
 from rest_framework import viewsets, generics
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import OrderingFilter, SearchFilter
 
 
 def jwt_decoder(encoded_token):
@@ -83,8 +84,14 @@ class PostViewset(viewsets.ModelViewSet):
         'destroy': [IsAuthenticated, IsOwnerOrReadOnly],
     }
 
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (
+        DjangoFilterBackend,
+        OrderingFilter,
+        SearchFilter,
+    )
     filter_fields = ('isSold', 'onDiscount', 'category', 'condition')
+    ordering_fields = ('datePosted', 'discountPercent', 'price')
+    search_fields = ('title', 'brand')
 
     def get_serializer_class(self):
         return self.serializer_action_classes[self.action]
