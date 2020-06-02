@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 from buying_selling.posts.models import Post, PostImage, Category
 
@@ -68,6 +68,16 @@ class PostDetailSerializer(ModelSerializer):
 
 
 class PostListSerializer(ModelSerializer):
+    image = SerializerMethodField('image_serializer')
+
+    def image_serializer(self, obj):
+        image = PostImage.objects.filter(post_id=obj.id).first()
+        serializer = ImageSerializer(image).data
+        request = self.context.get('request')
+        if serializer['image']:
+            serializer['image'] = request.build_absolute_uri(serializer['image'])
+        return serializer
+
     class Meta:
         model = Post
         fields = [
@@ -78,6 +88,7 @@ class PostListSerializer(ModelSerializer):
             'author',
             'price',
             'isSold',
+            'image',
         ]
 
 
