@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Row, Col } from 'antd';
 import styles from '../styles/Product.module.css';
 import { Typography } from 'antd';
@@ -7,9 +7,16 @@ import { Button } from 'antd';
 import ImageCarousel from '../components/Product/ImageCarousel';
 import ProductDescription from '../components/Product/ProductDescription';
 import ProductDetails from '../components/Product/ProductDetails';
+import { connect } from 'react-redux';
+import { getPost } from '../redux/actions';
 
-const Product = () => {
+const Product = ({ posts: { post }, getPost }) => {
   const { Title } = Typography;
+  const id = '5e4ddc88-dd05-446a-a978-6474dd97cabd';
+  useEffect(() => {
+    getPost(id);
+    //eslint-disable-next-line
+  }, []);
   return (
     <Fragment>
       <Row>
@@ -109,4 +116,8 @@ const Product = () => {
   );
 };
 
-export default Product;
+const mapStateToProps = state => ({
+  posts: state.posts,
+});
+
+export default connect(mapStateToProps, { getPost })(Product);
