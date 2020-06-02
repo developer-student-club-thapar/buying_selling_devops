@@ -1,6 +1,6 @@
 <div align = "center">
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <img height=200px src= "https://github.com/developer-student-club-thapar/officialWebsite/blob/master/src/assets/dsc_logo.png">
@@ -63,6 +63,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://www.linkedin.com/in/parth-shah-97911416a/"><img src="https://avatars0.githubusercontent.com/u/43181887?v=4" width="100px;" alt=""/><br /><sub><b>Parth Sujalkumar Shah</b></sub></a><br /><a href="https://github.com/developer-student-club-thapar/buying_selling_devops/commits?author=parthsujalshah" title="Code">💻</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/aniket-biswas-59394b191/"><img src="https://avatars2.githubusercontent.com/u/51146347?v=4" width="100px;" alt=""/><br /><sub><b>Aniket Biswas</b></sub></a><br /><a href="https://github.com/developer-student-club-thapar/buying_selling_devops/commits?author=aniketbiswas21" title="Code">💻</a> <a href="#design-aniketbiswas21" title="Design">🎨</a></td>
     <td align="center"><a href="https://github.com/Saurav-Shrivastav"><img src="https://avatars1.githubusercontent.com/u/54510448?v=4" width="100px;" alt=""/><br /><sub><b>Saurav-Shrivastav</b></sub></a><br /><a href="https://github.com/developer-student-club-thapar/buying_selling_devops/commits?author=Saurav-Shrivastav" title="Code">💻</a></td>
+    <td align="center"><a href="http://kush-blog.netlify.com"><img src="https://avatars2.githubusercontent.com/u/40840079?v=4" width="100px;" alt=""/><br /><sub><b>Kush Daga</b></sub></a><br /><a href="https://github.com/developer-student-club-thapar/buying_selling_devops/commits?author=kush-daga" title="Code">💻</a> <a href="#design-kush-daga" title="Design">🎨</a></td>
   </tr>
 </table>
 
