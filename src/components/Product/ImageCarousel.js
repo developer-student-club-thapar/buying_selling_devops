@@ -1,20 +1,14 @@
 import React from 'react';
 import { Col } from 'antd';
-import headphones from '../../assets/headphones.jpeg';
 import ImageGallery from 'react-image-gallery';
 
-const ImageCarousel = () => {
-  const images = [
-    {
-      original: `${headphones}`,
-    },
-    {
-      original: `${headphones}`,
-    },
-    {
-      original: `${headphones}`,
-    },
-  ];
+const ImageCarousel = ({ post }) => {
+  const images = [];
+  for (const item of post.images) {
+    images.push({
+      original: `${item.image}`,
+    });
+  }
   return (
     <Col xs={24}>
       <ImageGallery

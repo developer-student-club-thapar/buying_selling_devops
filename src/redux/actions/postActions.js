@@ -23,11 +23,11 @@ export const getAllPosts = () => async dispatch => {
 
 //Get a single post
 export const getPost = id => async dispatch => {
-  const config = {
-    headers: {
-      AUTHORIZATION: `Bearer ${state.auth.token}`,
-    },
-  };
+  //   const config = {
+  //     headers: {
+  //       AUTHORIZATION: `Bearer ${state.auth.token}`,
+  //     },
+  //   };
   try {
     const res = await axios.get(`${POST_ENDPOINT}${id}`);
     console.log(res.data);

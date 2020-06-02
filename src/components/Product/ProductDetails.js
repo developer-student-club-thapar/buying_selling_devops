@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Row, Col } from 'antd';
 import Text from 'antd/lib/typography/Text';
 
-const ProductDetails = () => {
+const ProductDetails = ({ post }) => {
   return (
     <Fragment>
       <Row>
@@ -28,7 +28,7 @@ const ProductDetails = () => {
               paddingRight: '20px',
             }}
           >
-            Less than a year
+            {post.age}
           </Text>
         </Col>
       </Row>
@@ -55,7 +55,7 @@ const ProductDetails = () => {
               paddingRight: '20px',
             }}
           >
-            Sony
+            {post.brand}
           </Text>
         </Col>
       </Row>
@@ -82,34 +82,7 @@ const ProductDetails = () => {
               paddingRight: '20px',
             }}
           >
-            Excellent
-          </Text>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={12}>
-          <Text
-            strong
-            style={{
-              color: '#FFFFFF',
-              fontSize: '14px',
-
-              marginLeft: '20px',
-            }}
-          >
-            Owner Address
-          </Text>
-        </Col>
-        <Col span={12} style={{ textAlign: 'right' }}>
-          <Text
-            level={4}
-            style={{
-              color: '#FFFFFF',
-              fontSize: '14px',
-              paddingRight: '20px',
-            }}
-          >
-            Hostel J
+            {post.condition}
           </Text>
         </Col>
       </Row>

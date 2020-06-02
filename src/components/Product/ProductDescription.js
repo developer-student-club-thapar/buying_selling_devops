@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col } from 'antd';
 
-const ProductDescription = () => {
+const ProductDescription = ({ post }) => {
   return (
     <Col span={24}>
       <p
@@ -13,11 +13,7 @@ const ProductDescription = () => {
           paddingRight: '20px',
         }}
       >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Posuere varius
-        neque turpis proin leo rhoncus, aliquam massa. Odio facilisis risus
-        phasellus a vitae nunc, ut volutpat neque. Quis amet amet sollicitudin
-        bibendum risus est. Lorem etiam donec augue quis augue aliquet id
-        vehicula.
+        {post.description}
       </p>
     </Col>
   );
