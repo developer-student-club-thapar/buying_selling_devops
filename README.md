@@ -1,6 +1,6 @@
 <div align = "center">
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <img height=200px src= "https://github.com/developer-student-club-thapar/officialWebsite/blob/master/src/assets/dsc_logo.png">
@@ -65,6 +65,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/Saurav-Shrivastav"><img src="https://avatars1.githubusercontent.com/u/54510448?v=4" width="100px;" alt=""/><br /><sub><b>Saurav-Shrivastav</b></sub></a><br /><a href="https://github.com/developer-student-club-thapar/buying_selling_devops/commits?author=Saurav-Shrivastav" title="Code">💻</a></td>
     <td align="center"><a href="http://kush-blog.netlify.com"><img src="https://avatars2.githubusercontent.com/u/40840079?v=4" width="100px;" alt=""/><br /><sub><b>Kush Daga</b></sub></a><br /><a href="https://github.com/developer-student-club-thapar/buying_selling_devops/commits?author=kush-daga" title="Code">💻</a> <a href="#design-kush-daga" title="Design">🎨</a></td>
     <td align="center"><a href="https://linkedin.com/in/jsparmani"><img src="https://avatars3.githubusercontent.com/u/41769747?v=4" width="100px;" alt=""/><br /><sub><b>Jay Parmani</b></sub></a><br /><a href="https://github.com/developer-student-club-thapar/buying_selling_devops/commits?author=jsparmani" title="Code">💻</a> <a href="#maintenance-jsparmani" title="Maintenance">🚧</a> <a href="https://github.com/developer-student-club-thapar/buying_selling_devops/commits?author=jsparmani" title="Tests">⚠️</a> <a href="https://github.com/developer-student-club-thapar/buying_selling_devops/commits?author=jsparmani" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://shubhank-saxena.github.io"><img src="https://avatars3.githubusercontent.com/u/29003047?v=4" width="100px;" alt=""/><br /><sub><b>Shubhank Saxena</b></sub></a><br /><a href="https://github.com/developer-student-club-thapar/buying_selling_devops/commits?author=shubhank-saxena" title="Tests">⚠️</a> <a href="https://github.com/developer-student-club-thapar/buying_selling_devops/commits?author=shubhank-saxena" title="Documentation">📖</a></td>
   </tr>
 </table>
 
