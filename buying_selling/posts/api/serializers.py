@@ -1,6 +1,15 @@
 from rest_framework.serializers import ModelSerializer
 
-from buying_selling.posts.models import Post, PostImage
+from buying_selling.posts.models import Post, PostImage, Category
+
+
+class CategorySerializer(ModelSerializer):
+    class Meta:
+        model = Category
+        fields = [
+            'id',
+            'name',
+        ]
 
 
 class ImageSerializer(ModelSerializer):
