@@ -108,6 +108,17 @@ class PostViewset(viewsets.ModelViewSet):
         post_serializer['images'] = images
         return Response(post_serializer)
 
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True, context={'request': request})
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
     def perform_create(self, serializer):
         payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
         serializer.save(author_id=payload['user_id'])
