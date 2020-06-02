@@ -1,5 +1,5 @@
-from buying_selling.posts.models import Post, PostImage
-from .serializers import AddImageSerializer, ImageSerializer, PostCreateSerializer, PostDetailSerializer, PostListSerializer, PostUpdateSerializer
+from buying_selling.posts.models import Post, PostImage, Category
+from .serializers import CategorySerializer, AddImageSerializer, ImageSerializer, PostCreateSerializer, PostDetailSerializer, PostListSerializer, PostUpdateSerializer
 from .permissions import IsOwnerOrReadOnly, IsOwnerForPostImage
 from rest_framework.response import Response
 from rest_framework import status
@@ -20,6 +20,11 @@ def modify_input_for_multiple_files(post_id, image):
     dict['post'] = post_id
     dict['image'] = image
     return dict
+
+
+class CategoryView(generics.ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
 
 
 class ImageView(APIView):
