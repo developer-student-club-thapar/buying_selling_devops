@@ -12,4 +12,6 @@ COPY yarn.lock .
 RUN yarn
 
 # copy other files/directories
-COPY . .
+COPY public .
+COPY src .
+COPY .env .
