@@ -11,9 +11,9 @@ import { connect } from 'react-redux';
 import { getPost } from '../redux/actions';
 import Moment from 'react-moment';
 
-const Product = ({ posts: { post }, getPost }) => {
+const Product = ({ posts: { post }, getPost, match }) => {
   const { Title } = Typography;
-  const id = '5e4ddc88-dd05-446a-a978-6474dd97cabd';
+  const id = `${match.params.id}`;
   useEffect(() => {
     getPost(id);
     //eslint-disable-next-line

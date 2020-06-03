@@ -11,3 +11,4 @@ export const UPDATE_POST = 'UPDATE_POST';
 export const GET_USER_POSTS = 'GET_USER_POSTS';
 export const ADD_POST_IMAGE = 'ADD_POST_IMAGE';
 export const POST_ERROR = 'POST_ERROR';
+export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
