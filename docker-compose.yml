@@ -4,13 +4,13 @@ services:
   backend:
     build:
       context: .
-      dockerfile: docker/dev.Dockerfile
+      dockerfile: docker/server/dev.Dockerfile
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/usr/src/app
     ports:
       - 8000:8000
-    entrypoint: './docker/entrypoint.sh'
+    entrypoint: './docker/server/entrypoint.sh'
     environment:
       - IN_DOCKER=True
       - DATABASE=postgres
@@ -24,6 +24,17 @@ services:
       - POSTGRES_USER=thapar_olx
       - POSTGRES_PASSWORD=thapar_olx
       - POSTGRES_DB=thapar_olx
+  client:
+    build:
+      context: .
+      dockerfile: ./docker/client/dev.Dockerfile
+    command: yarn start
+    volumes:
+      - /usr/src/app/node_modules
+      - .:/usr/src/app
+    ports:
+      - 3000:3000
+    stdin_open: true
 
 volumes:
   postgres_data:
