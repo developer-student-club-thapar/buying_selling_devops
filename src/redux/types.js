@@ -12,3 +12,6 @@ export const GET_USER_POSTS = 'GET_USER_POSTS';
 export const ADD_POST_IMAGE = 'ADD_POST_IMAGE';
 export const POST_ERROR = 'POST_ERROR';
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
+export const GET_MYPROFILE = 'GET_MYPROFILE';
+export const GET_PROFILE = 'GET_PROFILE';
+export const PROFILE_ERROR = 'PROFILE_ERROR';
