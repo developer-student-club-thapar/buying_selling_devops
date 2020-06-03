@@ -27,7 +27,7 @@ class Post(models.Model):
     description = models.TextField()
     datePosted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.DecimalField(max_digits=9, decimal_places=2)
     isSold = models.BooleanField(default=False)
     onDiscount = models.BooleanField(default=False)
     discountPercent = models.DecimalField(max_digits=4, decimal_places=2)
