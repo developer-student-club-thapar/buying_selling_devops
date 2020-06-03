@@ -58,7 +58,9 @@ const Recommendations = ({ posts, history }) => {
                     fontWeight: 'bold',
                   }}
                 >
-                  {post.title}
+                  {post.title.length > 20
+                    ? post.title.slice(0, 20)
+                    : post.title}
                 </Text>
               </div>
               <div style={{ marginTop: '-10px' }}>
@@ -72,16 +74,29 @@ const Recommendations = ({ posts, history }) => {
                 >
                   Sony
                 </Text>
-                <Text
-                  style={{
-                    fontSize: '8px',
-                    marginLeft: '80px',
-                    color: '#42FF00',
-                    fontWeight: 'bold',
-                  }}
-                >
-                  ₹ {Math.floor(post.price)}
-                </Text>
+                {post.isSold === true ? (
+                  <Text
+                    style={{
+                      fontSize: '8px',
+                      marginLeft: '80px',
+                      color: 'red',
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    ₹ {Math.floor(post.price)}
+                  </Text>
+                ) : (
+                  <Text
+                    style={{
+                      fontSize: '8px',
+                      marginLeft: '80px',
+                      color: '#42FF00',
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    ₹ {Math.floor(post.price)}
+                  </Text>
+                )}
               </div>
             </div>
           </Col>

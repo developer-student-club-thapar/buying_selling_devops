@@ -6,20 +6,19 @@ const ProductDetails = ({ post }) => {
   return (
     <Fragment>
       <Row>
-        <Col span={12}>
+        <Col span={13}>
           <Text
             strong
             style={{
               color: '#FFFFFF',
               fontSize: '14px',
-
-              marginLeft: '20px',
+              paddingLeft: '20px',
             }}
           >
             Age of the product
           </Text>
         </Col>
-        <Col span={12} style={{ textAlign: 'right' }}>
+        <Col span={11} style={{ textAlign: 'right' }}>
           <Text
             level={4}
             style={{
@@ -40,7 +39,7 @@ const ProductDetails = ({ post }) => {
               color: '#FFFFFF',
               fontSize: '14px',
 
-              marginLeft: '20px',
+              paddingLeft: '20px',
             }}
           >
             Brand
@@ -67,7 +66,7 @@ const ProductDetails = ({ post }) => {
               color: '#FFFFFF',
               fontSize: '14px',
 
-              marginLeft: '20px',
+              paddingLeft: '20px',
             }}
           >
             Condition
