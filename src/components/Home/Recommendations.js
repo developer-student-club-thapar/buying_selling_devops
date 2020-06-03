@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { Row, Col } from 'antd';
-import headphones from '../../assets/headphones.jpeg';
 import Text from 'antd/lib/typography/Text';
 import { withRouter } from 'react-router-dom';
 

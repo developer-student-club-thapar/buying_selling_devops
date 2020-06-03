@@ -4,7 +4,7 @@ import { Typography } from 'antd';
 import Text from 'antd/lib/typography/Text';
 import { Button } from 'antd';
 
-const ProfileInformation = () => {
+const ProfileInformation = ({ myProfile }) => {
   const { Title } = Typography;
   return (
     <Fragment>
@@ -63,7 +63,7 @@ const ProfileInformation = () => {
               paddingRight: '20px',
             }}
           >
-            Second
+            {myProfile && myProfile.year}
           </Text>
         </Col>
       </Row>
@@ -90,7 +90,7 @@ const ProfileInformation = () => {
               paddingRight: '20px',
             }}
           >
-            COE
+            {myProfile && myProfile.branch}
           </Text>
         </Col>
       </Row>

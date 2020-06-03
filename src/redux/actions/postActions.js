@@ -1,20 +1,11 @@
 import {
   GET_ALL_POSTS,
   GET_SINGLE_POST,
-  GET_USER_POSTS,
-  ADD_POST,
-  DELETE_POST,
-  UPDATE_POST,
-  ADD_POST_IMAGE,
   POST_ERROR,
   FETCH_CATEGORIES,
 } from '../types';
 import axios from 'axios';
 import { POST_ENDPOINT } from '../../constants/endpoints/index';
-import store from '../store/index';
-
-const state = store.getState();
-console.log(state);
 
 //Get all posts
 export const getAllPosts = () => async dispatch => {

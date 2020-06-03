@@ -6,10 +6,11 @@ import ProfileDescription from '../components/MyProfile/ProfileDescription';
 import ProfileInformation from '../components/MyProfile/ProfileInformation';
 import { connect } from 'react-redux';
 import { getMyProfile } from '../redux/actions';
+import Moment from 'react-moment';
 
-const MyProfile = ({ user: { myProfile }, getMyProfile }) => {
+const MyProfile = ({ user: { myProfile }, auth: { token }, getMyProfile }) => {
   useEffect(() => {
-    getMyProfile();
+    getMyProfile(token);
     //eslint-disable-next-line
   }, []);
   if (!myProfile) {
@@ -19,7 +20,7 @@ const MyProfile = ({ user: { myProfile }, getMyProfile }) => {
     return (
       <Fragment>
         <Row style={{ marginTop: '30px' }}>
-          <ProfileDisplay />
+          <ProfileDisplay myProfile={myProfile} />
         </Row>
         <Row
           style={{
@@ -28,7 +29,7 @@ const MyProfile = ({ user: { myProfile }, getMyProfile }) => {
             paddingRight: '20px',
           }}
         >
-          <ProfileDescription />
+          <ProfileDescription myProfile={myProfile} />
         </Row>
         <Row
           style={{
@@ -42,7 +43,7 @@ const MyProfile = ({ user: { myProfile }, getMyProfile }) => {
             style={{ backgroundColor: '#4F4F4F', borderRadius: '16px' }}
           >
             <br />
-            <ProfileInformation />
+            <ProfileInformation myProfile={myProfile} />
             <br />
           </Col>
         </Row>
@@ -54,7 +55,10 @@ const MyProfile = ({ user: { myProfile }, getMyProfile }) => {
           }}
         >
           <Col span={24} style={{ textAlign: 'right' }}>
-            <Text style={{ color: '#42FF00' }}>Joined on 15/01/2020</Text>
+            <Text style={{ color: '#42FF00' }}>
+              Joined on{' '}
+              <Moment format="DD/MM/YYYY">{myProfile.user.dateJoined}</Moment>
+            </Text>
           </Col>
         </Row>
       </Fragment>
@@ -64,6 +68,7 @@ const MyProfile = ({ user: { myProfile }, getMyProfile }) => {
 
 const mapStateToProps = state => ({
   user: state.user,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getMyProfile })(MyProfile);
