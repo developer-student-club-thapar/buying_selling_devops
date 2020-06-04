@@ -4,7 +4,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from .forms import UserCreationForm
-from .models import MyUser, SavedPosts, Profile
+from .models import MyUser, SavedPosts, Profile, Hostel
 
 
 class UserAdmin(BaseUserAdmin):
@@ -34,3 +34,4 @@ admin.site.register(SavedPosts)
 
 
 admin.site.register(Profile)
+admin.site.register(Hostel)

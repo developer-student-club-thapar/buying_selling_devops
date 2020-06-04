@@ -75,6 +75,13 @@ class SavedPosts(models.Model):
         return f"Wishlist for {self.author.username}"
 
 
+class Hostel(models.Model):
+    name = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.name
+
+
 class Profile(models.Model):
     user = models.OneToOneField(MyUser, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='profile_pics', blank=True, null=True)
@@ -107,24 +114,7 @@ class Profile(models.Model):
         ('BE-MBA(ECE)', 'Electroincs MBA Dual Degree'),
         ('Others', 'Other'),
     )
-    hostelChoices = (
-        ('A', 'Hostel A'),
-        ('B', 'Hostel B'),
-        ('C', 'Hostel C'),
-        ('D', 'Hostel D'),
-        ('E', 'Hostel E'),
-        ('F', 'Hostel F'),
-        ('G', 'Hostel G'),
-        ('H', 'Hostel H'),
-        ('I', 'Hostel I'),
-        ('J', 'Hostel J'),
-        ('K', 'Hostel K'),
-        ('L', 'Hostel L'),
-        ('M', 'Hostel M'),
-        ('FRD', 'Hostel FRD'),
-        ('FRE', 'Hostel FRE'),
-    )
-    hostel = models.CharField(max_length=1, choices=hostelChoices)
+    hostel = models.ManyToManyField(Hostel)
     year = models.CharField(max_length=1, choices=YEAR_CHOICES)
     branch = models.CharField(max_length=11, choices=BRANCH_CHOICES)
 
