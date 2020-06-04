@@ -22,6 +22,10 @@ This repository contains code for the project in Django (Backend) & React (Front
 
 Checkout this [file](https://github.com/developer-student-club-thapar/buying_selling_devops/blob/master/CONTRIBUTING.md)
 
+# Link to API Documentation
+
+Checkout the documentation at this [link](https://documenter.getpostman.com/view/7165876/SztA8pi8?version=latest)
+
 ## Current goals for the project are:
 
 Frontend
