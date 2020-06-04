@@ -67,18 +67,19 @@ const Recommendations = ({ posts, history }) => {
                 <Text
                   style={{
                     fontSize: '8px',
-                    marginLeft: '10px',
+                    paddingLeft: '10px',
                     color: '#FFFFFF',
                     fontWeight: 'bold',
                   }}
                 >
                   Sony
                 </Text>
+
                 {post.isSold === true ? (
                   <Text
                     style={{
                       fontSize: '8px',
-                      marginLeft: '80px',
+                      paddingLeft: '68px',
                       color: 'red',
                       fontWeight: 'bold',
                     }}
@@ -89,7 +90,7 @@ const Recommendations = ({ posts, history }) => {
                   <Text
                     style={{
                       fontSize: '8px',
-                      marginLeft: '80px',
+                      paddingLeft: '68px',
                       color: '#42FF00',
                       fontWeight: 'bold',
                     }}
