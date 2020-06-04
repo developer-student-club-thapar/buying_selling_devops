@@ -89,6 +89,7 @@ class PostListSerializer(ModelSerializer):
             'price',
             'isSold',
             'image',
+            'brand',
         ]
 
 
