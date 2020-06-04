@@ -1,12 +1,14 @@
-from buying_selling.users.models import Profile
-from .serializers import MyProfileSerializer, ProfileDetailSerializer, ProfileUpdateSerializer
+from buying_selling.users.models import Profile, SavedPosts, MyUser
+from .serializers import MyProfileSerializer, ProfileDetailSerializer, ProfileUpdateSerializer, SavedPostCreateSerializer, SavedPostListSerializer
 
 # from .permissions import IsOwnerOrReadOnly
 
 # from rest_framework.views import APIView
 from rest_framework.generics import RetrieveAPIView, RetrieveUpdateAPIView
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from .permissions import IsOwnerOrReadOnly
 import jwt
 from django.conf import settings
 
@@ -70,3 +72,43 @@ class ProfileUpdateAPIView(RetrieveUpdateAPIView):
 #             serializer.save()
 #             return Response(serializer.data)
 #         return Response(serializer.errors)
+
+
+class SavedPostViewset(ModelViewSet):
+
+    serializer_action_classes = {
+        'create': SavedPostCreateSerializer,
+        'list': SavedPostListSerializer,
+    }
+    queryset = SavedPosts.objects.all()
+
+    permission_classes_by_action = {
+        'create': [IsAuthenticated],
+        'list': [IsAuthenticated, IsOwnerOrReadOnly],
+        'destroy': [IsAuthenticated, IsOwnerOrReadOnly],
+    }
+
+    def get_serializer_class(self):
+        return self.serializer_action_classes[self.action]
+
+    def get_permissions(self):
+        try:
+            return [permission() for permission in self.permission_classes_by_action[self.action]]
+        except KeyError:
+            return [permission() for permission in self.permission_classes]
+
+    def perform_create(self, serializer):
+        payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
+        serializer.save(author_id=payload['user_id'])
+
+    def list(self, request, *args, **kwargs):
+        payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
+        current_user = MyUser.objects.get(id=payload['user_id'])
+        queryset = self.filter_queryset(SavedPosts.objects.filter(author=current_user))
+        page = self.paginate_queryset(queryset)
+        if page not in None:
+            serializer = self.get_serializer(page, many=True, context={'request': request})
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
