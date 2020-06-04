@@ -1,27 +1,26 @@
 import React, { Fragment, useEffect } from 'react';
 import { Row, Col } from 'antd';
 import Text from 'antd/lib/typography/Text';
-import ProfileDisplay from '../components/Profile/ProfileDisplay';
-import ProfileDescription from '../components/Profile/ProfileDescription';
-import ProfileInformation from '../components/Profile/ProfileInformation';
+import ProfileDisplay from '../components/MyProfile/ProfileDisplay';
+import ProfileDescription from '../components/MyProfile/ProfileDescription';
+import ProfileInformation from '../components/MyProfile/ProfileInformation';
 import { connect } from 'react-redux';
-import { getProfile } from '../redux/actions';
+import { getMyProfile } from '../redux/actions';
 import Moment from 'react-moment';
 
-const Profile = ({ user: { profile }, auth: { token }, getProfile, match }) => {
-  const id = `${match.params.id}`;
+const MyProfile = ({ user: { myProfile }, auth: { token }, getMyProfile }) => {
   useEffect(() => {
-    getProfile(id, token);
+    getMyProfile(token);
     //eslint-disable-next-line
   }, []);
-  if (!profile) {
+  if (!myProfile) {
     return <h1>Loading</h1>;
   }
-  if (profile) {
+  if (myProfile) {
     return (
       <Fragment>
         <Row style={{ marginTop: '30px' }}>
-          <ProfileDisplay profile={profile} />
+          <ProfileDisplay myProfile={myProfile} />
         </Row>
         <Row
           style={{
@@ -30,7 +29,7 @@ const Profile = ({ user: { profile }, auth: { token }, getProfile, match }) => {
             paddingRight: '20px',
           }}
         >
-          <ProfileDescription profile={profile} />
+          <ProfileDescription myProfile={myProfile} />
         </Row>
         <Row
           style={{
@@ -44,7 +43,7 @@ const Profile = ({ user: { profile }, auth: { token }, getProfile, match }) => {
             style={{ backgroundColor: '#4F4F4F', borderRadius: '16px' }}
           >
             <br />
-            <ProfileInformation profile={profile} />
+            <ProfileInformation myProfile={myProfile} />
             <br />
           </Col>
         </Row>
@@ -58,7 +57,7 @@ const Profile = ({ user: { profile }, auth: { token }, getProfile, match }) => {
           <Col span={24} style={{ textAlign: 'right' }}>
             <Text style={{ color: '#42FF00' }}>
               Joined on{' '}
-              <Moment format="DD/MM/YYYY">{profile.user.dateJoined}</Moment>
+              <Moment format="DD/MM/YYYY">{myProfile.user.dateJoined}</Moment>
             </Text>
           </Col>
         </Row>
@@ -72,4 +71,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getProfile })(Profile);
+export default connect(mapStateToProps, { getMyProfile })(MyProfile);

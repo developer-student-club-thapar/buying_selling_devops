@@ -4,7 +4,7 @@ import { Typography } from 'antd';
 import Text from 'antd/lib/typography/Text';
 import { Button } from 'antd';
 
-const ProfileInformation = ({ profile }) => {
+const ProfileInformation = ({ myProfile }) => {
   const { Title } = Typography;
   return (
     <Fragment>
@@ -63,7 +63,7 @@ const ProfileInformation = ({ profile }) => {
               paddingRight: '20px',
             }}
           >
-            {profile && profile.year}
+            {myProfile && myProfile.year}
           </Text>
         </Col>
       </Row>
@@ -90,7 +90,7 @@ const ProfileInformation = ({ profile }) => {
               paddingRight: '20px',
             }}
           >
-            {profile && profile.branch}
+            {myProfile && myProfile.branch}
           </Text>
         </Col>
       </Row>
@@ -101,7 +101,7 @@ const ProfileInformation = ({ profile }) => {
             block
             style={{ backgroundColor: '#000000', border: 'none' }}
           >
-            Chat with the person
+            Edit Profile
           </Button>
         </Col>
       </Row>

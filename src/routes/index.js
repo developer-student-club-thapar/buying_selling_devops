@@ -7,6 +7,7 @@ import Welcome from '../pages/Welcome';
 import Product from '../pages/Product';
 import Profile from '../pages/Profile';
 import Home from '../pages/Home';
+import MyProfile from '../pages/MyProfile';
 
 const Routes = () => {
   return (
@@ -14,10 +15,10 @@ const Routes = () => {
       <Route exact path="/" component={Login} isLoginRoute />
       <Route exact path="/private" component={PrivateTest} isPrivate />
       <Route exact path="/welcome" component={Welcome} isPrivate />
-      <Route exact path="/product" component={Product} />
-      <Route exact path="/profile" component={Profile} />
+      <Route exact path="/product/:id" component={Product} />
+      <Route exact path="/myprofile" component={MyProfile} isPrivate />
+      <Route exact path="/profile/:id" component={Profile} isPrivate />
       <Route exact path="/home" component={Home} />
-      <Route component={Login} />
     </Switch>
   );
 };
