@@ -9,10 +9,15 @@ import user from '../../assets/user.svg';
 const TopBarScroll = () => {
   return (
     <Fragment>
-      <Row className={styles.topScroll}>
-        <Col span={24} style={{ height: 100 }}>
+      <Row className={styles.topScroll} style={{ position: 'sticky', top: 0 }}>
+        <Col span={24} style={{ height: 150 }}>
           <br />
-          <Row style={{ paddingLeft: '10px', paddingRight: '10px' }}>
+          <Row
+            style={{
+              paddingLeft: '10px',
+              paddingRight: '10px',
+            }}
+          >
             <Col span={4}>
               <img src={MenuIcon} alt="menu" />
             </Col>

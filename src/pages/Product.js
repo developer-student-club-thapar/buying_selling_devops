@@ -24,7 +24,7 @@ const Product = ({ posts: { post }, getPost, match }) => {
   if (post) {
     return (
       <Fragment>
-        <Row>
+        <Row style={{ position: 'sticky', top: 0 }}>
           <ImageCarousel post={post} />
         </Row>
         <div className={styles.main}>
