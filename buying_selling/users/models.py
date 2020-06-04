@@ -79,6 +79,7 @@ class Profile(models.Model):
     user = models.OneToOneField(MyUser, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='profile_pics', blank=True, null=True)
     bio = models.TextField()
+    isHosteler = models.BooleanField(default=True)
     YEAR_CHOICES = (
         ('1', 'First'),
         ('2', 'Second'),
@@ -106,6 +107,24 @@ class Profile(models.Model):
         ('BE-MBA(ECE)', 'Electroincs MBA Dual Degree'),
         ('Others', 'Other'),
     )
+    hostelChoices = (
+        ('A', 'Hostel A'),
+        ('B', 'Hostel B'),
+        ('C', 'Hostel C'),
+        ('D', 'Hostel D'),
+        ('E', 'Hostel E'),
+        ('F', 'Hostel F'),
+        ('G', 'Hostel G'),
+        ('H', 'Hostel H'),
+        ('I', 'Hostel I'),
+        ('J', 'Hostel J'),
+        ('K', 'Hostel K'),
+        ('L', 'Hostel L'),
+        ('M', 'Hostel M'),
+        ('FRD', 'Hostel FRD'),
+        ('FRE', 'Hostel FRE'),
+    )
+    hostel = models.CharField(max_length=1, choices=hostelChoices)
     year = models.CharField(max_length=1, choices=YEAR_CHOICES)
     branch = models.CharField(max_length=11, choices=BRANCH_CHOICES)
 
