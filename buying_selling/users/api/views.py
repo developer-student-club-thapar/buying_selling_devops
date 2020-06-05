@@ -106,7 +106,7 @@ class SavedPostViewset(ModelViewSet):
         current_user = MyUser.objects.get(id=payload['user_id'])
         queryset = self.filter_queryset(SavedPosts.objects.filter(author=current_user))
         page = self.paginate_queryset(queryset)
-        if page not in None:
+        if page is not None:
             serializer = self.get_serializer(page, many=True, context={'request': request})
             return self.get_paginated_response(serializer.data)
 

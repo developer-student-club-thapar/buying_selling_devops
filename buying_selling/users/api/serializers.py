@@ -62,12 +62,9 @@ class ProfileUpdateSerializer(ModelSerializer):
 
 class SavedPostCreateSerializer(ModelSerializer):
 
-    author = UserProfileSerializer()
-    post = PostDetailSerializer()
-
     class Meta:
         model = SavedPosts
-        fields = ['author', 'post']
+        fields = ['post']
 
 
 class SavedPostListSerializer(ModelSerializer):
