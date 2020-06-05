@@ -114,7 +114,7 @@ class Profile(models.Model):
         ('BE-MBA(ECE)', 'Electroincs MBA Dual Degree'),
         ('Others', 'Other'),
     )
-    hostel = models.ManyToManyField(Hostel)
+    hostel = models.ForeignKey(Hostel, on_delete=models.CASCADE)
     year = models.CharField(max_length=1, choices=YEAR_CHOICES)
     branch = models.CharField(max_length=11, choices=BRANCH_CHOICES)
 
