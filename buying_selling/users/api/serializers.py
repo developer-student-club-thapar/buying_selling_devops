@@ -1,7 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
 from buying_selling.users.models import Profile, MyUser, SavedPosts
-from buying_selling.posts.api.serializers import PostDetailSerializer, PostListSerializer
 
 
 class UserDetailSerializer(ModelSerializer):
@@ -61,17 +60,6 @@ class ProfileUpdateSerializer(ModelSerializer):
 
 
 class SavedPostCreateSerializer(ModelSerializer):
-
     class Meta:
         model = SavedPosts
         fields = ['post']
-
-
-class SavedPostListSerializer(ModelSerializer):
-
-    author = UserProfileSerializer()
-    post = PostListSerializer()
-
-    class Meta:
-        model = SavedPosts
-        fields = ['author', 'post']

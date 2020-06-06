@@ -1,14 +1,15 @@
-from buying_selling.users.models import Profile, SavedPosts, MyUser
-from .serializers import MyProfileSerializer, ProfileDetailSerializer, ProfileUpdateSerializer, SavedPostCreateSerializer, SavedPostListSerializer
+from buying_selling.users.models import Profile, SavedPosts
+from buying_selling.posts.models import Post
+from .serializers import MyProfileSerializer, ProfileDetailSerializer, ProfileUpdateSerializer, SavedPostCreateSerializer
+from buying_selling.posts.api.serializers import PostListSerializer
 
-# from .permissions import IsOwnerOrReadOnly
+from .permissions import IsOwnerOrReadOnly
 
 # from rest_framework.views import APIView
 from rest_framework.generics import RetrieveAPIView, RetrieveUpdateAPIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from .permissions import IsOwnerOrReadOnly
 import jwt
 from django.conf import settings
 
@@ -78,7 +79,7 @@ class SavedPostViewset(ModelViewSet):
 
     serializer_action_classes = {
         'create': SavedPostCreateSerializer,
-        'list': SavedPostListSerializer,
+        'list': PostListSerializer,
     }
     queryset = SavedPosts.objects.all()
 
@@ -103,12 +104,19 @@ class SavedPostViewset(ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
-        current_user = MyUser.objects.get(id=payload['user_id'])
-        queryset = self.filter_queryset(SavedPosts.objects.filter(author=current_user))
+        queryset = SavedPosts.objects.filter(author_id=payload['user_id'])
+
         page = self.paginate_queryset(queryset)
         if page is not None:
             serializer = self.get_serializer(page, many=True, context={'request': request})
             return self.get_paginated_response(serializer.data)
 
-        serializer = self.get_serializer(queryset, many=True)
+        serializer = self.get_serializer(queryset[0].post.all(), many=True)
         return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        post_referred = Post.objects.get(id=kwargs['pk'])
+        print(post_referred)
+        saved_post = SavedPosts.objects.filter(post=post_referred)[0]
+        saved_post.delete()
+        return Response({'deleted_saved_post_id': kwargs['pk']})
