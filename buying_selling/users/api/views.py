@@ -116,7 +116,6 @@ class SavedPostViewset(ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         post_referred = Post.objects.get(id=kwargs['pk'])
-        print(post_referred)
         saved_post = SavedPosts.objects.filter(post=post_referred)[0]
         saved_post.delete()
         return Response({'deleted_saved_post_id': kwargs['pk']})
