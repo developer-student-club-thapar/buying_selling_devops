@@ -35,6 +35,7 @@ class UserProfileSerializer(ModelSerializer):
 class MyProfileSerializer(ModelSerializer):
 
     user = UserProfileSerializer(read_only=True)
+    hostel = CharField(source='hostel.name', read_only=True)
 
     class Meta:
         model = Profile
@@ -54,7 +55,6 @@ class ProfileDetailSerializer(ModelSerializer):
 class ProfileUpdateSerializer(ModelSerializer):
 
     user = UserDetailSerializer()
-    hostel = CharField(source='hostel.name', read_only=True)
 
     class Meta:
         model = Profile
