@@ -9,9 +9,10 @@ import user from '../../assets/user.svg';
 
 const TopBar = () => {
   const { Title } = Typography;
+
   return (
     <Fragment>
-      <Row className={styles.top}>
+      <Row className={styles.top} style={{ position: 'sticky', top: 0 }}>
         <Col span={24} style={{ height: 150 }}>
           <br />
           <Row style={{ paddingLeft: '10px', paddingRight: '10px' }}>
