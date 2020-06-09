@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, CharField
 
 from buying_selling.users.models import Profile, MyUser
 
@@ -35,19 +35,21 @@ class UserProfileSerializer(ModelSerializer):
 class MyProfileSerializer(ModelSerializer):
 
     user = UserProfileSerializer(read_only=True)
+    hostel = CharField(source='hostel.name', read_only=True)
 
     class Meta:
         model = Profile
-        fields = ['user', 'image', 'bio', 'year', 'branch']
+        fields = ['user', 'image', 'bio', 'year', 'branch', 'hostel']
 
 
 class ProfileDetailSerializer(ModelSerializer):
 
     user = UserDetailSerializer(read_only=True)
+    hostel = CharField(source='hostel.name', read_only=True)
 
     class Meta:
         model = Profile
-        fields = ['user', 'image', 'bio', 'year', 'branch']
+        fields = ['user', 'image', 'bio', 'year', 'branch', 'hostel']
 
 
 class ProfileUpdateSerializer(ModelSerializer):
