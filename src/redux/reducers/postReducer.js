@@ -4,6 +4,7 @@ import {
   POST_ERROR,
   FETCH_CATEGORIES,
   FILTER_POSTS,
+  CLEAR_FILTER,
 } from '../types';
 
 const defaultState = {
@@ -37,6 +38,11 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         filteredPosts: action.payload,
+      };
+    case CLEAR_FILTER:
+      return {
+        ...state,
+        filteredPosts: [],
       };
     case POST_ERROR:
       return {

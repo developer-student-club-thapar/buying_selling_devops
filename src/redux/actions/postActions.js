@@ -4,6 +4,7 @@ import {
   POST_ERROR,
   FETCH_CATEGORIES,
   FILTER_POSTS,
+  CLEAR_FILTER,
 } from '../types';
 import axios from 'axios';
 import { POST_ENDPOINT } from '../../constants/endpoints/index';
@@ -72,4 +73,11 @@ export const filterPosts = filter => async dispatch => {
       payload: err.response.data,
     });
   }
+};
+
+//Clear Filter
+export const clearFilter = () => {
+  return {
+    type: CLEAR_FILTER,
+  };
 };

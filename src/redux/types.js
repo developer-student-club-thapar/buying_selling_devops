@@ -16,3 +16,4 @@ export const GET_MYPROFILE = 'GET_MYPROFILE';
 export const GET_PROFILE = 'GET_PROFILE';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
 export const FILTER_POSTS = 'FILTER_POSTS';
+export const CLEAR_FILTER = 'CLEAR_FILTER';
