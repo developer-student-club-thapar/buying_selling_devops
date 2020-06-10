@@ -115,9 +115,9 @@ class SavedPostViewset(ModelViewSet):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             try:
-                    serializer.save(author_id=payload['user_id'])
-                    return Response({'message': 'Post saved'}, status=status.HTTP_201_CREATED)
-            except Exception as e:
+                serializer.save(author_id=payload['user_id'])
+                return Response({'message': 'Post saved'}, status=status.HTTP_201_CREATED)
+            except Exception:
                 post_id = serializer.data['post'][0]
                 saved_post_model = SavedPosts.objects.filter(author_id=payload['user_id'])[0]
                 for post in saved_post_model.post.all():
