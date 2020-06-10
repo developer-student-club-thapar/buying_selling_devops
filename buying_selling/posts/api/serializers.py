@@ -48,6 +48,8 @@ class PostCreateSerializer(ModelSerializer):
 
 
 class PostDetailSerializer(ModelSerializer):
+    category = CategorySerializer(read_only=True, many=True)
+
     class Meta:
         model = Post
         fields = [
@@ -69,6 +71,7 @@ class PostDetailSerializer(ModelSerializer):
 
 class PostListSerializer(ModelSerializer):
     image = SerializerMethodField('image_serializer')
+    category = CategorySerializer(read_only=True, many=True)
 
     def image_serializer(self, obj):
         image = PostImage.objects.filter(post_id=obj.id).first()
