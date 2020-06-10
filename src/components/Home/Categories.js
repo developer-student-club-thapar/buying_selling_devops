@@ -1,9 +1,13 @@
 import React, { Fragment, useEffect } from 'react';
 import { Button } from 'antd';
 import { connect } from 'react-redux';
-import { fetchCategories } from '../../redux/actions';
+import { fetchCategories, filterPosts } from '../../redux/actions';
 
-const Categories = ({ posts: { categories }, fetchCategories }) => {
+const Categories = ({
+  posts: { categories },
+  fetchCategories,
+  filterPosts,
+}) => {
   useEffect(() => {
     fetchCategories();
     //eslint-disable-next-line
@@ -22,6 +26,9 @@ const Categories = ({ posts: { categories }, fetchCategories }) => {
                 color: '#333333',
                 width: '106px',
               }}
+              onClick={() => {
+                filterPosts(category.id);
+              }}
             >
               {category.name}
             </Button>
@@ -35,4 +42,6 @@ const mapStateToProps = state => ({
   posts: state.posts,
 });
 
-export default connect(mapStateToProps, { fetchCategories })(Categories);
+export default connect(mapStateToProps, { fetchCategories, filterPosts })(
+  Categories,
+);

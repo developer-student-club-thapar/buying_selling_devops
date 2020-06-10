@@ -10,7 +10,7 @@ import TopBarScroll from '../components/Home/TopBarScroll';
 import { connect } from 'react-redux';
 import { getAllPosts } from '../redux/actions';
 
-const Home = ({ posts: { posts }, getAllPosts }) => {
+const Home = ({ posts: { posts, filteredPosts }, getAllPosts }) => {
   const { Title } = Typography;
   const scroll = useHasScrolled();
   useEffect(() => {
@@ -46,7 +46,7 @@ const Home = ({ posts: { posts }, getAllPosts }) => {
             </Col>
           </Row>
 
-          <Recommendations posts={posts} />
+          <Recommendations posts={posts} filteredPosts={filteredPosts} />
         </div>
       </Fragment>
     );

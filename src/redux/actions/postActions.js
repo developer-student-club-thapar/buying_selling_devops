@@ -3,6 +3,7 @@ import {
   GET_SINGLE_POST,
   POST_ERROR,
   FETCH_CATEGORIES,
+  FILTER_POSTS,
 } from '../types';
 import axios from 'axios';
 import { POST_ENDPOINT } from '../../constants/endpoints/index';
@@ -25,11 +26,6 @@ export const getAllPosts = () => async dispatch => {
 
 //Get a single post
 export const getPost = id => async dispatch => {
-  //   const config = {
-  //     headers: {
-  //       AUTHORIZATION: `Bearer ${state.auth.token}`,
-  //     },
-  //   };
   try {
     const res = await axios.get(`${POST_ENDPOINT}${id}`);
 
@@ -52,6 +48,22 @@ export const fetchCategories = () => async dispatch => {
 
     dispatch({
       type: FETCH_CATEGORIES,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: err.response.data,
+    });
+  }
+};
+
+//Filter posts by category
+export const filterPosts = filter => async dispatch => {
+  try {
+    const res = await axios.get(`${POST_ENDPOINT}?category=${filter}`);
+    dispatch({
+      type: FILTER_POSTS,
       payload: res.data,
     });
   } catch (err) {

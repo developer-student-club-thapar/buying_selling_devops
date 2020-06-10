@@ -3,10 +3,12 @@ import {
   GET_SINGLE_POST,
   POST_ERROR,
   FETCH_CATEGORIES,
+  FILTER_POSTS,
 } from '../types';
 
 const defaultState = {
   posts: null,
+  filteredPosts: [],
   post: null,
   userposts: null,
   categories: null,
@@ -30,6 +32,11 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         categories: action.payload,
+      };
+    case FILTER_POSTS:
+      return {
+        ...state,
+        filteredPosts: action.payload,
       };
     case POST_ERROR:
       return {

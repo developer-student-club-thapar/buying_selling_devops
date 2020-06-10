@@ -68,16 +68,18 @@ const Product = ({ posts: { post }, getPost, match }) => {
           </Row>
           <Row>
             <Col span={12}>
-              <Text
-                style={{
-                  color: '#FFFFFF',
-                  fontSize: '14px',
+              {post.category.map(category => (
+                <Text
+                  style={{
+                    color: '#FFFFFF',
+                    fontSize: '14px',
 
-                  marginLeft: '20px',
-                }}
-              >
-                {post.category}
-              </Text>
+                    marginLeft: '20px',
+                  }}
+                >
+                  {category.name}
+                </Text>
+              ))}
             </Col>
             <Col span={12} style={{ textAlign: 'right' }}>
               <Title
