@@ -110,19 +110,21 @@ class SavedPostViewset(ModelViewSet):
     #             if post.id == post_id:
     #                 return Response({'message': 'Post is already saved'}, status=status.HTTP_409_CONFLICT)
     #         saved_post_model.post.add(Post.objects.get(id=post_id))
-    def create(self, serializer):
+    def create(self, request, *args, **kwargs):
         payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
-        try:
-            serializer.save(author_id=payload['user_id'])
-            return Response({'message': 'Post saved'}, status=status.HTTP_201_CREATED)
-        except Exception as e:
-            post_id = serializer.data['post'][0]
-            saved_post_model = SavedPosts.objects.filter(author_id=payload['user_id'])[0]
-            for post in saved_post_model.post.all():
-                if str(post.id) == str(post_id):
-                    return Response({'message': 'Post is already saved'}, status=status.HTTP_409_CONFLICT)
-            saved_post_model.post.add(Post.objects.get(id=post_id))
-            return Response({'message': 'Post saved'}, status=status.HTTP_201_CREATED)
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            try:
+                    serializer.save(author_id=payload['user_id'])
+                    return Response({'message': 'Post saved'}, status=status.HTTP_201_CREATED)
+            except Exception as e:
+                post_id = serializer.data['post'][0]
+                saved_post_model = SavedPosts.objects.filter(author_id=payload['user_id'])[0]
+                for post in saved_post_model.post.all():
+                    if str(post.id) == str(post_id):
+                        return Response({'message': 'Post is already saved'}, status=status.HTTP_409_CONFLICT)
+                saved_post_model.post.add(Post.objects.get(id=post_id))
+                return Response({'message': 'Post saved'}, status=status.HTTP_201_CREATED)
 
     def list(self, request, *args, **kwargs):
         payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
@@ -133,8 +135,11 @@ class SavedPostViewset(ModelViewSet):
             serializer = self.get_serializer(page, many=True, context={'request': request})
             return self.get_paginated_response(serializer.data)
 
-        serializer = self.get_serializer(queryset[0].post.all(), many=True)
-        return Response(serializer.data)
+        if queryset:
+            serializer = self.get_serializer(queryset[0].post.all(), many=True)
+            return Response(serializer.data)
+        else:
+            return Response([])
 
     def destroy(self, request, *args, **kwargs):
         payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
@@ -144,4 +149,4 @@ class SavedPostViewset(ModelViewSet):
             if saved_post == post_referred:
                 saved_post_referred_model.post.remove(post_referred)
                 return Response({'deleted_saved_post_id': kwargs['pk']})
-        return Response({'message': 'There exists no such post'}, status=status.HTTP_409_CONFLICT)
+        return Response({'message': 'Post not found'}, status=status.HTTP_404_NOT_FOUND)
