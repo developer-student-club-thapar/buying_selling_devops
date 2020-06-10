@@ -22,6 +22,7 @@ protobuf = "3.11.3"
 django-storages = {extras = ["google"], version = "^1.9.1"}
 google-cloud-storage = "^1.28.1"
 psycopg2 = "^2.8.5"
+docutils = "^0.16"
 
 [tool.black]
 line-length = 200
