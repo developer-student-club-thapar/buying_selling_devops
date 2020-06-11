@@ -1,12 +1,12 @@
 from buying_selling.users.models import Profile
-from .serializers import MyProfileSerializer, ProfileDetailSerializer, ProfileUpdateSerializer
+from .serializers import MyProfileSerializer, ProfileDetailSerializer
 
-# from .permissions import IsOwnerOrReadOnly
+from .permissions import IsOwnerOrReadOnly
 
-# from rest_framework.views import APIView
-from rest_framework.generics import RetrieveAPIView, RetrieveUpdateAPIView
+from rest_framework.generics import RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import viewsets
 import jwt
 from django.conf import settings
 
@@ -15,16 +15,32 @@ def jwt_decoder(encoded_token):
     return jwt.decode(encoded_token, settings.SIGNING_KEY, algorithms=['HS256'])
 
 
-class MyProfileAPIView(RetrieveAPIView):
-    queryset = Profile.objects.all()
-    serializer_class = MyProfileSerializer
-    permission_classes = (IsAuthenticated,)
+class MyProfileViewset(viewsets.ViewSet):
+    """
+    A simple ViewSet for updating or retrieving user profiles.
+    """
+
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
 
     def retrieve(self, request, *args, **kwargs):
         payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
         instance = Profile.objects.get(user_id=payload['user_id'])
-        serializer = self.get_serializer(instance)
+        serializer = MyProfileSerializer(instance)
         return Response(serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
+        instance = Profile.objects.get(user_id=payload['user_id'])
+        serializer = MyProfileSerializer(instance, data=request.data, partial=True, context={'request': request})
+        if serializer.is_valid():
+            serializer.save(user_id=payload['user_id'])
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors)
+
+    def perform_update(self, serializer):
+        payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
+        serializer.save(user_id=payload['user_id'])
 
 
 class ProfileDetailAPIView(RetrieveAPIView):
@@ -32,41 +48,3 @@ class ProfileDetailAPIView(RetrieveAPIView):
     serializer_class = ProfileDetailSerializer
     lookup_field = 'user'
     permission_classes = (IsAuthenticated,)
-
-
-class ProfileUpdateAPIView(RetrieveUpdateAPIView):
-    queryset = Profile.objects.all()
-    serializer_class = ProfileUpdateSerializer
-    lookup_field = 'user'
-    permission_classes = (IsAuthenticated,)
-
-    # def update(self, request, *args, **kwargs):
-    #     partial = kwargs.pop('partial', False)
-    #     payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
-    #     instance = Profile.objects.get(user_id=payload['user_id'])
-    #     serializer = self.get_serializer(instance, data=request.data, partial=partial)
-    #     serializer.is_valid(raise_exception=True)
-    #     self.perform_update(serializer)
-    #
-    #     if getattr(instance, '_prefetched_objects_cache', None):
-    #         # If 'prefetch_related' has been applied to a queryset, we need to
-    #         # forcibly invalidate the prefetch cache on the instance.
-    #         instance._prefetched_objects_cache = {}
-    #
-    #     return Response(serializer.data)
-
-    def perform_update(self, serializer):
-        payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
-        serializer.save(author_id=payload['user_id'])
-
-
-# class ProfileUpdateAPIView(UpdateAPIView):
-#     permission_classes = (IsAuthenticated, IsOwnerOrReadOnly)
-#     def patch(self, request, *args, **kwargs):
-#         payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
-#         instance = Profile.objects.get(user_id=payload['user_id'])
-#         serializer = ProfileUpdateSerializer(instance, data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data)
-#         return Response(serializer.errors)

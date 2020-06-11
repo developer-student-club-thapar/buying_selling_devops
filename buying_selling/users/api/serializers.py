@@ -50,12 +50,3 @@ class ProfileDetailSerializer(ModelSerializer):
     class Meta:
         model = Profile
         fields = ['user', 'image', 'bio', 'year', 'branch', 'hostel']
-
-
-class ProfileUpdateSerializer(ModelSerializer):
-
-    user = UserDetailSerializer()
-
-    class Meta:
-        model = Profile
-        fields = ['user', 'image', 'bio', 'year', 'branch']
