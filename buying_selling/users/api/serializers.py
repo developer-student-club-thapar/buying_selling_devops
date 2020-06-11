@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer, CharField
 
-from buying_selling.users.models import Profile, MyUser
+from buying_selling.users.models import Profile, MyUser, SavedPosts
 
 
 class UserDetailSerializer(ModelSerializer):
@@ -59,3 +59,9 @@ class ProfileUpdateSerializer(ModelSerializer):
     class Meta:
         model = Profile
         fields = ['user', 'image', 'bio', 'year', 'branch']
+
+
+class SavedPostCreateSerializer(ModelSerializer):
+    class Meta:
+        model = SavedPosts
+        fields = ['post']

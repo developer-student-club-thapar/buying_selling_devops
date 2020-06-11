@@ -68,6 +68,7 @@ class MyUser(AbstractBaseUser):
 
 
 class SavedPosts(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     author = models.OneToOneField(MyUser, on_delete=models.CASCADE)
     post = models.ManyToManyField(Post)
 
