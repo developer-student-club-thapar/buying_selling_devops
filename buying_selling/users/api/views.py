@@ -126,6 +126,11 @@ class SavedPostViewset(ModelViewSet):
                 saved_post_model.post.add(Post.objects.get(id=post_id))
                 return Response({'message': 'Post saved'}, status=status.HTTP_201_CREATED)
 
+        if serializer.errors['post'][0].code == 'invalid':
+            return Response({'message': 'Post not found'}, status=status.HTTP_404_NOT_FOUND)
+        if serializer.errors['post'][0].code == 'required':
+            return Response({'message': 'Invalid request parameters'}, status=status.HTTP_400_BAD_REQUEST)
+
     def list(self, request, *args, **kwargs):
         payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
         queryset = SavedPosts.objects.filter(author_id=payload['user_id'])
