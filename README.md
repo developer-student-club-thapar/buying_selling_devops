@@ -22,7 +22,11 @@ This repository contains code for the project in Django (Backend) & React (Front
 
 Checkout this [file](https://github.com/developer-student-club-thapar/buying_selling_devops/blob/master/CONTRIBUTING.md)
 
-# Link to API Documentation
+# Postman Workspace
+
+- [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/afb3af20aebe0d4ae3fc#?env%5Bdev-thapar-olx%5D=W3sia2V5IjoidG9rZW4iLCJ2YWx1ZSI6ImV5SjBlWEFpT2lKS1YxUWlMQ0poYkdjaU9pSklVekkxTmlKOS5leUowYjJ0bGJsOTBlWEJsSWpvaVlXTmpaWE56SWl3aVpYaHdJam94TlRrd09UUXlORFF6TENKcWRHa2lPaUk1WlRReE1EQXpaV1ZtWVRnME1UYzRPR0ZsWmpVMVkyUXlNamd6TmpkaFlpSXNJblZ6WlhKZmFXUWlPaUprTVdReVpERTFZUzFsWldRMExUUmlOVFV0T0RZMVl5MDFaamM1TjJVeFpHRXlOV1lpZlEuaG53T1B5T0YxZ08zMlRTWDVOc2xFT1UyUE0zSFl0TnByS0tJSGUxNEh4QSIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoidXJsIiwidmFsdWUiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAiLCJlbmFibGVkIjp0cnVlfV0=)
+
+- Here is our [workspace](https://thaparolx.postman.co)
 
 Checkout the documentation at this [link](https://documenter.getpostman.com/view/7165876/SztA8pi8?version=latest)
 
