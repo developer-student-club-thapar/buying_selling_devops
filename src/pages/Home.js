@@ -9,6 +9,7 @@ import TopBar from '../components/Home/TopBar';
 import TopBarScroll from '../components/Home/TopBarScroll';
 import { connect } from 'react-redux';
 import { getAllPosts, clearFilter } from '../redux/actions';
+import HomeSkeleton from '../components/Home/HomeSkeleton';
 
 const Home = ({
   posts: { posts, filteredPosts },
@@ -22,7 +23,7 @@ const Home = ({
     //eslint-disable-next-line
   }, []);
   if (!posts) {
-    return <h1>Loading</h1>;
+    return <HomeSkeleton />;
   }
   if (posts) {
     return (
@@ -65,7 +66,6 @@ const Home = ({
               </Title>
             </Col>
           </Row>
-
           <Recommendations posts={posts} filteredPosts={filteredPosts} />
         </div>
       </Fragment>
