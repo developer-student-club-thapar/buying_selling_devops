@@ -36,7 +36,7 @@ const ProfileInformation = ({ myProfile }) => {
               paddingRight: '20px',
             }}
           >
-            J
+            {myProfile && myProfile.hostel ? myProfile.hostel : 'N/A'}
           </Text>
         </Col>
       </Row>
