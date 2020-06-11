@@ -28,7 +28,7 @@ Checkout this [file](https://github.com/developer-student-club-thapar/buying_sel
 
 - Here is our [workspace](https://thaparolx.postman.co)
 
-Checkout the documentation at this [link](https://documenter.getpostman.com/view/7165876/SztA8pi8?version=latest)
+- Checkout the documentation at this [link](https://documenter.getpostman.com/view/7165876/Szzg8yVJ)
 
 ## Current goals for the project are:
 
