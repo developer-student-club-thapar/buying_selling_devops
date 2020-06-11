@@ -148,10 +148,13 @@ class SavedPostViewset(ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
-        post_referred = Post.objects.get(id=kwargs['pk'])
-        saved_post_referred_model = SavedPosts.objects.filter(author_id=payload['user_id'])[0]
-        for saved_post in saved_post_referred_model.post.all():
-            if saved_post == post_referred:
-                saved_post_referred_model.post.remove(post_referred)
-                return Response({'deleted_saved_post_id': kwargs['pk']})
-        return Response({'message': 'Post not found'}, status=status.HTTP_404_NOT_FOUND)
+        try:
+            post_referred = Post.objects.get(id=kwargs['pk'])
+            saved_post_referred_model = SavedPosts.objects.filter(author_id=payload['user_id'])[0]
+            for saved_post in saved_post_referred_model.post.all():
+                if saved_post == post_referred:
+                    saved_post_referred_model.post.remove(post_referred)
+                    return Response({'deleted_saved_post_id': kwargs['pk']})
+            return Response({'message': 'Post not found'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception:
+            return Response({'message': 'Post not found'}, status=status.HTTP_404_NOT_FOUND)
