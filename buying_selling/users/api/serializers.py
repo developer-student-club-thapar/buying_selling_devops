@@ -52,15 +52,6 @@ class ProfileDetailSerializer(ModelSerializer):
         fields = ['user', 'image', 'bio', 'year', 'branch', 'hostel']
 
 
-class ProfileUpdateSerializer(ModelSerializer):
-
-    user = UserDetailSerializer()
-
-    class Meta:
-        model = Profile
-        fields = ['user', 'image', 'bio', 'year', 'branch']
-
-
 class SavedPostCreateSerializer(ModelSerializer):
     class Meta:
         model = SavedPosts
