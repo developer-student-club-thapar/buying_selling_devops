@@ -1,6 +1,6 @@
 from buying_selling.users.models import Profile, SavedPosts
 from buying_selling.posts.models import Post
-from .serializers import MyProfileSerializer, ProfileDetailSerializer, SavedPostCreateSerializer
+from .serializers import MyProfileSerializer, MyProfileUpdateSerializer, ProfileDetailSerializer, SavedPostCreateSerializer
 from buying_selling.posts.api.serializers import PostListSerializer
 
 from .permissions import IsOwnerOrReadOnly
@@ -34,7 +34,7 @@ class MyProfileViewset(ViewSet):
     def update(self, request, *args, **kwargs):
         payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
         instance = Profile.objects.get(user_id=payload['user_id'])
-        serializer = MyProfileSerializer(instance, data=request.data, partial=True, context={'request': request})
+        serializer = MyProfileUpdateSerializer(instance, data=request.data, partial=True, context={'request': request})
         if serializer.is_valid():
             serializer.save(user_id=payload['user_id'])
             return Response(serializer.data)
