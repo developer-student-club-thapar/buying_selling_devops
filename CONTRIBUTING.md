@@ -11,14 +11,8 @@ We follow a systematic Git Workflow -
 ## Setup and running of project (Backend)
 
 - Fork the repo and clone it.
-- Go in the repo and setup virtualenvironment using <br>
-  `python -m virtualenv env`
-- Then activate the environment using <br>
-  `source env/Scripts/activate`
-  (If you are a linux/macos user, activate it by using <br>
-  `source env/bin/activate`
 - If you had a previous version of the project, please delete the old env folder and create a new one
-- The project now uses `poetry` to manage dependencies.
+- The project now uses `poetry` to manage dependencies. So, virtual environment creation will also be handled by poetry
 - Install [Poetry](https://python-poetry.org/docs/)
 
 - (Only for Linux users) At the root of your project directory <br>
@@ -38,6 +32,8 @@ pre-commit install
 - Create a new database in postgres with name `thapar_olx` owned by the user created in previous step.
 - Ensure that postgres server is running on default port **5432**.
 
+- To activate the virtual environment made by poetry run `poetry shell`
+
 - After the above setup, run <br>
   `python manage.py makemigrations`
   `python manage.py migrate`
@@ -47,7 +43,7 @@ pre-commit install
   Runs the backend server at default port `8000`.<br />
   Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
 
-The page will reload if you make edits.<br />
+- To exit the poetry virtual environment run `exit`.
 
 ## Setup and running of project (Frontend)
 
