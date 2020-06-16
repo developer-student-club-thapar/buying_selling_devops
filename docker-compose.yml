@@ -10,7 +10,7 @@ services:
       - .:/usr/src/app
     ports:
       - 8000:8000
-    entrypoint: './docker/server/entrypoint.sh'
+    entrypoint: docker/server/entrypoint.sh
     environment:
       - IN_DOCKER=True
       - DATABASE=postgres

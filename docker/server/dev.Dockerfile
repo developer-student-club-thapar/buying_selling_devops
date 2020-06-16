@@ -20,4 +20,5 @@ RUN poetry add psycopg2-binary
 
 # copy project
 COPY buying_selling /usr/src/app/buying_selling
-COPY static /usr/src/app/static
+COPY docker /usr/src/app/docker
+RUN ["chmod", "+x", "/usr/src/app/docker/server/entrypoint.sh"]
