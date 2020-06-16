@@ -41,7 +41,7 @@ class HostelSerialiizer(ModelSerializer):
 class MyProfileSerializer(ModelSerializer):
 
     user = UserProfileSerializer(read_only=True)
-    hostel = HostelSerialiizer()
+    hostel = CharField(source='hostel.name', read_only=True)
 
     class Meta:
         model = Profile
@@ -51,14 +51,12 @@ class MyProfileSerializer(ModelSerializer):
 class MyProfileUpdateSerializer(ModelSerializer):
 
     user = UserProfileSerializer(read_only=True)
-    hostel = HostelSerialiizer()
 
     class Meta:
         model = Profile
         fields = ['user', 'image', 'bio', 'year', 'branch', 'hostel']
 
     def update(self, instance, validated_data):
-        hostel_data = validated_data.pop('hostel')
 
         instance.image = validated_data.get('image', instance.image)
         instance.bio = validated_data.get('bio', instance.bio)
@@ -67,12 +65,10 @@ class MyProfileUpdateSerializer(ModelSerializer):
         instance.save()
 
         try:
-            instance.hostel = Hostel.objects.get(name=hostel_data['name'])
+            instance.hostel = Hostel.objects.get(name=validated_data.pop('hostel'))
             instance.save()
         except Exception:
-            Hostel.objects.create(**hostel_data)
-            instance.hostel = Hostel.objects.get(name=hostel_data['name'])
-            instance.save()
+            return instance
 
         return instance
 
