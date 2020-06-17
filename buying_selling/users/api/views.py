@@ -1,12 +1,12 @@
-from buying_selling.users.models import Profile, SavedPosts
+from buying_selling.users.models import Profile, SavedPosts, Hostel
 from buying_selling.posts.models import Post
-from .serializers import MyProfileSerializer, MyProfileUpdateSerializer, ProfileDetailSerializer, SavedPostCreateSerializer
+from .serializers import MyProfileSerializer, MyProfileUpdateSerializer, ProfileDetailSerializer, SavedPostCreateSerializer, HostelSerialiizer
 from buying_selling.posts.api.serializers import PostListSerializer
 
 from .permissions import IsOwnerOrReadOnly
 
 from rest_framework import status
-from rest_framework.generics import RetrieveAPIView
+from rest_framework.generics import RetrieveAPIView, ListAPIView
 from rest_framework.viewsets import ModelViewSet, ViewSet
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -16,6 +16,12 @@ from django.conf import settings
 
 def jwt_decoder(encoded_token):
     return jwt.decode(encoded_token, settings.SIGNING_KEY, algorithms=['HS256'])
+
+
+class Hostels(ListAPIView):
+    queryset = Hostel.objects.all()
+    serializer_class = HostelSerialiizer
+    permission_classes = (IsAuthenticated,)
 
 
 class MyProfileViewset(ViewSet):
