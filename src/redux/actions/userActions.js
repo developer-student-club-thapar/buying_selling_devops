@@ -1,6 +1,9 @@
 import { GET_MYPROFILE, GET_PROFILE, PROFILE_ERROR } from '../types';
 import axios from 'axios';
-import { PROFILE_ENDPOINT } from '../../constants/endpoints/index';
+import {
+  PROFILE_ENDPOINT,
+  MY_PROFILE_ENDPOINT,
+} from '../../constants/endpoints/index';
 
 //Get my profile
 export const getMyProfile = token => async dispatch => {
@@ -10,7 +13,7 @@ export const getMyProfile = token => async dispatch => {
     },
   };
   try {
-    const res = await axios.get(`${PROFILE_ENDPOINT}myprofile`, config);
+    const res = await axios.get(`${MY_PROFILE_ENDPOINT}`, config);
     dispatch({
       type: GET_MYPROFILE,
       payload: res.data,
