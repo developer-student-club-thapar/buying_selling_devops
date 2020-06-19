@@ -5,6 +5,7 @@ import {
   FETCH_CATEGORIES,
   FILTER_POSTS,
   CLEAR_FILTER,
+  ADD_WISHLIST,
 } from '../types';
 
 const defaultState = {
@@ -13,6 +14,7 @@ const defaultState = {
   post: null,
   userposts: null,
   categories: null,
+  wishlist: null,
   error: null,
 };
 
@@ -23,6 +25,7 @@ export default (state = defaultState, action) => {
         ...state,
         posts: action.payload,
         post: null,
+        wishlist: null,
       };
     case GET_SINGLE_POST:
       return {
@@ -43,6 +46,11 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         filteredPosts: [],
+      };
+    case ADD_WISHLIST:
+      return {
+        ...state,
+        wishlist: action.payload,
       };
     case POST_ERROR:
       return {

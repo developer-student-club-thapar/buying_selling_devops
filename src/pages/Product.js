@@ -8,10 +8,16 @@ import ImageCarousel from '../components/Product/ImageCarousel';
 import ProductDescription from '../components/Product/ProductDescription';
 import ProductDetails from '../components/Product/ProductDetails';
 import { connect } from 'react-redux';
-import { getPost } from '../redux/actions';
+import { getPost, addToWishlist } from '../redux/actions';
 import Moment from 'react-moment';
 
-const Product = ({ posts: { post }, getPost, match }) => {
+const Product = ({
+  posts: { post },
+  auth: { token },
+  getPost,
+  addToWishlist,
+  match,
+}) => {
   const { Title } = Typography;
   const id = `${match.params.id}`;
   useEffect(() => {
@@ -108,6 +114,27 @@ const Product = ({ posts: { post }, getPost, match }) => {
                   marginTop: '30px',
                 }}
               >
+                <Button
+                  type="primary"
+                  block
+                  style={{ border: 'none' }}
+                  onClick={() => {
+                    addToWishlist(post.id, token);
+                  }}
+                >
+                  Add to wishlist
+                </Button>
+              </Col>
+            </Row>
+            <Row>
+              <Col
+                span={24}
+                style={{
+                  paddingLeft: '20px',
+                  paddingRight: '20px',
+                  marginTop: '10px',
+                }}
+              >
                 {post.isSold === false ? (
                   <Button
                     type="primary"
@@ -150,6 +177,7 @@ const Product = ({ posts: { post }, getPost, match }) => {
 
 const mapStateToProps = state => ({
   posts: state.posts,
+  auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getPost })(Product);
+export default connect(mapStateToProps, { getPost, addToWishlist })(Product);
