@@ -49,6 +49,10 @@ class PostCreateSerializer(ModelSerializer):
 
 class PostDetailSerializer(ModelSerializer):
     category = CategorySerializer(read_only=True, many=True)
+    condition = SerializerMethodField('get_condition')
+
+    def get_condition(self, obj):
+        return obj.get_condition_display()
 
     class Meta:
         model = Post
