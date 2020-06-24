@@ -10,6 +10,7 @@ import ProductDetails from '../components/Product/ProductDetails';
 import { connect } from 'react-redux';
 import { getPost, addToWishlist } from '../redux/actions';
 import Moment from 'react-moment';
+import WishlistButton from '../components/Product/WishlistButton';
 
 const Product = ({
   posts: { post },
@@ -114,16 +115,7 @@ const Product = ({
                   marginTop: '30px',
                 }}
               >
-                <Button
-                  type="primary"
-                  block
-                  style={{ border: 'none' }}
-                  onClick={() => {
-                    addToWishlist(post.id, token);
-                  }}
-                >
-                  Add to wishlist
-                </Button>
+                <WishlistButton />
               </Col>
             </Row>
             <Row>

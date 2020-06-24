@@ -8,18 +8,21 @@ import { useHasScrolled } from '../components/Home/hooks/useScrollHandler';
 import TopBar from '../components/Home/TopBar';
 import TopBarScroll from '../components/Home/TopBarScroll';
 import { connect } from 'react-redux';
-import { getAllPosts, clearFilter } from '../redux/actions';
+import { getAllPosts, clearFilter, fetchWishlist } from '../redux/actions';
 import HomeSkeleton from '../components/Home/HomeSkeleton';
 
 const Home = ({
   posts: { posts, filteredPosts },
+  auth: { token },
   getAllPosts,
   clearFilter,
+  fetchWishlist,
 }) => {
   const { Title } = Typography;
   const scroll = useHasScrolled();
   useEffect(() => {
     getAllPosts();
+    fetchWishlist(token);
     //eslint-disable-next-line
   }, []);
   if (!posts) {
@@ -75,6 +78,11 @@ const Home = ({
 
 const mapStateToProps = state => ({
   posts: state.posts,
+  auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getAllPosts, clearFilter })(Home);
+export default connect(mapStateToProps, {
+  getAllPosts,
+  clearFilter,
+  fetchWishlist,
+})(Home);
