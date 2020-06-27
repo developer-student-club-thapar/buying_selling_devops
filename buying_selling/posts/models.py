@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 import uuid
 from django.conf import settings
+from profanity.validators import validate_is_profane
 
 
 class Category(models.Model):
@@ -23,8 +24,8 @@ class Post(models.Model):
 
     category = models.ManyToManyField(Category)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField(max_length=100)
-    description = models.TextField()
+    title = models.CharField(max_length=100, validators=[validate_is_profane])
+    description = models.TextField(validators=[validate_is_profane])
     datePosted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=9, decimal_places=2)
@@ -32,7 +33,7 @@ class Post(models.Model):
     onDiscount = models.BooleanField(default=False)
     discountPercent = models.DecimalField(max_digits=4, decimal_places=2)
     age = models.CharField(max_length=4, choices=AGE_CHOICES)
-    brand = models.CharField(max_length=50)
+    brand = models.CharField(max_length=50, validators=[validate_is_profane])
 
     condition = models.CharField(max_length=3, choices=CONDITION_CHOICES)
 

@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "django_filters",
+    "profanity",
     "buying_selling.posts.apps.PostsConfig",
     "buying_selling.users.apps.UsersConfig",
 ]
