@@ -152,16 +152,20 @@ class ReportView(APIView):
             report = Report.objects.get(post=post_id)
             user = MyUser.objects.get(id=payload['user_id'])
             if user in report.reported_by.all():
-                return Response("Already Reported")
+                return Response("Already Reported", status=status.HTTP_400_BAD_REQUEST)
+            if payload['user_id'] == str(post.author_id):
+                return Response("You cannot report your own post!", status=status.HTTP_400_BAD_REQUEST)
             report.reports += 1
             report.reported_by.add(user)
-            if report.reports >= (MyUser.objects.filter().count()) * (0.50):
+            if report.reports >= (MyUser.objects.filter().count()) * (0.80):
                 post.enabled = False
                 post.save()
             report.save()
             return Response("Reported")
         else:
             user = MyUser.objects.get(id=payload['user_id'])
+            if payload['user_id'] == str(post.author_id):
+                return Response("You cannot report your own post!", status=status.HTTP_400_BAD_REQUEST)
             report = Report.objects.create(post=post, reports=1)
             report.reported_by.add(user)
             return Response("Reported")
