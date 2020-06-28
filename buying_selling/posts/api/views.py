@@ -1,4 +1,4 @@
-from buying_selling.posts.models import Post, PostImage, Category
+from buying_selling.posts.models import Post, PostImage, Category, Report
 from .serializers import CategorySerializer, AddImageSerializer, ImageSerializer, PostCreateSerializer, PostDetailSerializer, PostListSerializer, PostUpdateSerializer
 from .permissions import IsOwnerOrReadOnly, IsOwnerForPostImage
 from rest_framework.response import Response
@@ -11,6 +11,7 @@ from django.conf import settings
 from rest_framework import viewsets, generics
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter, SearchFilter
+from buying_selling.users.models import MyUser
 
 
 def jwt_decoder(encoded_token):
@@ -137,3 +138,30 @@ class PostViewset(viewsets.ModelViewSet):
     def perform_update(self, serializer):
         payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
         serializer.save(author_id=payload['user_id'])
+
+
+class ReportView(APIView):
+    permission_classes = [
+        IsAuthenticated,
+    ]
+
+    def post(self, request, post_id, *args, **kwargs):
+        post = Post.objects.get(id=post_id)
+        payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
+        if Report.objects.filter(post=post_id).exists():
+            report = Report.objects.get(post=post_id)
+            user = MyUser.objects.get(id=payload['user_id'])
+            if user in report.reported_by.all():
+                return Response("Already Reported")
+            report.reports += 1
+            report.reported_by.add(user)
+            if report.reports >= (MyUser.objects.filter().count()) * (0.50):
+                post.enabled = False
+                post.save()
+            report.save()
+            return Response("Reported")
+        else:
+            user = MyUser.objects.get(id=payload['user_id'])
+            report = Report.objects.create(post=post, reports=1)
+            report.reported_by.add(user)
+            return Response("Reported")
