@@ -109,7 +109,10 @@ class PostViewset(viewsets.ModelViewSet):
             return [permission() for permission in self.permission_classes]
 
     def retrieve(self, request, pk, format=None):
-        post = Post.objects.get(pk=pk)
+        try:
+            post = Post.objects.get(pk=pk, enabled=True)
+        except Exception:
+            return Response("Post Disabled!")
         images = PostImage.objects.filter(post_id=pk)
         post_serializer = PostDetailSerializer(post, context={'request': request}).data
         image_serializer = ImageSerializer(images, many=True, context={'request': request}).data
@@ -121,14 +124,8 @@ class PostViewset(viewsets.ModelViewSet):
         return Response(post_serializer)
 
     def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True, context={'request': request})
-            return self.get_paginated_response(serializer.data)
-
-        serializer = self.get_serializer(queryset, many=True)
+        queryset = Post.objects.filter(enabled=True)
+        serializer = PostListSerializer(queryset, many=True, context={"request": request})
         return Response(serializer.data)
 
     def perform_create(self, serializer):
