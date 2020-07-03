@@ -3,6 +3,7 @@ from django.utils import timezone
 import uuid
 from django.conf import settings
 from profanity.validators import validate_is_profane
+from django.core.validators import MinValueValidator
 
 
 class Category(models.Model):
@@ -31,6 +32,7 @@ class Post(models.Model):
     price = models.DecimalField(max_digits=9, decimal_places=2)
     isSold = models.BooleanField(default=False)
     onDiscount = models.BooleanField(default=False)
+    enabled = models.BooleanField(default=True)
     discountPercent = models.DecimalField(max_digits=4, decimal_places=2)
     age = models.CharField(max_length=4, choices=AGE_CHOICES)
     brand = models.CharField(max_length=50, validators=[validate_is_profane])
@@ -52,3 +54,13 @@ class PostImage(models.Model):
 
     def __str__(self):
         return f"Image for {self.post.title}"
+
+
+class Report(models.Model):
+
+    post = models.OneToOneField(Post, on_delete=models.CASCADE)
+    reports = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    reported_by = models.ManyToManyField(settings.AUTH_USER_MODEL)
+
+    def __str__(self):
+        return f"Reports for {self.post.title}"

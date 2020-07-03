@@ -1,4 +1,4 @@
-from buying_selling.posts.models import Post, PostImage, Category
+from buying_selling.posts.models import Post, PostImage, Category, Report
 from .serializers import CategorySerializer, AddImageSerializer, ImageSerializer, PostCreateSerializer, PostDetailSerializer, PostListSerializer, PostUpdateSerializer
 from .permissions import IsOwnerOrReadOnly, IsOwnerForPostImage
 from rest_framework.response import Response
@@ -11,6 +11,7 @@ from django.conf import settings
 from rest_framework import viewsets, generics
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter, SearchFilter
+from buying_selling.users.models import MyUser
 
 
 def jwt_decoder(encoded_token):
@@ -108,7 +109,10 @@ class PostViewset(viewsets.ModelViewSet):
             return [permission() for permission in self.permission_classes]
 
     def retrieve(self, request, pk, format=None):
-        post = Post.objects.get(pk=pk)
+        try:
+            post = Post.objects.get(pk=pk, enabled=True)
+        except Exception:
+            return Response("Post Disabled!")
         images = PostImage.objects.filter(post_id=pk)
         post_serializer = PostDetailSerializer(post, context={'request': request}).data
         image_serializer = ImageSerializer(images, many=True, context={'request': request}).data
@@ -120,14 +124,8 @@ class PostViewset(viewsets.ModelViewSet):
         return Response(post_serializer)
 
     def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True, context={'request': request})
-            return self.get_paginated_response(serializer.data)
-
-        serializer = self.get_serializer(queryset, many=True)
+        queryset = Post.objects.filter(enabled=True)
+        serializer = PostListSerializer(queryset, many=True, context={"request": request})
         return Response(serializer.data)
 
     def perform_create(self, serializer):
@@ -137,3 +135,34 @@ class PostViewset(viewsets.ModelViewSet):
     def perform_update(self, serializer):
         payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
         serializer.save(author_id=payload['user_id'])
+
+
+class ReportView(APIView):
+    permission_classes = [
+        IsAuthenticated,
+    ]
+
+    def post(self, request, post_id, *args, **kwargs):
+        post = Post.objects.get(id=post_id)
+        payload = jwt_decoder(self.request.headers['Authorization'].split()[1])
+        if Report.objects.filter(post=post_id).exists():
+            report = Report.objects.get(post=post_id)
+            user = MyUser.objects.get(id=payload['user_id'])
+            if user in report.reported_by.all():
+                return Response("Already Reported", status=status.HTTP_400_BAD_REQUEST)
+            if payload['user_id'] == str(post.author_id):
+                return Response("You cannot report your own post!", status=status.HTTP_400_BAD_REQUEST)
+            report.reports += 1
+            report.reported_by.add(user)
+            if report.reports >= (MyUser.objects.filter().count()) * (0.80):
+                post.enabled = False
+                post.save()
+            report.save()
+            return Response("Reported")
+        else:
+            user = MyUser.objects.get(id=payload['user_id'])
+            if payload['user_id'] == str(post.author_id):
+                return Response("You cannot report your own post!", status=status.HTTP_400_BAD_REQUEST)
+            report = Report.objects.create(post=post, reports=1)
+            report.reported_by.add(user)
+            return Response("Reported")
