@@ -12,3 +12,7 @@ service-account.json
 # Accept these files in the repository
 !.gitignore
 !.travis.yml
+
+# Backend deployment related
+dsc_tiet
+run/
