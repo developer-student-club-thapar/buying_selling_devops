@@ -5,6 +5,7 @@ from django.core.validators import RegexValidator
 from django.utils import timezone
 from PIL import Image
 import uuid
+from profanity.validators import validate_is_profane
 
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
@@ -86,7 +87,7 @@ class Hostel(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(MyUser, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='profile_pics', blank=True, null=True)
-    bio = models.TextField()
+    bio = models.TextField(validators=[validate_is_profane])
     isHosteler = models.BooleanField(default=True)
     YEAR_CHOICES = (
         ('1', 'First'),
