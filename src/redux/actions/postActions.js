@@ -7,6 +7,7 @@ import {
   CLEAR_FILTER,
   ADD_WISHLIST,
   FETCH_WISHLIST,
+  REMOVE_WISHLIST,
 } from '../types';
 import axios from 'axios';
 import {
@@ -104,6 +105,27 @@ export const addToWishlist = (id, token) => async dispatch => {
     );
     dispatch({
       type: ADD_WISHLIST,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: err.response.data,
+    });
+  }
+};
+
+// Remove a post from wishlist
+export const removeWishlist = (id, token) => async dispatch => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  try {
+    const res = await axios.delete(`${WISHLIST_ENDPOINT}${id}`, config);
+    dispatch({
+      type: REMOVE_WISHLIST,
       payload: res.data,
     });
   } catch (err) {

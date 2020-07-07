@@ -7,6 +7,7 @@ import {
   CLEAR_FILTER,
   ADD_WISHLIST,
   FETCH_WISHLIST,
+  REMOVE_WISHLIST,
 } from '../types';
 
 const defaultState = {
@@ -49,6 +50,7 @@ export default (state = defaultState, action) => {
         ...state,
         filteredPosts: [],
       };
+    case REMOVE_WISHLIST:
     case ADD_WISHLIST:
       return {
         ...state,

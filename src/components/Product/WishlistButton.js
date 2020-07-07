@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button } from 'antd';
 import { addToWishlist } from '../../redux/actions';
 import { connect } from 'react-redux';
@@ -8,6 +8,9 @@ const WishlistButton = ({
   auth: { token },
   addToWishlist,
 }) => {
+  useEffect(() => {
+    //eslint-disable-next-line
+  }, []);
   return (
     <>
       <Button
@@ -18,7 +21,7 @@ const WishlistButton = ({
           addToWishlist(post.id, token);
         }}
       >
-        Add to wishlist
+        Save Post
       </Button>
     </>
   );

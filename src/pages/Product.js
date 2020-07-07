@@ -115,7 +115,7 @@ const Product = ({
                   marginTop: '30px',
                 }}
               >
-                <WishlistButton />
+                <WishlistButton id={id} />
               </Col>
             </Row>
             <Row>
