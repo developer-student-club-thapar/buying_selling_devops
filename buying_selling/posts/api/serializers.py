@@ -29,6 +29,34 @@ class AddImageSerializer(ModelSerializer):
         ]
 
 
+class MyPostListSerializer(ModelSerializer):
+    image = SerializerMethodField('image_serializer')
+    category = CategorySerializer(read_only=True, many=True)
+
+    def image_serializer(self, obj):
+        image = PostImage.objects.filter(post_id=obj.id).first()
+        serializer = ImageSerializer(image).data
+        request = self.context.get('request')
+        if serializer['image']:
+            serializer['image'] = request.build_absolute_uri(serializer['image'])
+        return serializer
+
+    class Meta:
+        model = Post
+        fields = [
+            'id',
+            'title',
+            'category',
+            'datePosted',
+            'author',
+            'enabled',
+            'price',
+            'isSold',
+            'image',
+            'brand',
+        ]
+
+
 class PostCreateSerializer(ModelSerializer):
     class Meta:
         model = Post
