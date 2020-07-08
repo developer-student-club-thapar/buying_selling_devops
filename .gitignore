@@ -8,6 +8,7 @@ media
 .vscode/
 node_modules/
 service-account.json
+build/
 
 # Accept these files in the repository
 !.gitignore

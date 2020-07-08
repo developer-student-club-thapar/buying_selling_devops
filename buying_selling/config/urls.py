@@ -4,8 +4,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from buying_selling.users import views as user_views
 from rest_framework_simplejwt.views import TokenRefreshView
+from django.views.generic import TemplateView
+
+catchall = TemplateView.as_view(template_name='index.html')
 
 urlpatterns = [
+    path('', catchall),
     path('api/posts/', include('buying_selling.posts.api.urls')),
     path('api/users/', include('buying_selling.users.api.urls')),
     path('admin/doc/', include('django.contrib.admindocs.urls')),

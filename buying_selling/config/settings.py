@@ -6,6 +6,8 @@ env = environ.Env()
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+FRONTEND_DIR = os.path.abspath(os.path.join(BASE_DIR, '..'))
+
 
 environ.Env.read_env(env_file=os.path.join(BASE_DIR, "../.env"))
 
@@ -23,6 +25,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    'whitenoise.runserver_nostatic',
     "django.contrib.staticfiles",
     "django.contrib.sites",
     "django.contrib.admindocs",
@@ -36,8 +39,11 @@ INSTALLED_APPS = [
 ]
 
 if DEBUG:
+    STATICFILES_DIRS = [os.path.join(FRONTEND_DIR, 'build', 'static')]
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
     STATIC_URL = "/static/"
-    STATIC_ROOT = os.path.join(BASE_DIR, "static_files")
+    WHITENOISE_ROOT = os.path.join(FRONTEND_DIR, 'build', 'root')
     MEDIA_URL = "/media/"
     MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 else:
@@ -52,6 +58,7 @@ SITE_ID = 1
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -62,10 +69,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "buying_selling.config.urls"
 
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(FRONTEND_DIR, 'build')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
