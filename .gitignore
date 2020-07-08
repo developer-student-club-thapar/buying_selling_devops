@@ -9,6 +9,7 @@ media
 node_modules/
 service-account.json
 build/
+static
 
 # Accept these files in the repository
 !.gitignore
