@@ -5,9 +5,15 @@ import {
   FETCH_CATEGORIES,
   FILTER_POSTS,
   CLEAR_FILTER,
+  ADD_WISHLIST,
+  FETCH_WISHLIST,
+  REMOVE_WISHLIST,
 } from '../types';
 import axios from 'axios';
-import { POST_ENDPOINT } from '../../constants/endpoints/index';
+import {
+  POST_ENDPOINT,
+  WISHLIST_ENDPOINT,
+} from '../../constants/endpoints/index';
 
 //Get all posts
 export const getAllPosts = () => async dispatch => {
@@ -80,4 +86,73 @@ export const clearFilter = () => {
   return {
     type: CLEAR_FILTER,
   };
+};
+
+// Add a post to wishlist
+export const addToWishlist = (id, token) => async dispatch => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  try {
+    const res = await axios.post(
+      `${WISHLIST_ENDPOINT}`,
+      {
+        post: [id],
+      },
+      config,
+    );
+    dispatch({
+      type: ADD_WISHLIST,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: err.response.data,
+    });
+  }
+};
+
+// Remove a post from wishlist
+export const removeWishlist = (id, token) => async dispatch => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  try {
+    const res = await axios.delete(`${WISHLIST_ENDPOINT}${id}`, config);
+    dispatch({
+      type: REMOVE_WISHLIST,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: err.response.data,
+    });
+  }
+};
+
+// Fetch a user's complete wishlist
+export const fetchWishlist = token => async dispatch => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  try {
+    const res = await axios.get(`${WISHLIST_ENDPOINT}`, config);
+    dispatch({
+      type: FETCH_WISHLIST,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: err.response.data,
+    });
+  }
 };

@@ -17,3 +17,6 @@ export const GET_PROFILE = 'GET_PROFILE';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
 export const FILTER_POSTS = 'FILTER_POSTS';
 export const CLEAR_FILTER = 'CLEAR_FILTER';
+export const ADD_WISHLIST = 'ADD_WISHLIST';
+export const FETCH_WISHLIST = 'FETCH_WISHLIST';
+export const REMOVE_WISHLIST = 'REMOVE_WISHLIST';
