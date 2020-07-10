@@ -1,6 +1,6 @@
 from buying_selling.posts.models import Post, PostImage, Category, Report
-from .serializers import CategorySerializer, AddImageSerializer, ImageSerializer, PostCreateSerializer, PostDetailSerializer, PostListSerializer, PostUpdateSerializer
-from .permissions import IsOwnerOrReadOnly, IsOwnerForPostImage
+from .serializers import CategorySerializer, AddImageSerializer, MyPostListSerializer, ImageSerializer, PostCreateSerializer, PostDetailSerializer, PostListSerializer, PostUpdateSerializer
+from .permissions import IsOwnerOrReadOnly, IsOwnerForPostImage, IsOwnerForPost
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FormParser
@@ -60,7 +60,7 @@ class ImageView(APIView):
 
 
 class MyPostListAPIView(generics.ListAPIView):
-    serializer_class = PostListSerializer
+    serializer_class = MyPostListSerializer
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self, *args, **kwargs):
@@ -84,7 +84,7 @@ class PostViewset(viewsets.ModelViewSet):
     permission_classes_by_action = {
         'create': [IsAuthenticated],
         'list': [AllowAny],
-        'retrieve': [AllowAny],
+        'retrieve': [AllowAny, IsOwnerForPost],
         'update': [IsAuthenticated, IsOwnerOrReadOnly],
         'partial_update': [IsAuthenticated, IsOwnerOrReadOnly],
         'destroy': [IsAuthenticated, IsOwnerOrReadOnly],
@@ -109,10 +109,7 @@ class PostViewset(viewsets.ModelViewSet):
             return [permission() for permission in self.permission_classes]
 
     def retrieve(self, request, pk, format=None):
-        try:
-            post = Post.objects.get(pk=pk, enabled=True)
-        except Exception:
-            return Response("Post Disabled!")
+        post = Post.objects.get(pk=pk,)
         images = PostImage.objects.filter(post_id=pk)
         post_serializer = PostDetailSerializer(post, context={'request': request}).data
         image_serializer = ImageSerializer(images, many=True, context={'request': request}).data
