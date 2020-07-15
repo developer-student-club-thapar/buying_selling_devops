@@ -32,8 +32,14 @@ class IsOwnerForPost(BasePermission):
     message = "Post Disabled!"
 
     def has_permission(self, request, view):
-        payload = jwt_decoder(request.headers['Authorization'].split()[1])
-        user_id = payload['user_id']
-        post_id = request.path.split('/')[3]
-        post = Post.objects.get(id=post_id)
-        return str(post.author_id) == user_id
+        try:
+            payload = jwt_decoder(request.headers['Authorization'].split()[1])
+            user_id = payload['user_id']
+            post_id = request.path.split('/')[3]
+            post = Post.objects.get(id=post_id)
+            if post.enabled:
+                return True
+            elif str(post.author_id) == user_id:
+                return str(post.author_id) == user_id
+        except Exception:
+            return False
