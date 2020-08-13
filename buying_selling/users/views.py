@@ -35,7 +35,7 @@ class GoogleView(APIView):
                     user = MyUser()
                     user.password = make_password(BaseUserManager().make_random_password())
                     user.email = data['email']
-                    user.username = data['given_name']
+                    user.username = data['given_name'] + data['id']
                     user.firstName = data['given_name']
                     user.lastName = data['family_name']
                     user.save()
