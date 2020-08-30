@@ -26,6 +26,9 @@ docutils = "^0.16"
 django-profanity-filter = "^0.2.1"
 whitenoise = "^5.1.0"
 
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.6.0"
 [tool.black]
 line-length = 200
 target-version = ['py36', 'py37', 'py38']
