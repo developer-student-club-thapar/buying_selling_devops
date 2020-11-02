@@ -3,8 +3,8 @@ group: edge
 
 stages:
   - name: Tests
-  - name: Deployment
-    if: branch = master AND type = push AND fork = false
+#   - name: Deployment
+#     if: branch = master AND type = push AND fork = false
 
 env:
   global:
@@ -50,15 +50,15 @@ jobs:
       script:
         - pre-commit run --all-files
 
-    - stage: Deployment
-      name: Full Project Deployment
-      language: python
-      python: '3.8'
-      cache: pip
-      before_install:
-        - echo $encrypt_key | gpg --passphrase-fd 0 dsc_tiet.gpg
-        - chmod 400 ./dsc_tiet
-      install:
-        - pip install ansible
-      script:
-        - ansible-playbook playbooks/deploy.yml
+#     - stage: Deployment
+#       name: Full Project Deployment
+#       language: python
+#       python: '3.8'
+#       cache: pip
+#       before_install:
+#         - echo $encrypt_key | gpg --passphrase-fd 0 dsc_tiet.gpg
+#         - chmod 400 ./dsc_tiet
+#       install:
+#         - pip install ansible
+#       script:
+#         - ansible-playbook playbooks/deploy.yml
