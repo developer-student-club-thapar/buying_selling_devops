@@ -33,9 +33,9 @@ jobs:
       python:
         - 3.8
       before_install:
-        - pip install poetry # using poetry to manage dependencies
+        - pip install pipenv # using poetry to manage dependencies
       install:
-        - poetry install
+        - pipenv install
       scripts:
         - python manage.py check --deploy
         - python manage.py test
