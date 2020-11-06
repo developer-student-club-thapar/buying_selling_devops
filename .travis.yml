@@ -49,7 +49,6 @@ jobs:
         - pip install pre-commit
       script:
         - pre-commit run --all-files
-
 #     - stage: Deployment
 #       name: Full Project Deployment
 #       language: python
