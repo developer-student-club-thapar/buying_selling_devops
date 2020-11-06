@@ -3,12 +3,12 @@ group: edge
 
 stages:
   - name: Tests
-  - name: Deployment
-    if: branch = master AND type = push AND fork = false
+#   - name: Deployment
+#     if: branch = master AND type = push AND fork = false
 
-env:
-  global:
-    secure: l/cuUR2zD9Qvv725R8DziM4RgdrYI97Xr080GK/Wg/ceIqBzdyS/hTBkv5fnQ4R9Z8RkMViKJ+aPqaTqMeSuUZw7sBrVdcAlm6Tj7Vcbb5G7gWWMUfYpb6SX5xxEyaokAtee+D84DYc6ofPIRTyjywNKZDED1us9O4yS0bK4tahbjLIHikZ9Pl9LHZO41Ty+eCOYAq/vsOA2cntk+pey5oaZ614ty1sZUjEuSyhDg9AzrXPzulURrrdh0ahebhDcvUwpP+4OLiRDPUgXZZNemUoghgPb9zQJR8qzOJUbWTh7KnOg3WAIKQMgrIAtycMvpZsDbHwnLlcheKYQ798zNEU8zl2UwhADb8Q6vU9SUSuHlPCnfo3csB+/Tb+4t5LVV10h/nm70yoPCF4qSatyRzO0hufTUIJLQBelLX903/UvD+cjo+QT58oQiSbdALeFfq5FGDglIwGfhoGU6cQi65vhmBAtvyqLoqr8CX/mB8T90P+AkUmXi/qRHmjh9Kat6YUX4rf4XZLKL9ksmi9VfVltCJfH7AgIbpGPyVh1FW7eOolrpjeXVJ03OYGTad6aApMJk2uhrxY1Yc50JyEA4Y/uYoql1nh8s/5p2AAJWWeGNbqpWoo8B9NbRqwWvDJobUjjv0cvxOmI1XNNGxKpAhSRJz/1MuIpJJarnHfE4cg=
+# env:
+#   global:
+#     secure: l/cuUR2zD9Qvv725R8DziM4RgdrYI97Xr080GK/Wg/ceIqBzdyS/hTBkv5fnQ4R9Z8RkMViKJ+aPqaTqMeSuUZw7sBrVdcAlm6Tj7Vcbb5G7gWWMUfYpb6SX5xxEyaokAtee+D84DYc6ofPIRTyjywNKZDED1us9O4yS0bK4tahbjLIHikZ9Pl9LHZO41Ty+eCOYAq/vsOA2cntk+pey5oaZ614ty1sZUjEuSyhDg9AzrXPzulURrrdh0ahebhDcvUwpP+4OLiRDPUgXZZNemUoghgPb9zQJR8qzOJUbWTh7KnOg3WAIKQMgrIAtycMvpZsDbHwnLlcheKYQ798zNEU8zl2UwhADb8Q6vU9SUSuHlPCnfo3csB+/Tb+4t5LVV10h/nm70yoPCF4qSatyRzO0hufTUIJLQBelLX903/UvD+cjo+QT58oQiSbdALeFfq5FGDglIwGfhoGU6cQi65vhmBAtvyqLoqr8CX/mB8T90P+AkUmXi/qRHmjh9Kat6YUX4rf4XZLKL9ksmi9VfVltCJfH7AgIbpGPyVh1FW7eOolrpjeXVJ03OYGTad6aApMJk2uhrxY1Yc50JyEA4Y/uYoql1nh8s/5p2AAJWWeGNbqpWoo8B9NbRqwWvDJobUjjv0cvxOmI1XNNGxKpAhSRJz/1MuIpJJarnHfE4cg=
 
 jobs:
   include:
@@ -50,15 +50,15 @@ jobs:
       script:
         - pre-commit run --all-files
 
-    - stage: Deployment
-      name: Full Project Deployment
-      language: python
-      python: '3.8'
-      cache: pip
-      before_install:
-        - echo $encrypt_key | gpg --passphrase-fd 0 dsc_tiet.gpg
-        - chmod 400 ./dsc_tiet
-      install:
-        - pip install ansible
-      script:
-        - ansible-playbook playbooks/deploy.yml
+#     - stage: Deployment
+#       name: Full Project Deployment
+#       language: python
+#       python: '3.8'
+#       cache: pip
+#       before_install:
+#         - echo $encrypt_key | gpg --passphrase-fd 0 dsc_tiet.gpg
+#         - chmod 400 ./dsc_tiet
+#       install:
+#         - pip install ansible
+#       script:
+#         - ansible-playbook playbooks/deploy.yml
