@@ -6,11 +6,32 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0004_auto_20200604_1254'),
+        ("users", "0004_auto_20200604_1254"),
     ]
 
     operations = [
-        migrations.CreateModel(name='Hostel', fields=[('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')), ('name', models.CharField(max_length=10)),],),
-        migrations.RemoveField(model_name='profile', name='hostel',),
-        migrations.AddField(model_name='profile', name='hostel', field=models.ManyToManyField(to='users.Hostel'),),
+        migrations.CreateModel(
+            name="Hostel",
+            fields=[
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=10)),
+            ],
+        ),
+        migrations.RemoveField(
+            model_name="profile",
+            name="hostel",
+        ),
+        migrations.AddField(
+            model_name="profile",
+            name="hostel",
+            field=models.ManyToManyField(to="users.Hostel"),
+        ),
     ]

@@ -6,18 +6,21 @@ env = environ.Env()
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-FRONTEND_DIR = os.path.abspath(os.path.join(BASE_DIR, '..'))
+FRONTEND_DIR = os.path.abspath(os.path.join(BASE_DIR, ".."))
 
 
 environ.Env.read_env(env_file=os.path.join(BASE_DIR, "../.env"))
 
 DEBUG = env.bool("DEBUG", default=True)
 
-SECRET_KEY = env("SECRET_KEY", default='secret-key-of-at-least-50-characters-to-pass-check-deploy',)
+SECRET_KEY = env(
+    "SECRET_KEY",
+    default="secret-key-of-at-least-50-characters-to-pass-check-deploy",
+)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
-AUTH_USER_MODEL = 'users.MyUser'
+AUTH_USER_MODEL = "users.MyUser"
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -25,11 +28,11 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    'whitenoise.runserver_nostatic',
+    "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "django.contrib.sites",
     "django.contrib.admindocs",
-    'django_cleanup.apps.CleanupConfig',
+    "django_cleanup.apps.CleanupConfig",
     "corsheaders",
     "rest_framework",
     "django_filters",
@@ -39,16 +42,16 @@ INSTALLED_APPS = [
 ]
 
 if DEBUG:
-    STATICFILES_DIRS = [os.path.join(FRONTEND_DIR, 'build', 'static')]
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    STATICFILES_DIRS = [os.path.join(FRONTEND_DIR, "build", "static")]
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
     STATIC_URL = "/static/"
-    WHITENOISE_ROOT = os.path.join(FRONTEND_DIR, 'build', 'root')
+    WHITENOISE_ROOT = os.path.join(FRONTEND_DIR, "build", "root")
     MEDIA_URL = "/media/"
     MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 else:
-    DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-    STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+    DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+    STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
     GS_BUCKET_NAME = env("GS_BUCKET_NAME")
     STATIC_ROOT = "static/"
     MEDIA_ROOT = "media/"
@@ -58,7 +61,7 @@ SITE_ID = 1
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -73,7 +76,7 @@ ROOT_URLCONF = "buying_selling.config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(FRONTEND_DIR, 'build')],
+        "DIRS": [os.path.join(FRONTEND_DIR, "build")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -104,10 +107,18 @@ DATABASES = {
 
 
 AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",},
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
 ]
 
 
@@ -120,7 +131,9 @@ USE_TZ = True
 
 # REST FRAMEWORK
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework_simplejwt.authentication.JWTAuthentication',],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ],
 }
 
 # CORS SETTINGS
@@ -129,20 +142,23 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 # JWT SETTINGS
 
-SIGNING_KEY = env("SIGNING_KEY", default="",)
+SIGNING_KEY = env(
+    "SIGNING_KEY",
+    default="",
+)
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=2),
-    'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLIST_AFTER_ROTATION': True,
-    'ALGORITHM': 'HS256',
-    'SIGNING_KEY': SIGNING_KEY,
-    'VERIFYING_KEY': None,
-    'AUDIENCE': None,
-    'ISSUER': None,
-    'AUTH_HEADER_TYPES': ('Bearer',),
-    'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
-    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
-    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=2),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "ALGORITHM": "HS256",
+    "SIGNING_KEY": SIGNING_KEY,
+    "VERIFYING_KEY": None,
+    "AUDIENCE": None,
+    "ISSUER": None,
+    "AUTH_HEADER_TYPES": ("Bearer",),
+    "SLIDING_TOKEN_REFRESH_EXP_CLAIM": "refresh_exp",
+    "SLIDING_TOKEN_LIFETIME": timedelta(minutes=5),
+    "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
 }
