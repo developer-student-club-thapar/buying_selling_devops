@@ -16,7 +16,7 @@ import {
 } from '../../constants/endpoints/index';
 
 //Get all posts
-export const getAllPosts = () => async dispatch => {
+export const getAllPosts = () => async (dispatch) => {
   try {
     const res = await axios.get(`${POST_ENDPOINT}`);
     dispatch({
@@ -32,7 +32,7 @@ export const getAllPosts = () => async dispatch => {
 };
 
 //Get a single post
-export const getPost = id => async dispatch => {
+export const getPost = (id) => async (dispatch) => {
   try {
     const res = await axios.get(`${POST_ENDPOINT}${id}`);
 
@@ -49,7 +49,7 @@ export const getPost = id => async dispatch => {
 };
 
 //Fetch all categories
-export const fetchCategories = () => async dispatch => {
+export const fetchCategories = () => async (dispatch) => {
   try {
     const res = await axios.get(`${POST_ENDPOINT}categories`);
 
@@ -66,7 +66,7 @@ export const fetchCategories = () => async dispatch => {
 };
 
 //Filter posts by category
-export const filterPosts = filter => async dispatch => {
+export const filterPosts = (filter) => async (dispatch) => {
   try {
     const res = await axios.get(`${POST_ENDPOINT}?category=${filter}`);
     dispatch({
@@ -89,7 +89,7 @@ export const clearFilter = () => {
 };
 
 // Add a post to wishlist
-export const addToWishlist = (id, token) => async dispatch => {
+export const addToWishlist = (id, token) => async (dispatch) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -116,7 +116,7 @@ export const addToWishlist = (id, token) => async dispatch => {
 };
 
 // Remove a post from wishlist
-export const removeWishlist = (id, token) => async dispatch => {
+export const removeWishlist = (id, token) => async (dispatch) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -137,7 +137,7 @@ export const removeWishlist = (id, token) => async dispatch => {
 };
 
 // Fetch a user's complete wishlist
-export const fetchWishlist = token => async dispatch => {
+export const fetchWishlist = (token) => async (dispatch) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,

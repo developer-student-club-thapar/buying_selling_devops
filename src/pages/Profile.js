@@ -67,7 +67,7 @@ const Profile = ({ user: { profile }, auth: { token }, getProfile, match }) => {
   }
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
   auth: state.auth,
 });

@@ -12,13 +12,13 @@ const GoogleLoginButton = ({
   loginFail,
   setLoading,
 }) => {
-  const responseGoogle = response => {
+  const responseGoogle = (response) => {
     console.log(response);
     setLoading();
 
     loginUser(response.wc.access_token);
   };
-  const responseGoogleFail = response => {
+  const responseGoogleFail = (response) => {
     console.log(response);
     loginFail(response.error);
   };
@@ -26,7 +26,7 @@ const GoogleLoginButton = ({
     <Fragment>
       <GoogleLogin
         clientId={process.env.REACT_APP_OAUTH_CLIENT_ID}
-        render={renderProps => (
+        render={(renderProps) => (
           <Button
             type="primary"
             style={{
@@ -53,7 +53,7 @@ const GoogleLoginButton = ({
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 

@@ -7,10 +7,18 @@ import profanity.validators
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('posts', '0007_auto_20200627_1058'),
+        ("posts", "0007_auto_20200627_1058"),
     ]
 
     operations = [
-        migrations.AlterField(model_name='post', name='brand', field=models.CharField(max_length=50, validators=[profanity.validators.validate_is_profane]),),
-        migrations.AlterField(model_name='post', name='title', field=models.CharField(max_length=100, validators=[profanity.validators.validate_is_profane]),),
+        migrations.AlterField(
+            model_name="post",
+            name="brand",
+            field=models.CharField(max_length=50, validators=[profanity.validators.validate_is_profane]),
+        ),
+        migrations.AlterField(
+            model_name="post",
+            name="title",
+            field=models.CharField(max_length=100, validators=[profanity.validators.validate_is_profane]),
+        ),
     ]

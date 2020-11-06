@@ -13,24 +13,62 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Category',
-            fields=[('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')), ('name', models.CharField(max_length=40)),],
-            options={'verbose_name': 'category', 'verbose_name_plural': 'Categories',},
+            name="Category",
+            fields=[
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=40)),
+            ],
+            options={
+                "verbose_name": "category",
+                "verbose_name_plural": "Categories",
+            },
         ),
         migrations.CreateModel(
-            name='Post',
+            name="Post",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('title', models.CharField(max_length=100)),
-                ('description', models.TextField()),
-                ('datePosted', models.DateTimeField(default=django.utils.timezone.now)),
-                ('price', models.DecimalField(decimal_places=2, max_digits=6)),
-                ('isSold', models.BooleanField(default=False)),
-                ('onDiscount', models.BooleanField(default=False)),
-                ('discountPercent', models.DecimalField(decimal_places=2, max_digits=4)),
-                ('age', models.IntegerField()),
-                ('brand', models.CharField(max_length=50)),
-                ('condition', models.CharField(choices=[('VB', 'Very Bad'), ('BA', 'Bad'), ('G', 'Good'), ('BE', 'Best'), ('E', "Couldn't be better")], default='G', max_length=3)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("title", models.CharField(max_length=100)),
+                ("description", models.TextField()),
+                ("datePosted", models.DateTimeField(default=django.utils.timezone.now)),
+                ("price", models.DecimalField(decimal_places=2, max_digits=6)),
+                ("isSold", models.BooleanField(default=False)),
+                ("onDiscount", models.BooleanField(default=False)),
+                (
+                    "discountPercent",
+                    models.DecimalField(decimal_places=2, max_digits=4),
+                ),
+                ("age", models.IntegerField()),
+                ("brand", models.CharField(max_length=50)),
+                (
+                    "condition",
+                    models.CharField(
+                        choices=[
+                            ("VB", "Very Bad"),
+                            ("BA", "Bad"),
+                            ("G", "Good"),
+                            ("BE", "Best"),
+                            ("E", "Couldn't be better"),
+                        ],
+                        default="G",
+                        max_length=3,
+                    ),
+                ),
             ],
         ),
     ]

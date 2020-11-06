@@ -12,8 +12,8 @@ We follow a systematic Git Workflow -
 
 - Fork the repo and clone it.
 - If you had a previous version of the project, please delete the old env folder and create a new one
-- The project now uses `poetry` to manage dependencies. So, virtual environment creation will also be handled by poetry
-- Install [Poetry](https://python-poetry.org/docs/)
+- The project now uses `pipenv` to manage dependencies. So, virtual environment creation will also be handled by pipenv
+- Install [Pipenv](https://pypi.org/project/pipenv/)
 
 - (Only for Linux users) At the root of your project directory <br>
   `sudo apt-get update`<br>
@@ -21,7 +21,7 @@ We follow a systematic Git Workflow -
 
 - Run these commands
 ```bash
-poetry install
+pipenv install
 pre-commit install
 ```
 
@@ -32,7 +32,7 @@ pre-commit install
 - Create a new database in postgres with name `thapar_olx` owned by the user created in previous step.
 - Ensure that postgres server is running on default port **5432**.
 
-- To activate the virtual environment made by poetry run `poetry shell`
+- To activate the virtual environment made by pipenv run `pipenv shell`
 
 - After the above setup, run <br>
   `python manage.py makemigrations`
@@ -43,7 +43,7 @@ pre-commit install
   Runs the backend server at default port `8000`.<br />
   Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
 
-- To exit the poetry virtual environment run `exit`.
+- To exit the pipenv virtual environment run `exit`.
 
 ## Setup and running of project (Frontend)
 
@@ -90,5 +90,5 @@ You will also see any lint errors in the console.
 
 #### Note
 
-- As the project now uses `poetry` to manage dependencies, you need to run `poetry add <package_name>` to install the new package.
+- As the project now uses `pipenv` to manage dependencies, you need to run `pipenv install <package_name>` to install the new package.
 - Use only `yarn add package_name` to add new packages to the frontend part.

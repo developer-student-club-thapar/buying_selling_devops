@@ -8,16 +8,33 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('posts', '0008_auto_20200627_1128'),
+        ("posts", "0008_auto_20200627_1128"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Report',
+            name="Report",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('reports', models.IntegerField(default=0, validators=[django.core.validators.MinValueValidator(0)])),
-                ('post', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='posts.Post')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "reports",
+                    models.IntegerField(
+                        default=0,
+                        validators=[django.core.validators.MinValueValidator(0)],
+                    ),
+                ),
+                (
+                    "post",
+                    models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to="posts.Post"),
+                ),
             ],
         ),
     ]

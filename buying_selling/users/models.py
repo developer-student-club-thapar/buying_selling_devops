@@ -11,14 +11,14 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
 from buying_selling.posts.models import Post
 
-USERNAME_REGEX = '^[a-zA-Z0-9.+-]*$'
-MOBILE_REGEX = '^(\+\d{1,3}[- ]?)?\d{10}$'  # noqa
+USERNAME_REGEX = "^[a-zA-Z0-9.+-]*$"
+MOBILE_REGEX = "^(\+\d{1,3}[- ]?)?\d{10}$"  # noqa
 
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email, username, password=None):
         if not email:
-            raise ValueError('Users must have an email address')
+            raise ValueError("Users must have an email address")
 
         user = self.model(email=self.normalize_email(email), username=username)
         user.is_active = True
@@ -36,11 +36,30 @@ class MyUserManager(BaseUserManager):
 
 class MyUser(AbstractBaseUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    mobile = models.CharField(max_length=16, validators=[RegexValidator(regex=MOBILE_REGEX, message='Enter a valid mobile number', code='invalid_mobile')])
-    username = models.CharField(max_length=300, validators=[RegexValidator(regex=USERNAME_REGEX, message='Username must be alphanumeric or contain numbers', code='invalid_username')], unique=True)
-    email = models.EmailField(max_length=255, unique=True, verbose_name='email address')
-    firstName = models.CharField('First Name', max_length=20)
-    lastName = models.CharField('Last Name', max_length=20)
+    mobile = models.CharField(
+        max_length=16,
+        validators=[
+            RegexValidator(
+                regex=MOBILE_REGEX,
+                message="Enter a valid mobile number",
+                code="invalid_mobile",
+            )
+        ],
+    )
+    username = models.CharField(
+        max_length=300,
+        validators=[
+            RegexValidator(
+                regex=USERNAME_REGEX,
+                message="Username must be alphanumeric or contain numbers",
+                code="invalid_username",
+            )
+        ],
+        unique=True,
+    )
+    email = models.EmailField(max_length=255, unique=True, verbose_name="email address")
+    firstName = models.CharField("First Name", max_length=20)
+    lastName = models.CharField("Last Name", max_length=20)
     dateJoined = models.DateTimeField(default=timezone.now)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -48,9 +67,9 @@ class MyUser(AbstractBaseUser):
 
     objects = MyUserManager()
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = "email"
     REQUIRED_FIELDS = [
-        'username',
+        "username",
     ]
 
     def __str__(self):
@@ -86,42 +105,42 @@ class Hostel(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(MyUser, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='profile_pics', blank=True, null=True)
+    image = models.ImageField(upload_to="profile_pics", blank=True, null=True)
     bio = models.TextField(validators=[validate_is_profane])
     isHosteler = models.BooleanField(default=True)
     YEAR_CHOICES = (
-        ('1', 'First'),
-        ('2', 'Second'),
-        ('3', 'Third'),
-        ('4', 'Fourth'),
+        ("1", "First"),
+        ("2", "Second"),
+        ("3", "Third"),
+        ("4", "Fourth"),
     )
     BRANCH_CHOICES = (
-        ('COE', 'Computer Engineering'),
-        ('CSE', 'Computer Science Engineering'),
-        ('ECE', 'Electroincs and Communications Engineering'),
-        ('ENC', 'Electroincs and Computer Engineering'),
-        ('COBS', 'Computer Science and Business Studies'),
-        ('CE', 'Chemical Engineering'),
-        ('CiE', 'Civil Engineering'),
-        ('BiE', 'Biotechnology'),
-        ('BME', 'Biomedical Engineering'),
-        ('SE', 'Structural Engineering'),
-        ('IE', 'Infrastructure Engineering'),
-        ('ME', 'Mechanical Engineering'),
-        ('MEC', 'Mechatronics Engineering'),
-        ('EE', 'Electrical Engineering'),
-        ('ECE', 'Electroinc (Instrumentation and Control)'),
-        ('ME(P)', 'Mechanical (Production) Engineering'),
-        ('BE-MBA(ME)', 'Mechanical MBA Dual Degree'),
-        ('BE-MBA(ECE)', 'Electroincs MBA Dual Degree'),
-        ('Others', 'Other'),
+        ("COE", "Computer Engineering"),
+        ("CSE", "Computer Science Engineering"),
+        ("ECE", "Electroincs and Communications Engineering"),
+        ("ENC", "Electroincs and Computer Engineering"),
+        ("COBS", "Computer Science and Business Studies"),
+        ("CE", "Chemical Engineering"),
+        ("CiE", "Civil Engineering"),
+        ("BiE", "Biotechnology"),
+        ("BME", "Biomedical Engineering"),
+        ("SE", "Structural Engineering"),
+        ("IE", "Infrastructure Engineering"),
+        ("ME", "Mechanical Engineering"),
+        ("MEC", "Mechatronics Engineering"),
+        ("EE", "Electrical Engineering"),
+        ("ECE", "Electroinc (Instrumentation and Control)"),
+        ("ME(P)", "Mechanical (Production) Engineering"),
+        ("BE-MBA(ME)", "Mechanical MBA Dual Degree"),
+        ("BE-MBA(ECE)", "Electroincs MBA Dual Degree"),
+        ("Others", "Other"),
     )
     hostel = models.ForeignKey(Hostel, on_delete=models.CASCADE, blank=True, null=True)
     year = models.CharField(max_length=1, choices=YEAR_CHOICES)
     branch = models.CharField(max_length=11, choices=BRANCH_CHOICES)
 
     def __str__(self):
-        return f'{self.user.username} Profile'
+        return f"{self.user.username} Profile"
 
     def save(self, **args):
         super().save()
