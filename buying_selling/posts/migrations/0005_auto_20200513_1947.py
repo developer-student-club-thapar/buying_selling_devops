@@ -6,10 +6,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('posts', '0004_postimages'),
+        ("posts", "0004_postimages"),
     ]
 
     operations = [
-        migrations.RenameModel(old_name='PostImages', new_name='PostImage',),
-        migrations.AlterModelOptions(name='postimage', options={'verbose_name': 'image', 'verbose_name_plural': 'PostImages'},),
+        migrations.RenameModel(
+            old_name="PostImages",
+            new_name="PostImage",
+        ),
+        migrations.AlterModelOptions(
+            name="postimage",
+            options={"verbose_name": "image", "verbose_name_plural": "PostImages"},
+        ),
     ]

@@ -7,9 +7,13 @@ import profanity.validators
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0008_auto_20200609_1616'),
+        ("users", "0008_auto_20200609_1616"),
     ]
 
     operations = [
-        migrations.AlterField(model_name='profile', name='bio', field=models.TextField(validators=[profanity.validators.validate_is_profane]),),
+        migrations.AlterField(
+            model_name="profile",
+            name="bio",
+            field=models.TextField(validators=[profanity.validators.validate_is_profane]),
+        ),
     ]

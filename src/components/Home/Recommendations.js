@@ -8,7 +8,7 @@ const Recommendations = ({ posts, history, filteredPosts }) => {
     <Fragment>
       <Row>
         {filteredPosts.length > 0
-          ? filteredPosts.map(post => (
+          ? filteredPosts.map((post) => (
               <Col
                 span={12}
                 style={{
@@ -46,7 +46,7 @@ const Recommendations = ({ posts, history, filteredPosts }) => {
                   }}
                 >
                   <div>
-                    {post.category.map(category => (
+                    {post.category.map((category) => (
                       <Text style={{ fontSize: '8px', marginLeft: '10px' }}>
                         {category.name}
                       </Text>
@@ -105,7 +105,7 @@ const Recommendations = ({ posts, history, filteredPosts }) => {
                 </div>
               </Col>
             ))
-          : posts.map(post => (
+          : posts.map((post) => (
               <Col
                 span={12}
                 style={{
@@ -143,7 +143,7 @@ const Recommendations = ({ posts, history, filteredPosts }) => {
                   }}
                 >
                   <div>
-                    {post.category.map(category => (
+                    {post.category.map((category) => (
                       <Text style={{ fontSize: '8px', marginLeft: '10px' }}>
                         {category.name}
                       </Text>

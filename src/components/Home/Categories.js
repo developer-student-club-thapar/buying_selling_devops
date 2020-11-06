@@ -16,7 +16,7 @@ const Categories = ({
     <Fragment>
       <div>
         {categories &&
-          categories.map(category => (
+          categories.map((category) => (
             <Button
               type="primary"
               style={{
@@ -38,7 +38,7 @@ const Categories = ({
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   posts: state.posts,
 });
 

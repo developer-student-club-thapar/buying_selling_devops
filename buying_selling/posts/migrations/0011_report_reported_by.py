@@ -8,9 +8,13 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('posts', '0010_post_enabled'),
+        ("posts", "0010_post_enabled"),
     ]
 
     operations = [
-        migrations.AddField(model_name='report', name='reported_by', field=models.ManyToManyField(to=settings.AUTH_USER_MODEL),),
+        migrations.AddField(
+            model_name="report",
+            name="reported_by",
+            field=models.ManyToManyField(to=settings.AUTH_USER_MODEL),
+        ),
     ]

@@ -9,7 +9,7 @@ import axios from 'axios';
 import { AUTH_ENDPOINT } from '../../constants/endpoints/index';
 
 //Login User
-export const loginUser = accessToken => async dispatch => {
+export const loginUser = (accessToken) => async (dispatch) => {
   try {
     const res = await axios.post(`${AUTH_ENDPOINT}`, {
       token: accessToken,
@@ -42,7 +42,7 @@ export const logoutUser = () => {
 };
 
 //Login Fail
-export const loginFail = error => {
+export const loginFail = (error) => {
   return {
     type: LOGIN_FAIL,
     payload: error,
