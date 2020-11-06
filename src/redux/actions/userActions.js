@@ -6,7 +6,7 @@ import {
 } from '../../constants/endpoints/index';
 
 //Get my profile
-export const getMyProfile = token => async dispatch => {
+export const getMyProfile = (token) => async (dispatch) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -27,7 +27,7 @@ export const getMyProfile = token => async dispatch => {
 };
 
 //Get a profile by id
-export const getProfile = (id, token) => async dispatch => {
+export const getProfile = (id, token) => async (dispatch) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,

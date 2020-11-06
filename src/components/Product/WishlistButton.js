@@ -27,7 +27,7 @@ const WishlistButton = ({
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   posts: state.posts,
   auth: state.auth,
 });

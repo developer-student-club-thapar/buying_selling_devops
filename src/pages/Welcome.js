@@ -21,7 +21,7 @@ const Welcome = ({ auth: { user, isAuthenticated }, logoutUser }) => {
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 

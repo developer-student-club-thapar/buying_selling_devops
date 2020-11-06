@@ -75,7 +75,7 @@ const Product = ({
           </Row>
           <Row>
             <Col span={12}>
-              {post.category.map(category => (
+              {post.category.map((category) => (
                 <Text
                   style={{
                     color: '#FFFFFF',
@@ -167,7 +167,7 @@ const Product = ({
   }
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   posts: state.posts,
   auth: state.auth,
 });

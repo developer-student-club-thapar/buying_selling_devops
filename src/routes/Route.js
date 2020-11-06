@@ -43,7 +43,7 @@ RouteWrapper.defaultProps = {
   isPrivate: false,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 

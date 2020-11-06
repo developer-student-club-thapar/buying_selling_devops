@@ -8,7 +8,7 @@ repos:
     hooks:
       - id: black
         language_version: python3 # Should be a command that runs python3.6+
-  - repo: https://github.com/prettier/prettier
-    rev: 1.19.1
+  - repo: https://github.com/prettier/pre-commit
+    rev: main
     hooks:
       - id: prettier
