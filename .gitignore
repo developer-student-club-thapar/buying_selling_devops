@@ -5,6 +5,7 @@ media
 .DS_Store
 *.sqlite3
 .env
+.env.dev
 .vscode/
 node_modules/
 service-account.json
