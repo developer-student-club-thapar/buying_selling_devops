@@ -9,7 +9,7 @@ from .serializers import (
     PostListSerializer,
     PostUpdateSerializer,
 )
-from .permissions import IsOwnerOrReadOnly, IsOwnerForPostImage, IsOwnerForPost
+from .permissions import IsOwnerOrReadOnly, IsOwnerForPostImage
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FormParser
@@ -93,7 +93,7 @@ class PostViewset(viewsets.ModelViewSet):
     permission_classes_by_action = {
         "create": [IsAuthenticated],
         "list": [AllowAny],
-        "retrieve": [AllowAny, IsOwnerForPost],
+        "retrieve": [AllowAny],
         "update": [IsAuthenticated, IsOwnerOrReadOnly],
         "partial_update": [IsAuthenticated, IsOwnerOrReadOnly],
         "destroy": [IsAuthenticated, IsOwnerOrReadOnly],
@@ -125,7 +125,6 @@ class PostViewset(viewsets.ModelViewSet):
         post_serializer = PostDetailSerializer(post, context={"request": request}).data
         image_serializer = ImageSerializer(images, many=True, context={"request": request}).data
         images = []
-        print(image_serializer)
         for image in image_serializer:
             images.append(image)
         post_serializer["images"] = images
