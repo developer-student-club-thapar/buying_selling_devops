@@ -3,7 +3,6 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from buying_selling.users import views as user_views
-from rest_framework_simplejwt.views import TokenRefreshView
 from django.views.generic import TemplateView
 
 catchall = TemplateView.as_view(template_name="index.html")
@@ -15,7 +14,7 @@ urlpatterns = [
     path("admin/doc/", include("django.contrib.admindocs.urls")),
     path("admin/", admin.site.urls),
     path("google/auth/token/", user_views.GoogleView.as_view(), name="google"),
-    path("google/auth/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("google/auth/refresh/", user_views.RefreshTokenView.as_view(), name="token_refresh"),
     path("hi/", user_views.HelloView.as_view()),
 ]
 
