@@ -16,7 +16,7 @@ const GoogleLoginButton = ({
     console.log(response);
     setLoading();
 
-    loginUser(response.wc.access_token);
+    loginUser(response.accessToken);
   };
   const responseGoogleFail = (response) => {
     console.log(response);
@@ -25,7 +25,7 @@ const GoogleLoginButton = ({
   return (
     <Fragment>
       <GoogleLogin
-        clientId={process.env.REACT_APP_OAUTH_CLIENT_ID}
+        clientId='996651917612-c3olipfl8in8e4josk4krmet86mvcisl.apps.googleusercontent.com'
         render={(renderProps) => (
           <Button
             type="primary"
@@ -48,6 +48,7 @@ const GoogleLoginButton = ({
         onFailure={responseGoogleFail}
         cookiePolicy={'single_host_origin'}
         hostedDomain={'thapar.edu'}
+        isSignedIn={true}
       />
     </Fragment>
   );
