@@ -16,7 +16,7 @@ const GoogleLoginButton = ({
     console.log(response);
     setLoading();
 
-    loginUser(response.wc.access_token);
+    loginUser(response.accessToken);
   };
   const responseGoogleFail = (response) => {
     console.log(response);
@@ -48,6 +48,7 @@ const GoogleLoginButton = ({
         onFailure={responseGoogleFail}
         cookiePolicy={'single_host_origin'}
         hostedDomain={'thapar.edu'}
+        isSignedIn={true}
       />
     </Fragment>
   );
