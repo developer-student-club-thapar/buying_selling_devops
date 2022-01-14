@@ -25,7 +25,7 @@ const GoogleLoginButton = ({
   return (
     <Fragment>
       <GoogleLogin
-        clientId='996651917612-c3olipfl8in8e4josk4krmet86mvcisl.apps.googleusercontent.com'
+        clientId={process.env.REACT_APP_OAUTH_CLIENT_ID}
         render={(renderProps) => (
           <Button
             type="primary"
