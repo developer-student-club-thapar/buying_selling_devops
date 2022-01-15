@@ -27,9 +27,25 @@ pre-commit install
 
 - This will setup the project requirements and pre-commit test hooks!
 
-- Ensure you have PostgreSQl installed on your machine.
-- Create a new admin user in postgres with username `thapar_olx` and password `thapar_olx`.
-- Create a new database in postgres with name `thapar_olx` owned by the user created in previous step.
+- Ensure you have [PostgreSQl](https://www.postgresql.org/download/) installed on your machine and don't forget to add that in your environment variables.
+- Open Command prompt or Terminal, and login into postgres by entering the following command:
+  `psql -U postgres -h localhost`<br>
+- Create a new admin user in postgres with username `thapar_olx` and password `thapar_olx` by using the following command:<br>
+  `CREATE USER thapar_olx WITH ENCRYPTED PASSWORD 'thapar_olx'`<br>
+- You can confirm that user is created or not by using the following command<br>
+  `\du`
+- Create a new database in postgres with name `thapar_olx` owned by the user created in previous step by using the following command:<br>
+  `create database thapar_olx`<br>
+- You can confirm that your database is created or not by using the following command<br>
+  `\l`<br>
+- Now, to grant priviledges, use the following command:<br>
+  `GRANT ALL PRIVILEDGES ON DATABASE thapar_olx TO thapar_olx;`
+```bash
+GRANT
+```
+- Check via entering the following command:
+  `\l`
+     
 - Ensure that postgres server is running on default port **5432**.
 
 - To activate the virtual environment made by pipenv run `pipenv shell`
