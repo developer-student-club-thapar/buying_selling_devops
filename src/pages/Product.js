@@ -14,9 +14,7 @@ import WishlistButton from '../components/Product/WishlistButton';
 
 const Product = (match) => {
   const posts = useSelector((state) => state.posts);
-  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const token = auth.token;
   const post = posts.post;
 
   const { Title } = Typography;
