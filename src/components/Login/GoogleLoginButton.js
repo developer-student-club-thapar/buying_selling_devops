@@ -3,20 +3,19 @@ import styles from '../../styles/Login.module.css';
 import { Button } from 'antd';
 import { GoogleOutlined } from '@ant-design/icons';
 import GoogleLogin from 'react-google-login';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { loginUser, loginFail, setLoading } from '../../redux/actions';
 
-const GoogleLoginButton = ({
-  auth: { loading },
-  loginUser,
-  loginFail,
-  setLoading,
-}) => {
+const GoogleLoginButton = () => {
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const loading = auth.loading;
+
   const responseGoogle = (response) => {
     console.log(response);
-    setLoading();
+    dispatch(setLoading());
 
-    loginUser(response.accessToken);
+    dispatch(loginUser(response.accessToken));
   };
   const responseGoogleFail = (response) => {
     console.log(response);
@@ -54,10 +53,4 @@ const GoogleLoginButton = ({
   );
 };
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-});
-
-export default connect(mapStateToProps, { loginUser, loginFail, setLoading })(
-  GoogleLoginButton,
-);
+export default GoogleLoginButton;

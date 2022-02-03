@@ -7,22 +7,22 @@ import Recommendations from '../components/Home/Recommendations';
 import { useHasScrolled } from '../components/Home/hooks/useScrollHandler';
 import TopBar from '../components/Home/TopBar';
 import TopBarScroll from '../components/Home/TopBarScroll';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts, clearFilter, fetchWishlist } from '../redux/actions';
 import HomeSkeleton from '../components/Home/HomeSkeleton';
 
-const Home = ({
-  posts: { posts, filteredPosts },
-  auth: { token },
-  getAllPosts,
-  clearFilter,
-  fetchWishlist,
-}) => {
+const Home = () => {
+  const post = useSelector((state) => state.posts);
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const posts = post.posts;
+  const filteredPosts = post.filteredPosts;
+  const token = auth.token;
   const { Title } = Typography;
   const scroll = useHasScrolled();
   useEffect(() => {
-    getAllPosts();
-    fetchWishlist(token);
+    dispatch(getAllPosts());
+    dispatch(fetchWishlist(token));
     //eslint-disable-next-line
   }, []);
   if (!posts) {
@@ -48,7 +48,7 @@ const Home = ({
                   size="middle"
                   id="filterbtn"
                   onClick={() => {
-                    clearFilter();
+                    dispatch(clearFilter());
                   }}
                 >
                   Clear Filters
@@ -76,13 +76,4 @@ const Home = ({
   }
 };
 
-const mapStateToProps = (state) => ({
-  posts: state.posts,
-  auth: state.auth,
-});
-
-export default connect(mapStateToProps, {
-  getAllPosts,
-  clearFilter,
-  fetchWishlist,
-})(Home);
+export default Home;

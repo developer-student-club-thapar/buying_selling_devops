@@ -4,14 +4,20 @@ import Text from 'antd/lib/typography/Text';
 import ProfileDisplay from '../components/Profile/ProfileDisplay';
 import ProfileDescription from '../components/Profile/ProfileDescription';
 import ProfileInformation from '../components/Profile/ProfileInformation';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getProfile } from '../redux/actions';
 import Moment from 'react-moment';
 
-const Profile = ({ user: { profile }, auth: { token }, getProfile, match }) => {
+const Profile = (match) => {
+  const user = useSelector((state) => state.user);
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const token = auth.token;
+  const profile = user.profile;
   const id = `${match.params.id}`;
+
   useEffect(() => {
-    getProfile(id, token);
+    dispatch(getProfile(id, token));
     //eslint-disable-next-line
   }, []);
   if (!profile) {
@@ -67,9 +73,4 @@ const Profile = ({ user: { profile }, auth: { token }, getProfile, match }) => {
   }
 };
 
-const mapStateToProps = (state) => ({
-  user: state.user,
-  auth: state.auth,
-});
-
-export default connect(mapStateToProps, { getProfile })(Profile);
+export default Profile;
