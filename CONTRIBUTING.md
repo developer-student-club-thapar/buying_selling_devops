@@ -31,15 +31,15 @@ pre-commit install
 - Open Command prompt or Terminal, and login into postgres by entering the following command:<br>
   `psql -U postgres -h localhost`<br>
 - Create a new admin user in postgres with username `thapar_olx` and password `thapar_olx` by using the following command:<br>
-  `CREATE USER thapar_olx WITH ENCRYPTED PASSWORD 'thapar_olx'`<br>
+  `CREATE USER thapar_olx WITH ENCRYPTED PASSWORD 'thapar_olx';`<br>
 - You can confirm that user is created or not by using the following command<br>
   `\du`
 - Create a new database in postgres with name `thapar_olx` owned by the user created in previous step by using the following command:<br>
-  `create database thapar_olx`<br>
+  `create database thapar_olx`;<br>
 - You can confirm that your database is created or not by using the following command<br>
   `\l`<br>
-- Now, to grant priviledges, use the following command:<br>
-  `GRANT ALL PRIVILEDGES ON DATABASE thapar_olx TO thapar_olx;`<br>
+- Now, to grant privileges, use the following command:<br>
+  `GRANT ALL PRIVILEGES ON DATABASE thapar_olx TO thapar_olx;`<br>
   this message appears stating that you have successfully granted priviledges to user `thapar_olx` for database `thapar_olx`:<br>
 ```bash
 GRANT
@@ -49,10 +49,13 @@ GRANT
      
 - Ensure that postgres server is running on default port **5432**.
 
-- To activate the virtual environment made by pipenv run `pipenv shell`
+- To activate the virtual environment made by pipenv run `pipenv shell`<br>
+
+- For mac users, run the following command in order to install pysopg2-binary<br>
+  `pip install psycopg2-binary`<br>
 
 - After the above setup, run <br>
-  `python manage.py makemigrations`
+  `python manage.py makemigrations`<br>
   `python manage.py migrate`
 
 - Start the backend dev server
@@ -65,8 +68,9 @@ GRANT
 ## Setup and running of project (Frontend)
 
 - At your root directory run `yarn install` to install all the dependencies
-- Start react dev server
-- `yarn start`
+- Create a .env file by referring .env.example file for your React setup
+- Start react dev server by using the following command<br>
+  `yarn start`<br>
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
