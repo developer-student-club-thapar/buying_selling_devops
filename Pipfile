@@ -18,7 +18,7 @@ pre-commit = "2.2.0"
 uuid = "1.x.x"
 djangorestframework-simplejwt = "4.x.x"
 requests = "2.x.x"
-protobuf = "3.11.3"
+protobuf = "3.15.0"
 django-storages = {extras = ["google"], version = "1.x.x"}
 google-cloud-storage = "1.x.x"
 psycopg2 = "2.x.x"
