@@ -9,7 +9,7 @@ import {
   FETCH_WISHLIST,
   REMOVE_WISHLIST,
 } from '../types';
-
+import { createReducer } from '@reduxjs/toolkit';
 const defaultState = {
   posts: null,
   filteredPosts: [],
@@ -21,52 +21,65 @@ const defaultState = {
   error: null,
 };
 
-export default (state = defaultState, action) => {
-  switch (action.type) {
-    case GET_ALL_POSTS:
+export default createReducer(defaultState, (builder) => {
+  builder
+    .addCase(GET_ALL_POSTS, (state, action) => {
       return {
         ...state,
         posts: action.payload,
         post: null,
         wishlist: null,
       };
-    case GET_SINGLE_POST:
+    })
+    .addCase(GET_SINGLE_POST, (state, action) => {
       return {
         ...state,
         post: action.payload,
       };
-    case FETCH_CATEGORIES:
+    })
+    .addCase(FETCH_CATEGORIES, (state, action) => {
       return {
-        ...state,
-        categories: action.payload,
-      };
-    case FILTER_POSTS:
+          ...state,
+          categories: action.payload,
+        };
+    })
+    .addCase(FILTER_POSTS, (state, action) => {
       return {
-        ...state,
-        filteredPosts: action.payload,
-      };
-    case CLEAR_FILTER:
+          ...state,
+          filteredPosts: action.payload,
+        };
+    })
+    .addCase(CLEAR_FILTER, (state, action) => {
       return {
-        ...state,
-        filteredPosts: [],
-      };
-    case REMOVE_WISHLIST:
-    case ADD_WISHLIST:
+          ...state,
+          filteredPosts: [],
+        };
+    })
+    .addCase(REMOVE_WISHLIST, (state, action) => {
       return {
         ...state,
         wishlist: action.payload,
       };
-    case FETCH_WISHLIST:
+    })
+    .addCase(ADD_WISHLIST, (state, action) => {
+      return {
+        ...state,
+        wishlist: action.payload,
+      };
+    })
+    .addCase(FETCH_WISHLIST, (state, action) => {
       return {
         ...state,
         completeWishlist: action.payload,
       };
-    case POST_ERROR:
+    })
+    .addCase(POST_ERROR, (state, action) => {
       return {
         ...state,
         error: action.payload,
       };
-    default:
+    })
+    .addDefaultCase((state, action) => {
       return state;
-  }
-};
+    });
+});
