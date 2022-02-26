@@ -14,20 +14,17 @@ import {
   POST_ENDPOINT,
   WISHLIST_ENDPOINT,
 } from '../../constants/endpoints/index';
+import { createAction } from '@reduxjs/toolkit';
 
 //Get all posts
 export const getAllPosts = () => async (dispatch) => {
   try {
     const res = await axios.get(`${POST_ENDPOINT}`);
-    dispatch({
-      type: GET_ALL_POSTS,
-      payload: res.data,
-    });
+    const action = createAction(GET_ALL_POSTS)
+    dispatch(action(res.data));
   } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: err.response.data,
-    });
+    const action = createAction(POST_ERROR)
+    dispatch(action(err.response.data));
   }
 };
 
@@ -35,16 +32,11 @@ export const getAllPosts = () => async (dispatch) => {
 export const getPost = (id) => async (dispatch) => {
   try {
     const res = await axios.get(`${POST_ENDPOINT}${id}`);
-
-    dispatch({
-      type: GET_SINGLE_POST,
-      payload: res.data,
-    });
+    const action = createAction(GET_SINGLE_POST)
+    dispatch(action(res.data));
   } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: err.response.data,
-    });
+    const action = createAction(POST_ERROR)
+    dispatch(action(err.response.data));
   }
 };
 
@@ -52,16 +44,11 @@ export const getPost = (id) => async (dispatch) => {
 export const fetchCategories = () => async (dispatch) => {
   try {
     const res = await axios.get(`${POST_ENDPOINT}categories`);
-
-    dispatch({
-      type: FETCH_CATEGORIES,
-      payload: res.data,
-    });
+    const action = createAction(FETCH_CATEGORIES)
+    dispatch(action(res.data));
   } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: err.response.data,
-    });
+    const action = createAction(POST_ERROR)
+    dispatch(action(err.response.data));
   }
 };
 
@@ -69,15 +56,12 @@ export const fetchCategories = () => async (dispatch) => {
 export const filterPosts = (filter) => async (dispatch) => {
   try {
     const res = await axios.get(`${POST_ENDPOINT}?category=${filter}`);
-    dispatch({
-      type: FILTER_POSTS,
-      payload: res.data,
-    });
+    const action = createAction(FILTER_POSTS)
+    dispatch(action(res.data));
   } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: err.response.data,
-    });
+  
+    const action = createAction(POST_ERROR)
+    dispatch(action(err.response.data));
   }
 };
 
@@ -103,15 +87,11 @@ export const addToWishlist = (id, token) => async (dispatch) => {
       },
       config,
     );
-    dispatch({
-      type: ADD_WISHLIST,
-      payload: res.data,
-    });
+    const action = createAction(ADD_WISHLIST)
+    dispatch(action(res.data));
   } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: err.response.data,
-    });
+    const action = createAction(POST_ERROR)
+    dispatch(action(err.response.data));
   }
 };
 
@@ -124,15 +104,11 @@ export const removeWishlist = (id, token) => async (dispatch) => {
   };
   try {
     const res = await axios.delete(`${WISHLIST_ENDPOINT}${id}`, config);
-    dispatch({
-      type: REMOVE_WISHLIST,
-      payload: res.data,
-    });
+    const action = createAction(REMOVE_WISHLIST)
+    dispatch(action(res.data));
   } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: err.response.data,
-    });
+    const action = createAction(POST_ERROR)
+    dispatch(action(err.response.data));
   }
 };
 
@@ -145,14 +121,10 @@ export const fetchWishlist = (token) => async (dispatch) => {
   };
   try {
     const res = await axios.get(`${WISHLIST_ENDPOINT}`, config);
-    dispatch({
-      type: FETCH_WISHLIST,
-      payload: res.data,
-    });
+    const action = createAction(FETCH_WISHLIST)
+    dispatch(action(res.data));
   } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: err.response.data,
-    });
+    const action = createAction(POST_ERROR)
+    dispatch(action(err.response.data));
   }
 };
