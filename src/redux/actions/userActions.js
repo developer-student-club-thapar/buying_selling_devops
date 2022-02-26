@@ -20,7 +20,7 @@ export const getMyProfile = (token) => async (dispatch) => {
   } catch (err) {
     const action = createAction(PROFILE_ERROR);
     dispatch(action(err.response.data));
-  }
+  } 
 };
 
 //Get profile by id
