@@ -38,7 +38,6 @@ const GoogleLoginButton = ({
             icon={<GoogleOutlined />}
             size="large"
             onClick={renderProps.onClick}
-            disabled={renderProps.disabled}
             loading={loading}
           >
             <span style={{ fontWeight: '200' }}>Login with Google</span>
