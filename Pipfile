@@ -27,4 +27,4 @@ django-profanity-filter = "0.x.x"
 whitenoise = "5.x.x"
 
 [requires]
-python_version = "3.8"
+python_version = "*"

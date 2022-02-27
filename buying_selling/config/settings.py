@@ -134,6 +134,9 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    # just for checking purpose, will increase this to 5 or 10
+    "PAGE_SIZE": 1,
 }
 
 # CORS SETTINGS
