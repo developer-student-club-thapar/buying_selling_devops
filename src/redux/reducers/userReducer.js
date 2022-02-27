@@ -1,5 +1,4 @@
 import { GET_MYPROFILE, GET_PROFILE, PROFILE_ERROR } from '../types';
-import { createReducer } from '@reduxjs/toolkit';
 
 const defaultState = {
   myProfile: null,
@@ -7,27 +6,24 @@ const defaultState = {
   error: null,
 };
 
-export default createReducer(defaultState, (builder) => {
-  builder
-    .addCase(GET_MYPROFILE, (state, action) => {
+export default (state = defaultState, action) => {
+  switch (action.type) {
+    case GET_MYPROFILE:
       return {
         ...state,
         myProfile: action.payload,
       };
-    })
-    .addCase(GET_PROFILE, (state, action) => {
+    case GET_PROFILE:
       return {
         ...state,
         profile: action.payload,
       };
-    })
-    .addCase(PROFILE_ERROR, (state, action) => {
+    case PROFILE_ERROR:
       return {
         ...state,
         error: action.payload,
       };
-    })
-    .addDefaultCase((state, action) => {
+    default:
       return state;
-    });
-});
+  }
+};

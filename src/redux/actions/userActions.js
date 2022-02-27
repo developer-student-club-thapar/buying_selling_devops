@@ -4,7 +4,6 @@ import {
   PROFILE_ENDPOINT,
   MY_PROFILE_ENDPOINT,
 } from '../../constants/endpoints/index';
-import { createAction } from '@reduxjs/toolkit';
 
 //Get my profile
 export const getMyProfile = (token) => async (dispatch) => {
@@ -15,15 +14,19 @@ export const getMyProfile = (token) => async (dispatch) => {
   };
   try {
     const res = await axios.get(`${MY_PROFILE_ENDPOINT}`, config);
-    const action = createAction(GET_MYPROFILE);
-    dispatch(action(res.data));
+    dispatch({
+      type: GET_MYPROFILE,
+      payload: res.data,
+    });
   } catch (err) {
-    const action = createAction(PROFILE_ERROR);
-    dispatch(action(err.response.data));
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: err.response.data,
+    });
   }
 };
 
-//Get profile by id
+//Get a profile by id
 export const getProfile = (id, token) => async (dispatch) => {
   const config = {
     headers: {
@@ -32,10 +35,15 @@ export const getProfile = (id, token) => async (dispatch) => {
   };
   try {
     const res = await axios.get(`${PROFILE_ENDPOINT}${id}`, config);
-    const action = createAction(GET_PROFILE);
-    dispatch(action(res.data));
+
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data,
+    });
   } catch (err) {
-    const action = createAction(PROFILE_ERROR);
-    dispatch(action(err.response.data));
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: err.response.data,
+    });
   }
 };
