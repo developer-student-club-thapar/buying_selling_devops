@@ -7,20 +7,22 @@ import { Button } from 'antd';
 import ImageCarousel from '../components/Product/ImageCarousel';
 import ProductDescription from '../components/Product/ProductDescription';
 import ProductDetails from '../components/Product/ProductDetails';
-import { useDispatch, useSelector } from 'react-redux';
-import { getPost } from '../redux/actions';
+import { connect } from 'react-redux';
+import { getPost, addToWishlist } from '../redux/actions';
 import Moment from 'react-moment';
 import WishlistButton from '../components/Product/WishlistButton';
 
-const Product = (match) => {
-  const posts = useSelector((state) => state.posts);
-  const dispatch = useDispatch();
-  const post = posts.post;
-
+const Product = ({
+  posts: { post },
+  auth: { token },
+  getPost,
+  addToWishlist,
+  match,
+}) => {
   const { Title } = Typography;
   const id = `${match.params.id}`;
   useEffect(() => {
-    dispatch(getPost(id));
+    getPost(id);
     //eslint-disable-next-line
   }, []);
   if (!post) {
@@ -165,4 +167,9 @@ const Product = (match) => {
   }
 };
 
-export default Product;
+const mapStateToProps = (state) => ({
+  posts: state.posts,
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { getPost, addToWishlist })(Product);

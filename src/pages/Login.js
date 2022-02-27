@@ -3,13 +3,11 @@ import { Row, Col, message } from 'antd';
 import { Typography } from 'antd';
 import styles from '../styles/Login.module.css';
 import GoogleLoginButton from '../components/Login/GoogleLoginButton';
-import { useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { resetState } from '../redux/actions';
-
-const Login = () => {
-  const auth = useSelector((state) => state.auth);
-  const error = auth.error;
+const Login = ({ auth: { error }, resetState }) => {
   const { Title } = Typography;
+
   return (
     <div style={{ height: '100vh' }}>
       <div className={styles.main}>
@@ -54,4 +52,8 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { resetState })(Login);

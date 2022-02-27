@@ -20,6 +20,7 @@ from django.conf import settings
 from rest_framework import viewsets, generics
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter, SearchFilter
+from rest_framework.pagination import PageNumberPagination
 from buying_selling.users.models import MyUser
 
 
@@ -71,6 +72,7 @@ class ImageView(APIView):
 class MyPostListAPIView(generics.ListAPIView):
     serializer_class = MyPostListSerializer
     permission_classes = (IsAuthenticated,)
+    pagination_class = PageNumberPagination
 
     def get_queryset(self, *args, **kwargs):
         payload = jwt_decoder(self.request.headers["Authorization"].split()[1])
